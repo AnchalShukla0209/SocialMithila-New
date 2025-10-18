@@ -3,55 +3,52 @@
   "WorkspaceRootPath": "C:\\Instant Projects\\SocialMithila\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B63810AA-2AB7-434C-88C7-1C2C9C154674}|SocialMithila\\SocialMithila.csproj|c:\\instant projects\\socialmithila\\socialmithila\\views\\business\\businesslist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{B63810AA-2AB7-434C-88C7-1C2C9C154674}|SocialMithila\\SocialMithila.csproj|c:\\instant projects\\socialmithila\\socialmithila\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{B63810AA-2AB7-434C-88C7-1C2C9C154674}|SocialMithila\\SocialMithila.csproj|solutionrelative:socialmithila\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B63810AA-2AB7-434C-88C7-1C2C9C154674}|SocialMithila\\SocialMithila.csproj|C:\\Instant Projects\\SocialMithila\\socialmithila\\views\\business\\businesslist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{B63810AA-2AB7-434C-88C7-1C2C9C154674}|SocialMithila\\SocialMithila.csproj|solutionrelative:socialmithila\\views\\business\\businesslist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\dell\\Downloads\\themeforest-lCl7dVrs-sociala-social-network-app-html-template\\sociala\\sociala-envato\\default-hotel.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B63810AA-2AB7-434C-88C7-1C2C9C154674}|SocialMithila\\SocialMithila.csproj|C:\\Instant Projects\\SocialMithila\\socialmithila\\controllers\\businesscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B63810AA-2AB7-434C-88C7-1C2C9C154674}|SocialMithila\\SocialMithila.csproj|c:\\instant projects\\socialmithila\\socialmithila\\controllers\\businesscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B63810AA-2AB7-434C-88C7-1C2C9C154674}|SocialMithila\\SocialMithila.csproj|solutionrelative:socialmithila\\controllers\\businesscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B63810AA-2AB7-434C-88C7-1C2C9C154674}|SocialMithila\\SocialMithila.csproj|C:\\Instant Projects\\SocialMithila\\socialmithila\\asset\\js\\customjs\\businessshop.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{B63810AA-2AB7-434C-88C7-1C2C9C154674}|SocialMithila\\SocialMithila.csproj|solutionrelative:socialmithila\\asset\\js\\customjs\\businessshop.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B63810AA-2AB7-434C-88C7-1C2C9C154674}|SocialMithila\\SocialMithila.csproj|c:\\instant projects\\socialmithila\\socialmithila\\views\\business\\businessdetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B63810AA-2AB7-434C-88C7-1C2C9C154674}|SocialMithila\\SocialMithila.csproj|solutionrelative:socialmithila\\views\\business\\businessdetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9F06C202-9951-41CA-843D-8524FCBF779A}|SocialMithila.SharedDataAccess\\SocialMithila.SharedDataAccess.csproj|c:\\instant projects\\socialmithila\\socialmithila.shareddataaccess\\efcore\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9F06C202-9951-41CA-843D-8524FCBF779A}|SocialMithila.SharedDataAccess\\SocialMithila.SharedDataAccess.csproj|solutionrelative:socialmithila.shareddataaccess\\efcore\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9F06C202-9951-41CA-843D-8524FCBF779A}|SocialMithila.SharedDataAccess\\SocialMithila.SharedDataAccess.csproj|c:\\instant projects\\socialmithila\\socialmithila.shareddataaccess\\efcore\\contact.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9F06C202-9951-41CA-843D-8524FCBF779A}|SocialMithila.SharedDataAccess\\SocialMithila.SharedDataAccess.csproj|solutionrelative:socialmithila.shareddataaccess\\efcore\\contact.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9F06C202-9951-41CA-843D-8524FCBF779A}|SocialMithila.SharedDataAccess\\SocialMithila.SharedDataAccess.csproj|c:\\instant projects\\socialmithila\\socialmithila.shareddataaccess\\efcore\\businessreview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9F06C202-9951-41CA-843D-8524FCBF779A}|SocialMithila.SharedDataAccess\\SocialMithila.SharedDataAccess.csproj|C:\\Instant Projects\\SocialMithila\\socialmithila.shareddataaccess\\efcore\\businessreview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9F06C202-9951-41CA-843D-8524FCBF779A}|SocialMithila.SharedDataAccess\\SocialMithila.SharedDataAccess.csproj|solutionrelative:socialmithila.shareddataaccess\\efcore\\businessreview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A545E958-FCE3-40CF-901D-88BC0B89B470}|SocialMithila.Business\\SocialMithila.Business.csproj|c:\\instant projects\\socialmithila\\socialmithila.business\\business\\bllbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A545E958-FCE3-40CF-901D-88BC0B89B470}|SocialMithila.Business\\SocialMithila.Business.csproj|solutionrelative:socialmithila.business\\business\\bllbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B63810AA-2AB7-434C-88C7-1C2C9C154674}|SocialMithila\\SocialMithila.csproj|c:\\instant projects\\socialmithila\\socialmithila\\views\\shared\\layoutpage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B63810AA-2AB7-434C-88C7-1C2C9C154674}|SocialMithila\\SocialMithila.csproj|solutionrelative:socialmithila\\views\\shared\\layoutpage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B63810AA-2AB7-434C-88C7-1C2C9C154674}|SocialMithila\\SocialMithila.csproj|C:\\Instant Projects\\SocialMithila\\socialmithila\\asset\\css\\customcss\\businessshop.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{B63810AA-2AB7-434C-88C7-1C2C9C154674}|SocialMithila\\SocialMithila.csproj|solutionrelative:socialmithila\\asset\\css\\customcss\\businessshop.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{B63810AA-2AB7-434C-88C7-1C2C9C154674}|SocialMithila\\SocialMithila.csproj|C:\\Instant Projects\\SocialMithila\\socialmithila\\views\\business\\businessdetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B63810AA-2AB7-434C-88C7-1C2C9C154674}|SocialMithila\\SocialMithila.csproj|solutionrelative:socialmithila\\views\\business\\businessdetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B63810AA-2AB7-434C-88C7-1C2C9C154674}|SocialMithila\\SocialMithila.csproj|C:\\Instant Projects\\SocialMithila\\socialmithila\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{B63810AA-2AB7-434C-88C7-1C2C9C154674}|SocialMithila\\SocialMithila.csproj|solutionrelative:socialmithila\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B63810AA-2AB7-434C-88C7-1C2C9C154674}|SocialMithila\\SocialMithila.csproj|c:\\instant projects\\socialmithila\\socialmithila\\asset\\js\\customjs\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "AbsoluteMoniker": "D:0:0:{B63810AA-2AB7-434C-88C7-1C2C9C154674}|SocialMithila\\SocialMithila.csproj|C:\\Instant Projects\\SocialMithila\\socialmithila\\asset\\js\\customjs\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{B63810AA-2AB7-434C-88C7-1C2C9C154674}|SocialMithila\\SocialMithila.csproj|solutionrelative:socialmithila\\asset\\js\\customjs\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B63810AA-2AB7-434C-88C7-1C2C9C154674}|SocialMithila\\SocialMithila.csproj|C:\\Instant Projects\\SocialMithila\\socialmithila\\asset\\js\\customjs\\businessshop.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{B63810AA-2AB7-434C-88C7-1C2C9C154674}|SocialMithila\\SocialMithila.csproj|solutionrelative:socialmithila\\asset\\js\\customjs\\businessshop.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B63810AA-2AB7-434C-88C7-1C2C9C154674}|SocialMithila\\SocialMithila.csproj|C:\\Instant Projects\\SocialMithila\\socialmithila\\views\\shared\\layoutpage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B63810AA-2AB7-434C-88C7-1C2C9C154674}|SocialMithila\\SocialMithila.csproj|solutionrelative:socialmithila\\views\\shared\\layoutpage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9F06C202-9951-41CA-843D-8524FCBF779A}|SocialMithila.SharedDataAccess\\SocialMithila.SharedDataAccess.csproj|C:\\Instant Projects\\SocialMithila\\socialmithila.shareddataaccess\\efcore\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9F06C202-9951-41CA-843D-8524FCBF779A}|SocialMithila.SharedDataAccess\\SocialMithila.SharedDataAccess.csproj|solutionrelative:socialmithila.shareddataaccess\\efcore\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A545E958-FCE3-40CF-901D-88BC0B89B470}|SocialMithila.Business\\SocialMithila.Business.csproj|C:\\Instant Projects\\SocialMithila\\socialmithila.business\\business\\bllbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A545E958-FCE3-40CF-901D-88BC0B89B470}|SocialMithila.Business\\SocialMithila.Business.csproj|solutionrelative:socialmithila.business\\business\\bllbusiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B63810AA-2AB7-434C-88C7-1C2C9C154674}|SocialMithila\\SocialMithila.csproj|C:\\Instant Projects\\SocialMithila\\socialmithila\\asset\\css\\customcss\\businessshop.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{B63810AA-2AB7-434C-88C7-1C2C9C154674}|SocialMithila\\SocialMithila.csproj|solutionrelative:socialmithila\\asset\\css\\customcss\\businessshop.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B63810AA-2AB7-434C-88C7-1C2C9C154674}|SocialMithila\\SocialMithila.csproj|C:\\Instant Projects\\SocialMithila\\socialmithila\\asset\\js\\scripts.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
@@ -81,56 +78,120 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "default-hotel.html",
-              "DocumentMoniker": "C:\\Users\\dell\\Downloads\\themeforest-lCl7dVrs-sociala-social-network-app-html-template\\sociala\\sociala-envato\\default-hotel.html",
-              "RelativeDocumentMoniker": "..\\..\\Users\\dell\\Downloads\\themeforest-lCl7dVrs-sociala-social-network-app-html-template\\sociala\\sociala-envato\\default-hotel.html",
-              "ToolTip": "C:\\Users\\dell\\Downloads\\themeforest-lCl7dVrs-sociala-social-network-app-html-template\\sociala\\sociala-envato\\default-hotel.html",
-              "RelativeToolTip": "..\\..\\Users\\dell\\Downloads\\themeforest-lCl7dVrs-sociala-social-network-app-html-template\\sociala\\sociala-envato\\default-hotel.html",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAAP0BAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2025-10-16T15:07:36.472Z",
+              "DocumentIndex": 0,
+              "Title": "Web.config",
+              "DocumentMoniker": "C:\\Instant Projects\\SocialMithila\\SocialMithila\\Web.config",
+              "RelativeDocumentMoniker": "SocialMithila\\Web.config",
+              "ToolTip": "C:\\Instant Projects\\SocialMithila\\SocialMithila\\Web.config",
+              "RelativeToolTip": "SocialMithila\\Web.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAACcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-10-18T22:04:10.431Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 7,
+              "Title": "BusinessShop.js",
+              "DocumentMoniker": "C:\\Instant Projects\\SocialMithila\\SocialMithila\\asset\\js\\CustomJS\\BusinessShop.js",
+              "RelativeDocumentMoniker": "SocialMithila\\asset\\js\\CustomJS\\BusinessShop.js",
+              "ToolTip": "C:\\Instant Projects\\SocialMithila\\SocialMithila\\asset\\js\\CustomJS\\BusinessShop.js",
+              "RelativeToolTip": "SocialMithila\\asset\\js\\CustomJS\\BusinessShop.js",
+              "ViewState": "AgIAAIgBAAAAAAAAAAAcwKQBAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-10-14T13:36:29.507Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Instant Projects\\SocialMithila\\SocialMithila.SharedDataAccess\\EFCore\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "SocialMithila.SharedDataAccess\\EFCore\\AppDbContext.cs",
+              "ToolTip": "C:\\Instant Projects\\SocialMithila\\SocialMithila.SharedDataAccess\\EFCore\\AppDbContext.cs",
+              "RelativeToolTip": "SocialMithila.SharedDataAccess\\EFCore\\AppDbContext.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAawDQAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-15T09:43:23.754Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BusinessController.cs",
+              "DocumentMoniker": "C:\\Instant Projects\\SocialMithila\\SocialMithila\\Controllers\\BusinessController.cs",
+              "RelativeDocumentMoniker": "SocialMithila\\Controllers\\BusinessController.cs",
+              "ToolTip": "C:\\Instant Projects\\SocialMithila\\SocialMithila\\Controllers\\BusinessController.cs",
+              "RelativeToolTip": "SocialMithila\\Controllers\\BusinessController.cs",
+              "ViewState": "AgIAAN0BAAAAAAAAAADwv+0BAABSAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-14T10:47:12.589Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "BusinessList.cshtml",
               "DocumentMoniker": "C:\\Instant Projects\\SocialMithila\\SocialMithila\\Views\\Business\\BusinessList.cshtml",
               "RelativeDocumentMoniker": "SocialMithila\\Views\\Business\\BusinessList.cshtml",
               "ToolTip": "C:\\Instant Projects\\SocialMithila\\SocialMithila\\Views\\Business\\BusinessList.cshtml",
               "RelativeToolTip": "SocialMithila\\Views\\Business\\BusinessList.cshtml",
-              "ViewState": "AgIAACcAAAAAAAAAAAAmwEMAAABVAAAAAAAAAA==",
+              "ViewState": "AgIAAJEBAAAAAAAAAAAAAKQBAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-10-16T06:24:51.71Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Contact.cs",
-              "DocumentMoniker": "C:\\Instant Projects\\SocialMithila\\SocialMithila.SharedDataAccess\\EFCore\\Contact.cs",
-              "RelativeDocumentMoniker": "SocialMithila.SharedDataAccess\\EFCore\\Contact.cs",
-              "ToolTip": "C:\\Instant Projects\\SocialMithila\\SocialMithila.SharedDataAccess\\EFCore\\Contact.cs",
-              "RelativeToolTip": "SocialMithila.SharedDataAccess\\EFCore\\Contact.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-15T11:46:24.309Z",
+              "DocumentIndex": 8,
+              "Title": "LayoutPage.cshtml",
+              "DocumentMoniker": "C:\\Instant Projects\\SocialMithila\\SocialMithila\\Views\\Shared\\LayoutPage.cshtml",
+              "RelativeDocumentMoniker": "SocialMithila\\Views\\Shared\\LayoutPage.cshtml",
+              "ToolTip": "C:\\Instant Projects\\SocialMithila\\SocialMithila\\Views\\Shared\\LayoutPage.cshtml",
+              "RelativeToolTip": "SocialMithila\\Views\\Shared\\LayoutPage.cshtml",
+              "ViewState": "AgIAACsBAAAAAAAAAAAAwC4BAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-15T09:37:58.89Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
+              "Title": "Index.js",
+              "DocumentMoniker": "C:\\Instant Projects\\SocialMithila\\SocialMithila\\asset\\js\\CustomJS\\Index.js",
+              "RelativeDocumentMoniker": "SocialMithila\\asset\\js\\CustomJS\\Index.js",
+              "ToolTip": "C:\\Instant Projects\\SocialMithila\\SocialMithila\\asset\\js\\CustomJS\\Index.js",
+              "RelativeToolTip": "SocialMithila\\asset\\js\\CustomJS\\Index.js",
+              "ViewState": "AgIAAJMDAAAAAAAAAAAIwKEDAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-10-15T10:00:55.184Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Instant Projects\\SocialMithila\\SocialMithila\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "SocialMithila\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Instant Projects\\SocialMithila\\SocialMithila\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "SocialMithila\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAGUBAAAAAAAAAAAAAHcBAACLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-13T16:44:23.169Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "BusinessReview.cs",
               "DocumentMoniker": "C:\\Instant Projects\\SocialMithila\\SocialMithila.SharedDataAccess\\EFCore\\BusinessReview.cs",
               "RelativeDocumentMoniker": "SocialMithila.SharedDataAccess\\EFCore\\BusinessReview.cs",
               "ToolTip": "C:\\Instant Projects\\SocialMithila\\SocialMithila.SharedDataAccess\\EFCore\\BusinessReview.cs",
               "RelativeToolTip": "SocialMithila.SharedDataAccess\\EFCore\\BusinessReview.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAIwCUAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-15T11:45:01.631Z",
               "EditorCaption": ""
@@ -143,79 +204,14 @@
               "RelativeDocumentMoniker": "SocialMithila\\Views\\Business\\BusinessDetails.cshtml",
               "ToolTip": "C:\\Instant Projects\\SocialMithila\\SocialMithila\\Views\\Business\\BusinessDetails.cshtml",
               "RelativeToolTip": "SocialMithila\\Views\\Business\\BusinessDetails.cshtml",
-              "ViewState": "AgIAALEAAAAAAAAAAAAAAJUAAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAAHUBAAAAAAAAAAAAALgBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-10-14T10:56:38.588Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "BusinessShop.js",
-              "DocumentMoniker": "C:\\Instant Projects\\SocialMithila\\SocialMithila\\asset\\js\\CustomJS\\BusinessShop.js",
-              "RelativeDocumentMoniker": "SocialMithila\\asset\\js\\CustomJS\\BusinessShop.js",
-              "ToolTip": "C:\\Instant Projects\\SocialMithila\\SocialMithila\\asset\\js\\CustomJS\\BusinessShop.js",
-              "RelativeToolTip": "SocialMithila\\asset\\js\\CustomJS\\BusinessShop.js",
-              "ViewState": "AgIAAJgBAAAAAAAAAAAcwKQBAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-10-14T13:36:29.507Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AppDbContext.cs",
-              "DocumentMoniker": "C:\\Instant Projects\\SocialMithila\\SocialMithila.SharedDataAccess\\EFCore\\AppDbContext.cs",
-              "RelativeDocumentMoniker": "SocialMithila.SharedDataAccess\\EFCore\\AppDbContext.cs",
-              "ToolTip": "C:\\Instant Projects\\SocialMithila\\SocialMithila.SharedDataAccess\\EFCore\\AppDbContext.cs",
-              "RelativeToolTip": "SocialMithila.SharedDataAccess\\EFCore\\AppDbContext.cs",
-              "ViewState": "AgIAADQAAAAAAAAAAAAAAD0AAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-15T09:43:23.754Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BusinessController.cs",
-              "DocumentMoniker": "C:\\Instant Projects\\SocialMithila\\SocialMithila\\Controllers\\BusinessController.cs",
-              "RelativeDocumentMoniker": "SocialMithila\\Controllers\\BusinessController.cs",
-              "ToolTip": "C:\\Instant Projects\\SocialMithila\\SocialMithila\\Controllers\\BusinessController.cs",
-              "RelativeToolTip": "SocialMithila\\Controllers\\BusinessController.cs",
-              "ViewState": "AgIAAKkAAAAAAAAAAAAmwFIBAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-14T10:47:12.589Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "LayoutPage.cshtml",
-              "DocumentMoniker": "C:\\Instant Projects\\SocialMithila\\SocialMithila\\Views\\Shared\\LayoutPage.cshtml",
-              "RelativeDocumentMoniker": "SocialMithila\\Views\\Shared\\LayoutPage.cshtml",
-              "ToolTip": "C:\\Instant Projects\\SocialMithila\\SocialMithila\\Views\\Shared\\LayoutPage.cshtml",
-              "RelativeToolTip": "SocialMithila\\Views\\Shared\\LayoutPage.cshtml",
-              "ViewState": "AgIAANwBAAAAAAAAAAAAAP4BAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-15T09:37:58.89Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Index.js",
-              "DocumentMoniker": "C:\\Instant Projects\\SocialMithila\\SocialMithila\\asset\\js\\CustomJS\\Index.js",
-              "RelativeDocumentMoniker": "SocialMithila\\asset\\js\\CustomJS\\Index.js",
-              "ToolTip": "C:\\Instant Projects\\SocialMithila\\SocialMithila\\asset\\js\\CustomJS\\Index.js",
-              "RelativeToolTip": "SocialMithila\\asset\\js\\CustomJS\\Index.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-10-15T10:00:55.184Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "BllBusiness.cs",
               "DocumentMoniker": "C:\\Instant Projects\\SocialMithila\\SocialMithila.Business\\Business\\BllBusiness.cs",
               "RelativeDocumentMoniker": "SocialMithila.Business\\Business\\BllBusiness.cs",
@@ -223,12 +219,11 @@
               "RelativeToolTip": "SocialMithila.Business\\Business\\BllBusiness.cs",
               "ViewState": "AgIAABMAAAAAAAAAAAArwCQAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-15T10:50:34.386Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-15T10:50:34.386Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "BusinessShop.css",
               "DocumentMoniker": "C:\\Instant Projects\\SocialMithila\\SocialMithila\\asset\\css\\CustomCSS\\BusinessShop.css",
               "RelativeDocumentMoniker": "SocialMithila\\asset\\css\\CustomCSS\\BusinessShop.css",
@@ -236,25 +231,11 @@
               "RelativeToolTip": "SocialMithila\\asset\\css\\CustomCSS\\BusinessShop.css",
               "ViewState": "AgIAAMIAAAAAAAAAAAAmwNUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-10-14T13:43:04.248Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-14T13:43:04.248Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Instant Projects\\SocialMithila\\SocialMithila\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "SocialMithila\\Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Instant Projects\\SocialMithila\\SocialMithila\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "SocialMithila\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAANcBAAAAAAAAAAAAANoCAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-13T16:44:23.169Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 12,
               "Title": "scripts.js",
               "DocumentMoniker": "C:\\Instant Projects\\SocialMithila\\SocialMithila\\asset\\js\\scripts.js",
               "RelativeDocumentMoniker": "SocialMithila\\asset\\js\\scripts.js",
@@ -266,7 +247,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 13,
               "Title": "scripts-rtl.js",
               "DocumentMoniker": "C:\\Instant Projects\\SocialMithila\\SocialMithila\\asset\\js\\scripts-rtl.js",
               "RelativeDocumentMoniker": "SocialMithila\\asset\\js\\scripts-rtl.js",
@@ -278,7 +259,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 15,
               "Title": "_AddPostSection.cshtml",
               "DocumentMoniker": "C:\\Instant Projects\\SocialMithila\\SocialMithila\\Views\\Partial\\_AddPostSection.cshtml",
               "RelativeDocumentMoniker": "SocialMithila\\Views\\Partial\\_AddPostSection.cshtml",
@@ -290,7 +271,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 14,
               "Title": "Registration.cshtml",
               "DocumentMoniker": "C:\\Instant Projects\\SocialMithila\\SocialMithila\\Views\\Auth\\Registration.cshtml",
               "RelativeDocumentMoniker": "SocialMithila\\Views\\Auth\\Registration.cshtml",
@@ -302,7 +283,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 16,
               "Title": "Login.js",
               "DocumentMoniker": "C:\\Instant Projects\\SocialMithila\\SocialMithila\\asset\\js\\CustomJS\\Login.js",
               "RelativeDocumentMoniker": "SocialMithila\\asset\\js\\CustomJS\\Login.js",

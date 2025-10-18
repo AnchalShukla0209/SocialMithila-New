@@ -1,4 +1,6 @@
-﻿using SocialMithila.Business.Interface;
+﻿using Microsoft.EntityFrameworkCore;
+using SocialMithila.Business.Interface;
+using SocialMithila.DataAccess.RequestModel;
 using SocialMithila.SharedDataAccess.EFCore;
 using System;
 using System.Collections.Generic;
@@ -16,6 +18,9 @@ namespace SocialMithila.Controllers
 {
     public class BusinessController : Controller
     {
+        private const string DefaultImage = "https://cdn-icons-png.flaticon.com/512/407/407861.png";
+        private const string DefaultFollowerImage = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+
         private readonly IBllBusiness _businessBAL;
 
         public BusinessController(IBllBusiness businessBAL)
@@ -343,6 +348,242 @@ namespace SocialMithila.Controllers
             return View();
 
         }
+
+        [HttpGet]
+        public async Task<ActionResult> GetCategories()
+        {
+            using (var _context = new AppDbContext())
+            {
+                var categories = await _context.Categories
+                    .Select(c => new
+                    {
+                        c.CategoryId,
+                        c.CategoryName
+                    })
+                    .OrderBy(c => c.CategoryName)
+                    .ToListAsync();
+
+                return Json(new { success = true, data = categories }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        [HttpPost]
+        public async Task<ActionResult> GetSubCategory()
+        {
+            using (var reader = new StreamReader(Request.InputStream))
+            {
+                string body = await reader.ReadToEndAsync();
+
+                // Deserialize the incoming JSON array into a list of integers
+                var categoryIds = Newtonsoft.Json.JsonConvert.DeserializeObject<List<int>>(body);
+
+                using (var _context = new AppDbContext())
+                {
+                    if (categoryIds == null || !categoryIds.Any())
+                    {
+                        return Json(new { success = false, data = new List<object>() }, JsonRequestBehavior.AllowGet);
+                    }
+
+                    var subCategories = await _context.SubCategories
+                        .Where(s => categoryIds.Contains(s.CategoryId))
+                        .Select(s => new
+                        {
+                            s.SubCategoryId,
+                            s.SubCategoryName
+                        })
+                        .OrderBy(s => s.SubCategoryName)
+                        .ToListAsync();
+
+                    return Json(new { success = true, data = subCategories }, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
+
+
+        [HttpGet]
+        public async Task<ActionResult> GetShops()
+        {
+            using (var _context = new AppDbContext())
+            {
+                var shops = await _context.Businesses
+                    .Where(b => b.BusinessName != null)
+                    .Select(b => new
+                    {
+                        b.BusinessId,
+                        b.BusinessName,
+                        ImageUrl = b.BusinessImages
+                                    .OrderBy(img => img.ImageId)
+                                    .Select(img => img.ImageUrl)
+                                    .FirstOrDefault() ?? b.ImageUrl ?? DefaultImage
+                    })
+                    .OrderBy(x => x.BusinessName)
+                    .ToListAsync();
+
+                return Json(new { success = true, data = shops }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> GetFollowers(int? businessId = null)
+        {
+            using (var _context = new AppDbContext())
+            {
+                // Join followers with users, filter active users and optional businessId
+                var query = from ubf in _context.user_business_follows
+                            join u in _context.TblUser on ubf.UserId equals u.Id
+                            where u.IsActive == true
+                                  && (businessId == null || ubf.BusinessId == businessId.Value)
+                            select new
+                            {
+                                u.Id,
+                                FullName = (u.FirstName ?? "") + (string.IsNullOrEmpty(u.LastName) ? "" : " " + u.LastName),
+                                Photo = u.ProfilePhoto
+                            };
+
+                // Distinct by user id and order by name
+                var followers = await query
+                    .GroupBy(x => new { x.Id, x.FullName, x.Photo })
+                    .Select(g => new
+                    {
+                        Id = g.Key.Id,
+                        FullName = g.Key.FullName,
+                        Photo = g.Key.Photo
+                    })
+                    .OrderBy(x => x.FullName)
+                    .ToListAsync();
+
+                // Ensure fallback image
+                var result = followers.Select(f => new
+                {
+                    Id = f.Id,
+                    FullName = string.IsNullOrWhiteSpace(f.FullName) ? "Unknown" : f.FullName,
+                    ImageUrl = string.IsNullOrWhiteSpace(f.Photo) ? DefaultFollowerImage : f.Photo
+                }).ToList();
+
+                return Json(new { success = true, data = result }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        [HttpPost]
+        public JsonResult GetBusinesses(BusinessFilterRequest filter)
+        {
+            try
+            {
+                using (var _db = new AppDbContext())
+                {
+                    const string DefaultImage = "https://cdn-icons-png.flaticon.com/512/407/407861.png";
+                    int pageSize = 6;
+                    int page = filter.Page <= 0 ? 1 : filter.Page;
+
+                    var subCategoryIds = filter.SubCategoryIds ?? new List<int>();
+                    var shopIds = filter.ShopIds ?? new List<int>();
+                    var ratingIds = filter.Ratings ?? new List<int>();
+                    var followerIds = filter.FollowerIds ?? new List<int>();
+
+                    var query = _db.Businesses
+                        .Include(b => b.BusinessImages)
+                        .Include(b => b.Category)
+                        .Include(b => b.SubCategory)
+                        .Include(b => b.BusinessReviews)
+                        .AsQueryable();
+
+                    // If ShopIds provided, prefer them (skip category/subcategory filtering)
+                    if ((shopIds == null || !shopIds.Any()) && filter.CategoryId.HasValue && filter.CategoryId.Value > 0)
+                        query = query.Where(b => b.CategoryId == filter.CategoryId.Value);
+
+                    if ((shopIds == null || !shopIds.Any()) && subCategoryIds.Any())
+                        query = query.Where(b => b.SubCategoryId.HasValue && subCategoryIds.Contains(b.SubCategoryId.Value));
+
+                    if (shopIds.Any())
+                        query = query.Where(b => shopIds.Contains(b.BusinessId));
+
+                    if (ratingIds.Any())
+                    {
+                        query = query.Where(b =>
+                            b.BusinessReviews.Any(r =>
+                                ratingIds.Any(rid => r.Rating >= rid && r.Rating < rid + 1)
+                            )
+                        );
+                    }
+
+
+
+
+                    if (followerIds.Any())
+                    {
+                        var followedBusinessIds = _db.user_business_follows
+                            .Where(f => followerIds.Contains(f.UserId))
+                            .Select(f => f.BusinessId)
+                            .Distinct()
+                            .ToList();
+
+                        query = query.Where(b => followedBusinessIds.Contains(b.BusinessId));
+                    }
+
+                    int totalCount = query.Count();
+                    int totalPages = (int)Math.Ceiling((decimal)totalCount / pageSize);
+
+                   
+                    var raw = query
+                        .OrderByDescending(b => b.CreatedAt)
+                        .Skip((page - 1) * pageSize)
+                        .Take(pageSize)
+                        .Select(b => new
+                        {
+                            b.BusinessId,
+                            b.BusinessName,
+                            b.Address,
+                            BusinessRating = b.Rating,
+                            ReviewsAvg = b.BusinessReviews.Select(r => (double?)r.Rating).Average(),
+                            ImageUrl = b.BusinessImages.Select(i => i.ImageUrl).FirstOrDefault() ?? DefaultImage
+                        })
+                        .ToList();
+                    var data = raw.Select(x =>
+                    {
+                        decimal finalRating;
+
+                        if (x.BusinessRating.HasValue && x.BusinessRating.Value > 0)
+                        {
+                           
+                            finalRating = x.BusinessRating.Value;
+                        }
+                        else if (x.ReviewsAvg.HasValue)
+                        {
+                            finalRating = Math.Round((decimal)x.ReviewsAvg.Value, 1);
+                        }
+                        else
+                        {
+                            finalRating = 0m;
+                        }
+
+                        return new
+                        {
+                            x.BusinessId,
+                            x.BusinessName,
+                            x.Address,
+                            Rating = finalRating,
+                            ImageUrl = x.ImageUrl
+                        };
+                    }).ToList();
+
+                    return Json(new
+                    {
+                        success = true,
+                        data,
+                        page,
+                        totalPages
+                    }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
 
     }
 }

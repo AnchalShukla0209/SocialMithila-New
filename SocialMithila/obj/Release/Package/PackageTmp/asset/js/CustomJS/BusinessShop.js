@@ -1,6 +1,13 @@
 ﻿
 $(document).ready(function () {
 
+    $('#addReviewModal').modal({
+        backdrop: false,
+        keyboard: true,
+        show: false
+    });
+
+
     $('#addBusinessModal').modal({
         backdrop: false,
         keyboard: true,
@@ -303,3 +310,120 @@ $(document).on('click', '.btn-follow', function () {
         }
     });
 });
+
+let selectedRating = 0;
+
+$(document).on('click', '#starRating .star', function () {
+    selectedRating = $(this).data('value');
+    $('#starRating .star').each(function () {
+        const starVal = $(this).data('value');
+        $(this).toggleClass('text-warning', starVal <= selectedRating)
+            .toggleClass('text-grey-400', starVal > selectedRating);
+    });
+});
+
+
+$('#reviewForm').on('submit', function (e) {
+    e.preventDefault();
+
+    const data = {
+        BusinessId: $('#BusinessId').val(),
+        UserName: $('#UserName').val(),
+        ReviewText: $('#ReviewText').val(),
+        Rating: selectedRating
+    };
+
+    if (selectedRating === 0) {
+        alert('Please select a rating.');
+        return;
+    }
+
+    $.ajax({
+        url: '/Business/AddReview',
+        type: 'POST',
+        data: data,
+        success: function (response) {
+            if (response.success) {
+                $('#addReviewModal').modal('hide');
+                $('#reviewForm')[0].reset();
+                selectedRating = 0;
+                $('#starRating .star').removeClass('text-warning').addClass('text-grey-400');
+
+                // ✅ Update average rating and total ratings
+                $('.averagerating').text(parseFloat(response.data.AverageRating).toFixed(2));
+                $('.totalrating').text(`Based on ${response.data.TotalRatings}`);
+
+                // ✅ Append the new review dynamically
+                $('#reviewsContainer').prepend(`
+                    <div class="row review-item mt-3">
+                        <div class="col-2 text-left">
+                            <figure class="avatar float-left mb-0">
+                                <img src="${response.data.ProfilePhoto}" alt="${response.data.UserName}" class="float-right shadow-none w40 me-2 rounded-circle">
+                            </figure>
+                        </div>
+                        <div class="col-10 ps-4">
+                            <div class="content">
+                                <h6 class="author-name font-xssss fw-600 mb-0 text-grey-800">${response.data.UserName}</h6>
+                                <h6 class="d-block font-xsssss fw-500 text-grey-500 mt-2 mb-0">${response.data.CreatedAt}</h6>
+                                <div class="star d-block w-100 text-left">${[...Array(5)].map((_, i) => `<img src="/asset/images/${i < response.data.Rating ? 'star' : 'star-disable'}.png" class="w10">`).join('')}
+                                </div>
+                                <p class="comment-text lh-24 fw-500 font-xssss text-grey-500 mt-2">${response.data.ReviewText}</p>
+                            </div>
+                        </div>
+                    </div>
+                `);
+            } else {
+                alert(response.message || 'Something went wrong!');
+            }
+        },
+        error: function () {
+            alert('Error submitting review. Please try again.');
+        }
+    });
+});
+
+$('#contactForm').on('submit', function (e) {
+    e.preventDefault();
+
+    const name = $('#contactName').val().trim();
+    const email = $('#contactEmail').val().trim();
+    const mobile = $('#contactMobile').val().trim();
+    const message = $('#contactMessage').val().trim();
+    const businessId = $('#BusinessId').val();
+
+    // 🧩 Client-side validation
+    if (!name || !email || !mobile || !message) {
+        $('#contactMsg').text('All fields are required!').css('color', 'red');
+        return;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        $('#contactMsg').text('Please enter a valid email address!').css('color', 'red');
+        return;
+    }
+
+    $.ajax({
+        url: '/Business/AddContact',
+        type: 'POST',
+        data: {
+            BusinessId: businessId,
+            Name: name,
+            Email: email,
+            MobileNumber: mobile,
+            Message: message
+        },
+        success: function (res) {
+            if (res.success) {
+                $('#contactMsg').text(res.message).css('color', 'green');
+                $('#contactForm')[0].reset();
+            } else {
+                $('#contactMsg').text(res.message).css('color', 'red');
+            }
+        },
+        error: function () {
+            $('#contactMsg').text('Something went wrong. Please try again.').css('color', 'red');
+        }
+    });
+});
+
+

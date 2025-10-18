@@ -313,7 +313,7 @@
                                 </a>
                             </li>
 
-                            <li><a href="#" class="nav-content-bttn open-font"><i class="feather-award btn-round-md bg-red-gradiant me-3"></i><span>Explore Business</span></a></li>
+                            <li><a href="/Business/BusinessList" class="nav-content-bttn open-font"><i class="feather-award btn-round-md bg-red-gradiant me-3"></i><span>Explore Business</span></a></li>
                             <li><a href="#" class="nav-content-bttn open-font"><i class="feather-globe btn-round-md bg-gold-gradiant me-3"></i><span>Explore Stories</span></a></li>
                             <li><a href="#" class="nav-content-bttn open-font"><i class="feather-zap btn-round-md bg-mini-gradiant me-3"></i><span>Events</span></a></li>
                             <li><a href="/User/UserProfile/@Session["UserId"].ToString()" class="nav-content-bttn open-font"><i class="feather-user btn-round-md bg-primary-gradiant me-3"></i><span>Author Profile </span></a></li>
@@ -520,10 +520,6 @@
            var frndreqHub = $.connection.friendRequestHub;
            const commentHub = $.connection.commentHub;
 
-
-           // ===============================
-           // 🔹 FeedHub: Like count updates for comments
-           // ===============================
            feedHub.client.updateCommentLike = function (commentId, likeCount) {
                // Find the container with this commentId
                var container = $(".like-container[data-commentid='" + commentId + "']");
@@ -532,9 +528,6 @@
                }
            };
 
-        // ===============================
-        // 🔹 FeedHub: Like count updates
-        // ===============================
            feedHub.client.updateLikeCount = function (postId, ReactionType) {
             var postCard = $(`.post-item[data-postid='${postId}']`);
                if (postCard.length) {
@@ -567,10 +560,6 @@
             }
            };
 
-           // ===============================
-           // 🔹 commentHub: newCommentAdded
-           // ===============================
-
            commentHub.client.newCommentAdded = function (data) {
                console.log("📩 Real-time comment received:", data);
 
@@ -592,9 +581,6 @@
                }
            };
 
-        // ===============================
-        // 🔹 NotificationHub: Notifications
-        // ===============================
         notifHub.client.receiveNotification = function (notifObj) {
             console.log("🔔 Notification received:", notifObj);
 
@@ -610,9 +596,6 @@
             refreshNotifications();
         };
 
-        // ===============================
-        // 🔹 Friend Request Updates
-        // ===============================
            frndreqHub.client.friendRequestUpdated = function (fromUserId, status) {
                console.log("👥 Friend request update:", fromUserId, status);
 
@@ -636,19 +619,19 @@
                                    : 'https://cdn-icons-png.flaticon.com/512/149/149071.png'; // default image
 
                                var friendHtml = `
-                <div class="card-body d-flex pt-0 ps-4 pe-4 pb-0">
-                    <figure class="avatar me-3">
-                        <img src="${profilePhoto}" alt="image" class="shadow-sm rounded-circle w45">
-                    </figure>
-                    <h4 class="fw-700 text-grey-900 font-xssss mt-1">
-                        ${fullName}
-                        <span class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500">12 mutual friends</span>
-                    </h4>
-                </div>
-                <div class="card-body d-flex align-items-center pt-0 ps-4 pe-4 pb-4">
-                    <a href="javascript:void(0);"  data-friendshipid="${friend.FriendshipId}" data-requesterid="${friend.RequesterId}"  data-addressid="${friend.AddresseeId}"   class="p-2 lh-20 w100 bg-primary-gradiant me-2 text-white text-center font-xssss fw-600 ls-1 rounded-xl confirm-btn">Confirm</a>
-                    <a href="javascript:void(0);"  data-friendshipid="${friend.FriendshipId}" data-requesterid="${friend.RequesterId}"  data-addressid="${friend.AddresseeId}"   class="p-2 lh-20 w100 bg-grey text-grey-800 text-center font-xssss fw-600 ls-1 rounded-xl delete-btn">Delete</a>
-                </div>`;
+                                    <div class="card-body d-flex pt-0 ps-4 pe-4 pb-0">
+                                        <figure class="avatar me-3">
+                                            <img src="${profilePhoto}" alt="image" class="shadow-sm rounded-circle w45">
+                                        </figure>
+                                        <h4 class="fw-700 text-grey-900 font-xssss mt-1">
+                                            ${fullName}
+                                            <span class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500">12 mutual friends</span>
+                                        </h4>
+                                    </div>
+                                    <div class="card-body d-flex align-items-center pt-0 ps-4 pe-4 pb-4">
+                                        <a href="javascript:void(0);"  data-friendshipid="${friend.FriendshipId}" data-requesterid="${friend.RequesterId}"  data-addressid="${friend.AddresseeId}"   class="p-2 lh-20 w100 bg-primary-gradiant me-2 text-white text-center font-xssss fw-600 ls-1 rounded-xl confirm-btn">Confirm</a>
+                                        <a href="javascript:void(0);"  data-friendshipid="${friend.FriendshipId}" data-requesterid="${friend.RequesterId}"  data-addressid="${friend.AddresseeId}"   class="p-2 lh-20 w100 bg-grey text-grey-800 text-center font-xssss fw-600 ls-1 rounded-xl delete-btn">Delete</a>
+                                    </div>`;
 
                                listContainer.append(friendHtml);
                                $(".loader-overlay").css("display", "none");
@@ -681,12 +664,6 @@
                });
            };
 
-
-           // ===============================
-           // 🔹 PostHub: Receive new posts in real time
-           // ===============================
-
-
            feedHub.client.updateReaction = function (postId, newCount, reactions) {
                var postCard = $(`.post-item[data-postid='${postId}']`);
                if (!postCard.length) return;
@@ -698,7 +675,6 @@
                postCard.find(".reaction-summary").html(html);
            };
 
-           // helper
            function buildReactionSummary(reactions) {
                if (!reactions || reactions.length === 0) return "";
                var icons = [...new Set(reactions.map(r => r.ReactionType))]
@@ -740,11 +716,6 @@
             </div>`;
            }
 
-
-
-        // ===============================
-        // 🔹 PostHub: Receive new posts in real time
-        // ===============================
         postHub.client.receivePost = function (postObj) {
             console.log("🆕 New post received:", postObj);
 
@@ -773,29 +744,20 @@
             showToastNotification(`${postObj.UserName} shared a new post!`);
         };
 
-        // --- Pass userId in connection query ---
         $.connection.hub.qs = { userId: userId };
 
-        // --- Start one SignalR connection for all hubs ---
         $.connection.hub.start().done(function () {
             console.log("✅ SignalR connected successfully");
-            //const postId = 50; // your current post id (already defined above)
-            //if (postId) {
-            //    commentHub.server.joinPostGroup(postId.toString());
-            //    console.log("✅ Joined SignalR comment group for post:", postId);
-            //}
             refreshNotifications();
         }).fail(function (err) {
             console.error("❌ SignalR connection failed:", err);
         });
 
-        // --- Notification dropdown click ---
         $(document).on('click', '#dropdownMenu3, #notifCount', function () {
             refreshNotifications();
             $('#notifCount').hide();
         });
 
-        // --- Fetch notifications from server ---
            async function refreshNotifications() {
                try {
                    const res = await $.get('/User/GetNotifications');
@@ -922,28 +884,6 @@
                                 </div>
                             </a>`;
                        }
-
-                       //else if (n.NotificationType === 'StoryLike')
-                       //{
-                       //    html = `
-                       //     <a href="javascript:void(0);" class="notification-item text-decoration-none text-dark"
-                       //        data-id="${n.NotificationId}"
-                       //        data-type="${n.NotificationType}"
-                       //        data-postid="${n.PostId || ''}"
-                       //        data-entityid="${n.EntityId || 0}"
-                       //        data-userid="${n.UserId || ''}"
-                       //        data-requesterid="${n.ActorId || ''}">
-                       //         <div class="card bg-transparent-card w-100 border-0 ps-5 mb-3 ${readClass}">
-                       //             <img src="${profilePhoto}" alt="user" class="w40 position-absolute left-0 rounded-circle">
-                       //             <h5 class="font-xsss text-grey-900 mb-1 mt-0 fw-700 d-block">
-                       //                 ${n.FromUserName}
-                       //                 <span class="text-grey-400 font-xsssss fw-600 float-right mt-1">${n.CreatedOn}</span>
-                       //             </h5>
-                       //             <h6 class="text-grey-500 fw-500 font-xssss lh-4">${n.Message}</h6>
-                       //         </div>
-                       //     </a>`;
-                       //}
-
                        else {
                            // Regular notification
                                    html = `

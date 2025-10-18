@@ -3,7 +3,7 @@
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>C:\Instant Projects\Publish-SocialMithila\09-Oct-2025</_PublishTargetUrl>
-    <History>True|2025-10-14T18:05:01.4568894Z||;True|2025-10-14T11:06:56.0839818+05:30||;True|2025-10-13T23:54:45.2385797+05:30||;True|2025-10-13T05:19:06.2873010+05:30||;True|2025-10-13T05:15:09.9673276+05:30||;True|2025-10-12T02:25:42.7471039+05:30||;True|2025-10-09T16:59:47.6330943+05:30||;True|2025-10-09T13:33:01.5415878+05:30||;True|2025-10-09T12:10:45.9714985+05:30||;</History>
+    <History>True|2025-10-18T21:38:26.7717693Z||;True|2025-10-18T22:23:45.3646407+05:30||;True|2025-10-14T23:35:01.4568894+05:30||;True|2025-10-14T11:06:56.0839818+05:30||;True|2025-10-13T23:54:45.2385797+05:30||;True|2025-10-13T05:19:06.2873010+05:30||;True|2025-10-13T05:15:09.9673276+05:30||;True|2025-10-12T02:25:42.7471039+05:30||;True|2025-10-09T16:59:47.6330943+05:30||;True|2025-10-09T13:33:01.5415878+05:30||;True|2025-10-09T12:10:45.9714985+05:30||;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -29,7 +29,7 @@
       <publishTime>09/27/2025 00:59:21</publishTime>
     </File>
     <File Include="asset/css/CustomCSS/BusinessShop.css">
-      <publishTime>10/14/2025 19:28:16</publishTime>
+      <publishTime>10/15/2025 15:46:45</publishTime>
     </File>
     <File Include="asset/css/CustomCSS/defaultpage.css">
       <publishTime>09/27/2025 16:53:08</publishTime>
@@ -87,6 +87,9 @@
     </File>
     <File Include="asset/fonts/themify.woff">
       <publishTime>09/27/2025 00:59:21</publishTime>
+    </File>
+    <File Include="asset/images/480x320.jpg">
+      <publishTime>10/16/2025 21:01:43</publishTime>
     </File>
     <File Include="asset/images/close.png">
       <publishTime>09/27/2025 00:59:21</publishTime>
@@ -419,7 +422,7 @@
       <publishTime>09/27/2025 00:59:21</publishTime>
     </File>
     <File Include="asset/js/CustomJS/BusinessShop.js">
-      <publishTime>10/14/2025 23:03:16</publishTime>
+      <publishTime>10/15/2025 17:30:37</publishTime>
     </File>
     <File Include="asset/js/CustomJS/CreatePost.js">
       <publishTime>10/10/2025 17:57:07</publishTime>
@@ -1541,37 +1544,37 @@
       <publishTime>05/16/2020 04:37:24</publishTime>
     </File>
     <File Include="bin/SocialMithila.Business.dll">
-      <publishTime>10/14/2025 23:34:57</publishTime>
+      <publishTime>10/19/2025 03:08:23</publishTime>
     </File>
     <File Include="bin/SocialMithila.Business.dll.config">
-      <publishTime>10/14/2025 23:34:56</publishTime>
+      <publishTime>10/19/2025 03:08:23</publishTime>
     </File>
     <File Include="bin/SocialMithila.Business.pdb">
-      <publishTime>10/14/2025 23:34:57</publishTime>
+      <publishTime>10/19/2025 03:08:23</publishTime>
     </File>
     <File Include="bin/SocialMithila.DataAccess.dll">
-      <publishTime>10/14/2025 23:34:56</publishTime>
+      <publishTime>10/19/2025 03:08:23</publishTime>
     </File>
     <File Include="bin/SocialMithila.DataAccess.dll.config">
-      <publishTime>10/14/2025 23:34:56</publishTime>
+      <publishTime>10/19/2025 03:08:23</publishTime>
     </File>
     <File Include="bin/SocialMithila.DataAccess.pdb">
-      <publishTime>10/14/2025 23:34:56</publishTime>
+      <publishTime>10/19/2025 03:08:23</publishTime>
     </File>
     <File Include="bin/SocialMithila.dll">
-      <publishTime>10/14/2025 23:34:57</publishTime>
+      <publishTime>10/19/2025 03:08:24</publishTime>
     </File>
     <File Include="bin/SocialMithila.pdb">
-      <publishTime>10/14/2025 23:34:57</publishTime>
+      <publishTime>10/19/2025 03:08:24</publishTime>
     </File>
     <File Include="bin/SocialMithila.SharedDataAccess.dll">
-      <publishTime>10/14/2025 23:34:56</publishTime>
+      <publishTime>10/19/2025 03:08:23</publishTime>
     </File>
     <File Include="bin/SocialMithila.SharedDataAccess.dll.config">
-      <publishTime>10/14/2025 23:34:55</publishTime>
+      <publishTime>10/19/2025 03:08:22</publishTime>
     </File>
     <File Include="bin/SocialMithila.SharedDataAccess.pdb">
-      <publishTime>10/14/2025 23:34:56</publishTime>
+      <publishTime>10/19/2025 03:08:23</publishTime>
     </File>
     <File Include="bin/System.Buffers.dll">
       <publishTime>02/19/2020 15:35:18</publishTime>
@@ -1829,7 +1832,10 @@
       <publishTime>10/01/2025 01:03:05</publishTime>
     </File>
     <File Include="Views/Business/BusinessDetails.cshtml">
-      <publishTime>10/14/2025 23:30:07</publishTime>
+      <publishTime>10/15/2025 17:27:49</publishTime>
+    </File>
+    <File Include="Views/Business/BusinessList.cshtml">
+      <publishTime>10/19/2025 03:06:17</publishTime>
     </File>
     <File Include="Views/Home/Accountinformation.cshtml">
       <publishTime>10/14/2025 05:55:24</publishTime>
@@ -1847,7 +1853,7 @@
       <publishTime>10/14/2025 01:40:39</publishTime>
     </File>
     <File Include="Views/Shared/LayoutPage.cshtml">
-      <publishTime>10/14/2025 06:54:08</publishTime>
+      <publishTime>10/19/2025 02:02:18</publishTime>
     </File>
     <File Include="Views/Shared/_BusinessListPartial.cshtml">
       <publishTime>10/08/2025 01:57:27</publishTime>
