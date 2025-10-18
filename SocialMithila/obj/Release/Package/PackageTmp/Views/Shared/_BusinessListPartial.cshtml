@@ -1,0 +1,91 @@
+﻿@model SocialMithila.DataAccess.ResponseModel.PagedBusinessResult
+
+<div class="d-grid gap-3">
+    @foreach (var b in Model.Businesses)
+    {
+        <div class="biz-card"
+             data-name="@b.BusinessName"
+             data-cat="@b.CategoryName"
+             data-rating="@b.Rating"
+             data-distance="@b.DistanceKm">
+
+            <img src="@b.MainImageUrl" alt="@b.BusinessName">
+            <div class="flex-grow-1">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <div class="biz-title">@b.BusinessName</div>
+                        <div class="biz-sub">@b.CategoryName • @b.SubCategoryName</div>
+                    </div>
+                    <div class="text-end">
+                        <div style="font-weight:800;color:var(--primary-pink)">
+                            @b.Rating.ToString("0.0")
+                            <i class="bi bi-star-fill" style="font-size:12px;color:#ffb020"></i>
+                        </div>
+                        <small class="text-muted">@b.DistanceKm.ToString("0.0") km</small>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mt-2 biz-actions">
+                    <div>
+                        @*@foreach (var tag in b.P ?? new string[0])
+                        {
+                            <span class="badge bg-light text-dark">@tag</span>
+                        }*@
+                    </div>
+                    <div>
+                        <button class="btn btn-sm btn-outline-secondary me-2 btn-details" data-id="@b.BusinessId">Details</button>
+                        <button class="btn btn-sm @(b.IsFollowing ? "bg-primary-gradiant" : "btn-outline-secondary") btn-follow"
+                                data-id="@b.BusinessId">
+                            @(b.IsFollowing ? "Following" : "Follow")
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<!-- Pagination -->
+@if (Model.TotalPages > 1)
+{
+    <div class="d-flex justify-content-between align-items-center mt-3">
+        <small class="text-muted">
+            Showing @((Model.CurrentPage - 1) * 8 + 1)-@(Math.Min(Model.CurrentPage * 8, Model.TotalCount)) of @Model.TotalCount
+        </small>
+        <nav>
+            <ul class="pagination pagination-sm mb-0">
+
+                <!-- First -->
+                <li class="page-item @(Model.CurrentPage == 1 ? "disabled" : "")">
+                    <a href="#" class="page-link" data-page="1">First</a>
+                </li>
+
+                <!-- Page Numbers -->
+                @{
+                    int start = Math.Max(1, Model.CurrentPage - 1);
+                    int end = Math.Min(Model.TotalPages, Model.CurrentPage + 1);
+                    if (start > 2)
+                    {
+                        <li class="page-item disabled"><a class="page-link">...</a></li>
+;
+                    }
+                    for (int i = start; i <= end; i++)
+                    {
+                        <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                            <a href="#" class="page-link" data-page="@i">@i</a>
+                        </li>
+                    }
+                    if (end < Model.TotalPages - 1)
+                    {
+                        <li class="page-item disabled"><a class="page-link">...</a></li>
+;
+                    }
+                }
+
+                <li class="page-item @(Model.CurrentPage == Model.TotalPages ? "disabled" : "")">
+                    <a href="#" class="page-link" data-page="@Model.TotalPages">Last</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+}

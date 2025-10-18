@@ -1,0 +1,1185 @@
+﻿
+:root {
+    --primary-pink: #ff2f78;
+    --soft-pink: #fff0f5;
+    --accent-green: #00d68f;
+    --muted: #7a7a86;
+    --card-bg: #ffffff;
+    --panel-bg: transparent;
+    --shadow: 0 6px 18px rgba(17, 24, 39, 0.08);
+}
+
+.topbar {
+    background: var(--card-bg);
+    border-bottom: 1px solid #f0f0f3;
+    padding: 14px 22px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+.logo img {
+    height: 44px;
+}
+
+.searchbar .form-control {
+    border-radius: 24px;
+    padding: 12px 18px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.08);
+    transition: all 0.2s ease;
+}
+
+    .searchbar .form-control:focus {
+        border-color: var(--primary-pink);
+        box-shadow: 0 0 0 3px rgba(255,47,120,0.15);
+    }
+
+/* Layout */
+.app-wrap {
+    max-width: 1280px;
+    margin: 18px auto;
+    padding: 0 18px;
+    display: grid;
+    grid-template-columns: 260px 1fr 320px;
+    gap: 18px;
+}
+
+/* Sidebar */
+.sidebar {
+    background: var(--card-bg);
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+}
+
+    .sidebar .list-group-item {
+        border: none;
+        border-radius: 8px;
+        margin-bottom: 6px;
+        transition: all 0.2s ease;
+    }
+
+        .sidebar .list-group-item:hover {
+            background: var(--soft-pink);
+            color: var(--primary-pink);
+        }
+
+        .sidebar .list-group-item.active {
+            background: linear-gradient(90deg, var(--soft-pink), #fff);
+            color: var(--primary-pink);
+            font-weight: 600;
+            box-shadow: inset 0 0 0 1px rgba(255,47,120,0.15);
+        }
+
+/* Category badges */
+.category-badge {
+    border-radius: 20px;
+    padding: 8px 14px;
+    background: #fff;
+    border: 1px solid #f0f0f3;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+    .category-badge:hover {
+        background: #fff7fa;
+        border-color: var(--primary-pink);
+        color: var(--primary-pink);
+    }
+
+    .category-badge.active {
+        background: linear-gradient(90deg,#ffeef6,#fff);
+        color: var(--primary-pink);
+        border-color: rgba(255,47,120,0.25);
+        font-weight: 600;
+    }
+
+/* Panel */
+.panel {
+    background: var(--card-bg);
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+}
+
+/* Business Card */
+.biz-card {
+    border-radius: 14px;
+    padding: 18px;
+    background: var(--panel-bg);
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    transition: all 0.25s ease;
+}
+
+    .biz-card img {
+        width: 90px;
+        height: 90px;
+        border-radius: 12px;
+        object-fit: cover;
+        transition: transform 0.25s ease;
+    }
+
+    .biz-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    }
+
+        .biz-card:hover img {
+            transform: scale(1.05);
+        }
+
+.biz-title {
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.biz-sub {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.biz-actions .btn {
+    border-radius: 999px;
+    padding: 5px 14px;
+}
+
+/* Right Panel */
+.right-panel {
+    position: sticky;
+    top: 84px;
+}
+
+.map-placeholder {
+    height: 220px;
+    border-radius: 14px;
+    background: linear-gradient(180deg,#e9f9f3,#f1fff8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1b6b4b;
+    font-weight: 700;
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.btn-follow {
+    color: white !important
+}
+
+.btn-primary {
+    background: #b7015d !important;
+    color: white !important
+}
+
+.biz-actions .btn {
+    border-radius: 5px !important;
+    padding: 5px 14px;
+}
+
+.rounded-xl {
+    border-radius: 5px !important;
+}
+
+.story-container {
+    position: relative;
+    background: black;
+    max-width: 420px;
+    height: 90vh;
+    overflow: hidden;
+}
+
+.story-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* higher than tap-zone background but lower than progress & close */
+}
+
+.story-media {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.tap-zone {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    z-index: 2000; /* above content for clicks, below close button */
+    cursor: pointer;
+}
+
+    .tap-zone.left {
+        left: 0;
+    }
+
+    .tap-zone.right {
+        right: 0;
+    }
+
+
+.story-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2500; /* top-most to allow typing */
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    padding: 10px;
+}
+
+
+.progress-wrapper {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    display: flex;
+    gap: 5px;
+    z-index: 3000; /* above everything */
+}
+
+
+
+.progress {
+    flex: 1;
+    height: 3px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: white;
+}
+
+
+.modal-backdrop.show {
+    opacity: 0;
+}
+
+.modal-backdrop.show {
+    opacity: 0;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    z-index: 4000; /* top-most */
+}
+.tap-zone {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    z-index: 1500;
+}
+
+    .tap-zone.left {
+        left: 0;
+    }
+
+    .tap-zone.right {
+        right: 0;
+    }
+
+.story-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.story-media {
+    max-width: 100%;
+    max-height: 100vh;
+    object-fit: contain;
+}
+
+#cameraModal .modal-dialog,
+#previewModal .modal-dialog {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+#cameraModal .modal-content,
+#previewModal .modal-content {
+    border-radius: 20px;
+    overflow: hidden;
+    background: #000; /* black like Instagram story */
+    color: #fff;
+}
+
+/* Video & preview media */
+#cameraStream,
+#previewContainer img,
+#previewContainer video {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+/* Center buttons nicely */
+#cameraModal .btn,
+#previewModal .btn {
+    margin: 5px;
+    border-radius: 50px;
+    padding: 8px 20px;
+}
+
+#previewContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 80vh;
+    overflow: hidden;
+}
+
+    /* Image inside preview */
+    #previewContainer img {
+        width: 100%;
+        height: auto;
+        max-height: 75vh;
+        object-fit: contain;
+        border-radius: 12px;
+    }
+
+@media (max-width: 768px) {
+    #previewModal .modal-dialog {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        max-width: 100%;
+    }
+
+    #previewModal .modal-content {
+        border-radius: 0;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #previewContainer {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        #previewContainer img,
+        #previewContainer video {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
+}
+
+/* Mobile full screen */
+@media (max-width: 768px) {
+    #cameraModal .modal-dialog{
+        max-width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+
+    #cameraModal .modal-content {
+        height: 100vh;
+        border-radius: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 15px;
+    }
+
+    #cameraStream {
+        height: 75vh;
+        object-fit: cover;
+    }
+}
+
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999999;
+    background-color: rgba(255, 255, 255, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .story-container {
+        height: 100vh;
+    }
+}
+
+@media (max-width: 768px) {
+    .story-modal .modal-dialog {
+        max-width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+
+    .story-modal .modal-content {
+        height: 100vh; /* full screen */
+        border-radius: 0;
+    }
+}
+
+
+/* 🧷 Apply only inside comment popup */
+.comment-popup .right-comment {
+    position: relative !important;
+    overflow-y: auto !important;
+    height: 100% !important;
+    padding-bottom: 100px !important; /* space for fixed input */
+}
+
+    /* ✅ Fixed input box only in popup, not lightbox */
+    .comment-popup .right-comment .comment-input-box {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        background: #fff !important;
+        border-top: 1px solid #ddd !important;
+        padding: 10px 15px calc(10px + env(safe-area-inset-bottom)) !important;
+        z-index: 999999 !important;
+        box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.15) !important;
+    }
+
+/* ✅ Input + Button layout */
+.comment-popup .comment-input-box .d-flex {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+}
+
+.comment-popup .comment-input-box img {
+    width: 36px !important;
+    height: 36px !important;
+    object-fit: cover !important;
+}
+
+.comment-popup .comment-input-box input {
+    flex-grow: 1 !important;
+    border: 1px solid #ccc !important;
+    border-radius: 50px !important;
+    padding: 8px 12px !important;
+    margin-right: 8px !important;
+    font-size: 14px !important;
+}
+
+.comment-popup .comment-input-box button {
+    border-radius: 50px !important;
+    padding: 6px 16px !important;
+    font-size: 14px !important;
+    background-color: #b7015d !important;
+    color: #fff !important;
+    border: none !important;
+}
+
+/* 📱 Smaller tweaks for mobile */
+@media (max-width: 576px) {
+    .comment-popup .comment-input-box img {
+        width: 30px !important;
+        height: 30px !important;
+    }
+
+    .comment-popup .comment-input-box input {
+        font-size: 13px !important;
+        padding: 6px 10px !important;
+    }
+
+    .comment-popup .comment-input-box button {
+        font-size: 13px !important;
+        padding: 5px 12px !important;
+    }
+}
+
+
+
+.comment-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.6);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+
+   
+
+    .comment-popup.visible {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .comment-popup .right-comment {
+        background: #fff;
+        width: 100%;
+        max-width: 600px;
+        height: 90%;
+        overflow-y: auto;
+        border-radius: 12px 12px 0 0;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+
+    .comment-popup.visible .right-comment {
+        transform: translateY(0);
+    }
+
+.close-comment-popup
+{
+    font-size:19px
+}
+
+.comment-popup .comment-input-box {
+    position: sticky;
+    bottom: 0;
+    background: #fff;
+    z-index: 10;
+    padding: 8px;
+}
+
+/* Mobile view */
+@media (max-width: 767px) {
+    .comment-popup .right-comment {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+
+   
+}
+
+.reaction-container {
+    position: relative;
+    display: inline-block;
+}
+
+.reaction-button {
+    background: #fff;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    padding: 10px 20px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.reaction-popup {
+    position: absolute;
+    bottom: 55px;
+    left: 50%;
+    transform: translateX(-50%) scale(0.9);
+    background: #fff;
+    border-radius: 50px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    padding: 10px 18px;
+    display: flex;
+    gap: 10px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all .25s cubic-bezier(.22,1,.36,1);
+}
+
+.reaction-container.show .reaction-popup {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+    pointer-events: auto;
+}
+
+.reaction {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+}
+
+    .reaction img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+    }
+
+    .reaction:hover {
+        transform: scale(1.2);
+    }
+
+    /* Hover animations (stronger) */
+    .reaction.like:hover img {
+        animation: bounce 0.5s ease infinite alternate;
+    }
+
+    .reaction.love:hover img {
+        animation: pulse 0.8s ease-in-out infinite;
+    }
+
+    .reaction.care:hover img {
+        animation: hug 1.2s ease-in-out infinite;
+    }
+
+    .reaction.haha:hover img {
+        animation: laugh 0.6s ease-in-out infinite;
+    }
+
+    .reaction.wow:hover img {
+        animation: wow 1s ease-in-out infinite;
+    }
+
+    .reaction.sad:hover img {
+        animation: sad 1s ease-in-out infinite;
+    }
+
+    .reaction.angry:hover img {
+        animation: shake 0.5s ease-in-out infinite;
+    }
+
+/* Idle (default gentle animations when popup open) */
+.reaction-container.show .reaction.like img {
+    animation: bounce 2s ease-in-out infinite alternate;
+}
+
+.reaction-container.show .reaction.love img {
+    animation: pulse 2.5s ease-in-out infinite;
+}
+
+.reaction-container.show .reaction.care img {
+    animation: hug 3s ease-in-out infinite;
+}
+
+.reaction-container.show .reaction.haha img {
+    animation: laugh 2.5s ease-in-out infinite;
+}
+
+.reaction-container.show .reaction.wow img {
+    animation: wow 2.8s ease-in-out infinite;
+}
+
+.reaction-container.show .reaction.sad img {
+    animation: sad 3s ease-in-out infinite;
+}
+
+.reaction-container.show .reaction.angry img {
+    animation: shake 2.2s ease-in-out infinite;
+}
+
+/* Keyframes */
+@keyframes pulse {
+    0%,100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+@keyframes bounce {
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+@keyframes hug {
+    0%,100% {
+        transform: rotate(0deg) scale(1);
+    }
+
+    25% {
+        transform: rotate(-8deg) scale(1.05);
+    }
+
+    75% {
+        transform: rotate(8deg) scale(1.05);
+    }
+}
+
+@keyframes laugh {
+    0%,100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    25% {
+        transform: translateY(-3px) rotate(-5deg);
+    }
+
+    75% {
+        transform: translateY(3px) rotate(5deg);
+    }
+}
+
+@keyframes wow {
+    0%,100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+@keyframes sad {
+    0%,100% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(10deg);
+    }
+}
+
+@keyframes shake {
+    0%,100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-4px);
+    }
+
+    75% {
+        transform: translateX(4px);
+    }
+}
+
+
+
+
+
+/* Wrapper */
+.fb-reaction-wrapper {
+    position: relative;
+    display: inline-block;
+    right: -95%;
+}
+
+/* Like button */
+.fb-reaction-btn {
+    background: #fff;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    padding: 10px 20px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+/* Reaction popup */
+.fb-reaction-box {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%) scale(0.9);
+    background: #fff;
+    border-radius: 50px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    padding: 10px 15px;
+    display: flex;
+    gap: 6px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all .25s cubic-bezier(.22,1,.36,1);
+}
+
+.fb-reaction-wrapper.show .fb-reaction-box {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+    pointer-events: auto;
+}
+
+/* Each reaction icon */
+.fb-reaction {
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+}
+
+    .fb-reaction img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+    }
+
+    .fb-reaction:hover {
+        transform: scale(1.2);
+    }
+
+    /* Hover animations (stronger) */
+    .fb-reaction.like:hover img {
+        animation: bounce 0.5s ease infinite alternate;
+    }
+
+    .fb-reaction.love:hover img {
+        animation: pulse 0.8s ease-in-out infinite;
+    }
+
+    .fb-reaction.care:hover img {
+        animation: hug 1.2s ease-in-out infinite;
+    }
+
+    .fb-reaction.haha:hover img {
+        animation: laugh 0.6s ease-in-out infinite;
+    }
+
+    .fb-reaction.wow:hover img {
+        animation: wow 1s ease-in-out infinite;
+    }
+
+    .fb-reaction.sad:hover img {
+        animation: sad 1s ease-in-out infinite;
+    }
+
+    .fb-reaction.angry:hover img {
+        animation: shake 0.5s ease-in-out infinite;
+    }
+
+/* Idle animations (gentle when open) */
+.fb-reaction-wrapper.show .fb-reaction.like img {
+    animation: bounce 2s ease-in-out infinite alternate;
+}
+
+.fb-reaction-wrapper.show .fb-reaction.love img {
+    animation: pulse 2.5s ease-in-out infinite;
+}
+
+.fb-reaction-wrapper.show .fb-reaction.care img {
+    animation: hug 3s ease-in-out infinite;
+}
+
+.fb-reaction-wrapper.show .fb-reaction.haha img {
+    animation: laugh 2.5s ease-in-out infinite;
+}
+
+.fb-reaction-wrapper.show .fb-reaction.wow img {
+    animation: wow 2.8s ease-in-out infinite;
+}
+
+.fb-reaction-wrapper.show .fb-reaction.sad img {
+    animation: sad 3s ease-in-out infinite;
+}
+
+.fb-reaction-wrapper.show .fb-reaction.angry img {
+    animation: shake 2.2s ease-in-out infinite;
+}
+
+/* Keyframes */
+@keyframes pulse {
+    0%,100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+@keyframes bounce {
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+@keyframes hug {
+    0%,100% {
+        transform: rotate(0deg) scale(1);
+    }
+
+    25% {
+        transform: rotate(-8deg) scale(1.05);
+    }
+
+    75% {
+        transform: rotate(8deg) scale(1.05);
+    }
+}
+
+@keyframes laugh {
+    0%,100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    25% {
+        transform: translateY(-3px) rotate(-5deg);
+    }
+
+    75% {
+        transform: translateY(3px) rotate(5deg);
+    }
+}
+
+@keyframes wow {
+    0%,100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+@keyframes sad {
+    0%,100% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(10deg);
+    }
+}
+
+@keyframes shake {
+    0%,100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-4px);
+    }
+
+    75% {
+        transform: translateX(4px);
+    }
+}
+
+
+
+.like-container {
+    display: flex;
+    text-align: center;
+}
+
+.like-btn {
+    font-size: 23px;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+    .like-btn:hover {
+        transform: scale(1.2);
+    }
+
+/* Default: outline heart */
+.bi-heart {
+    color: #262626;
+    font-weight: 400;
+}
+
+/* When liked: red filled heart */
+.liked {
+    color: #e0245e;
+}
+
+.like-count {
+    margin-top: 8px;
+    font-size: 16px;
+    color: #333;
+}
+
+.story-like-btn {
+    font-size: 24px;
+    color: gray;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.3s ease;
+}
+
+    .story-like-btn.liked {
+        color: #ff3b30;
+        transform: scale(1.2);
+    }
+
+/* Floating heart animation */
+@keyframes heart-float {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-60px) scale(1.8);
+    }
+}
+
+.heart-float {
+    position: absolute;
+    color: #ff3b30;
+    font-size: 32px;
+    animation: heart-float 0.8s ease-out forwards;
+}
+
+.viewers-panel {
+    min-height: 400px !important;
+    max-height: 600px; /* adjust as needed */
+    overflow-y: auto;
+    background-color: #fff;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    border-radius: 0 0 10px 10px;
+}
+
+/* Flex wrap list items for responsive layout */
+.viewer-list {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+    /* Each viewer row */
+    .viewer-list li {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 5px 10px;
+        border-radius: 8px;
+        background: #f9f9f9;
+    }
+
+        /* Profile pic */
+        .viewer-list li img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+
+/* Name + heart container */
+.viewer-name {
+    flex-grow: 1;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+/* Heart icon */
+.viewer-heart {
+    font-size: 1rem;
+    color: red;
+}
+
+/* Optional: smooth scroll for better UX */
+.viewers-panel {
+    scroll-behavior: smooth;
+}
+
+/* Show names + hearts when active */
+.viewer-list.show-names .viewer-name,
+.viewer-list.show-names .viewer-heart {
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    .viewers-panel {
+        max-height: 200px;
+        padding: 8px 10px;
+    }
+
+    .viewer-list img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .viewer-name {
+        font-size: 0.85rem;
+    }
+
+    .viewer-heart {
+        font-size: 0.9rem;
+    }
+}
+
+.viewers-panel,
+.viewers-panel * {
+    pointer-events: auto;
+}
+
+/* Viewers Panel Close Button */
+.viewer-close {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #555;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+    .viewer-close:hover {
+        color: #ff0000; /* Red on hover */
+    }
+
+/* Optional: make viewers panel header nicely spaced */
+.viewers-panel .viewer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+
+
+.page-item.active .page-link {
+    background: #b7015d !important;
+    color: white !important;
+    border: 1px solid #b7015d !important;
+}
+
+.text-primary {
+    color: #b7015d !important;
+}

@@ -1,0 +1,221 @@
+﻿
+@model SocialMithila.DataAccess.ResponseModel.PostFeedDTOs
+
+<div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3 post-item" data-postid="@Model.PostId">
+    <div class="card-body p-0 d-flex">
+        <figure class="avatar me-3">
+            @{
+                Model.ProfilePhoto = Model.ProfilePhoto == null ? "https://cdn-icons-png.flaticon.com/512/149/149071.png" : Model.ProfilePhoto == "" ? "https://cdn-icons-png.flaticon.com/512/149/149071.png" : Model.ProfilePhoto;
+            }
+
+            <img src="@Model.ProfilePhoto" class="shadow-sm rounded-circle w45" />
+        </figure>
+        <h4 class="fw-700 text-grey-900 font-xssss mt-1">
+            @Model.UserName
+            <span class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500">
+                @Model.CreatedOn.ToString("g")
+            </span>
+        </h4>
+        <a href="#" class="ms-auto"><i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i></a>
+    </div>
+
+    <div class="card-body p-0 me-lg-5">
+        <p class="fw-500 text-grey-500 lh-26 font-xssss w-100">
+            @Model.Description
+        </p>
+    </div>
+
+    @if (Model.MediaFiles !=null && Model.MediaFiles.Any())
+    {
+        <div class="card-body d-block p-0">
+            <div class="row ps-2 pe-2">
+                @* Render grid items *@
+
+                @{
+                    // Count only image-type files once before loop
+                    var imageCount = Model.MediaFiles.Where(m => m.Type == "Image").Count();
+                    string colClass = "col-xs-4 col-sm-4 p-1 data-postsdet post-item";
+
+                    if (imageCount == 1)
+                    {
+                        colClass = "col-xs-12 col-sm-12 p-1 data-postsdet post-item";
+                    }
+                    else if (imageCount == 2)
+                    {
+                        colClass = "col-xs-6 col-sm-6 p-1 data-postsdet post-item";
+                    }
+                    else
+                    {
+                        colClass = "col-xs-4 col-sm-4 p-1 data-postsdet post-item";
+                    }
+                }
+
+                @for (int i = 0; i < Math.Min(3, Model.MediaFiles.Count); i++)
+                {
+                    var media = Model.MediaFiles[i];
+                    bool showOverlay = (i == 2 && Model.MediaFiles.Count > 3);
+
+                    if (media.Type == "Video")
+                    {
+                        <div class="card-body p-0 mb-3 rounded-3 overflow-hidden">
+                            <video autoplay loop class="float-right w-100" controls>
+                                <source src="@media.Url" type="video/mp4" />
+                            </video>
+                        </div>
+                    }
+                    else if (media.Type == "Image")
+                    {
+                        <div class="@colClass" data-postid="@Model.PostId" data-lightbox="post-@Model.PostId">
+                            <a href="@media.Url" data-lightbox="post-@Model.PostId" class="position-relative d-block data-postsdet">
+                                <img src="@media.Url" class="rounded-3 w-100" alt="image" />
+
+                                @if (showOverlay)
+                                {
+                                    <span class="img-count font-sm text-white ls-3 fw-600">
+                                        <b>+@(Model.MediaFiles.Count - 3)</b>
+                                    </span>
+                                }
+                            </a>
+                        </div>
+                    }
+                }
+
+
+                @* Render hidden links for remaining media for lightbox only *@
+                @if (Model.MediaFiles.Count > 3)
+                {
+                    for (int i = 3; i < Model.MediaFiles.Count; i++)
+                    {
+                        var media = Model.MediaFiles[i];
+                        <a href="@media.Url" data-lightbox="post-@Model.PostId" style="display:none;"></a>
+                    }
+                }
+            </div>
+
+
+        </div>
+    }
+    <div class="reaction-summary mt-2 mb-1 d-flex align-items-center">
+        @if (Model.UserReactions != null && Model.UserReactions.Any())
+        {
+            var firstReaction = Model.UserReactions.FirstOrDefault();
+            var othersCount = Model.UserReactions.Count - 1;
+            string youLiked = Model.UserReactions.Any(r => r.UserName == User.Identity.Name) ? "You" : "";
+            string firstUser = firstReaction?.UserName ?? "";
+
+            <div class="d-flex align-items-center">
+                <span class="me-1">
+                    @foreach (var reactionType in Model.UserReactions
+                        .Select(r => r.ReactionType)
+                        .Distinct()
+                        .Take(3))
+                    {
+                        string icon = "em em---1 font-xss2";
+                        if (reactionType == "Like")
+                        {
+                            icon = "<img src='/asset/images/Icons/like.svg' style='height:22px;width:22px' /> ";
+                        }
+                        else if (reactionType == "Love")
+                        {
+                            icon = "<img src='/asset/images/Icons/heart.svg' style='height:22px;width:22px' /> ";
+                        }
+                        else if (reactionType == "Wow")
+                        {
+                            icon = "<img src='/asset/images/Icons/wow.svg' style='height:22px;width:22px' /> ";
+                        }
+
+                        else if (reactionType == "Sad")
+                        {
+                            icon = "<img src='/asset/images/Icons/sad.svg' style='height:22px;width:22px' /> ";
+                        }
+                        else if (reactionType == "Angry")
+                        {
+                            icon = "<img src='/asset/images/Icons/angry.svg' style='height:22px;width:22px' /> ";
+                        }
+
+                        else if (reactionType == "Care")
+                        {
+                            icon = "<img src='/asset/images/Icons/osm.svg' style='height:22px;width:22px' /> ";
+                        }
+
+                        else if (reactionType == "Laugh")
+                        {
+                            icon = "<img src='/asset/images/Icons/laugh.svg' style='height:22px;width:22px' /> ";
+                        }
+
+
+                        @Html.Raw(icon)
+                       
+                    }
+                </span>
+
+                <span class="fw-500 text-grey-900 font-xssss"
+                      title="@string.Join(", ", Model.UserReactions.Select(r => r.UserName))">
+                    @(youLiked != "" ? youLiked : firstUser)
+                    @if (othersCount > 0)
+                    {
+                        @Html.Raw(" and " + othersCount + " others")
+                    }
+                </span>
+            </div>
+        }
+    </div>
+    <hr/>
+    <div class="card-body d-flex p-0 mt-2">
+        <div class="reaction-container" style="display:flex">
+            <a href="javascript:void(0);" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss me-3 btn-like" data-postid="@Model.PostId">
+                @{
+                    string iconClass = "";
+
+                    switch (Model.UserReaction)
+                    {
+                        case "Love":
+                            iconClass = "<img src='/asset/images/Icons/heart.svg' style='height:28px;width:28px' />  <span class='like-text2'> &nbsp;&nbsp "+@Model.UserReaction+" </span>";
+                            break;
+                        case "Wow":
+                            iconClass = "<img src='/asset/images/Icons/wow.svg' style='height:28px;width:28px' /> <span class='like-text2'> &nbsp;&nbsp "+@Model.UserReaction+" </span>";
+                            break;
+                        case "Sad":
+                            iconClass = "<img src='/asset/images/Icons/sad.svg' style='height:28px;width:28px' /> <span class='like-text2'> &nbsp;&nbsp "+@Model.UserReaction+" </span>";
+                            break;
+                        case "Angry":
+                            iconClass = "<img src='/asset/images/Icons/angry.svg' style='height:28px;width:28px' /> <span class='like-text2'> &nbsp;&nbsp "+@Model.UserReaction+" </span>";
+                            break;
+                        case "Care":
+                            iconClass = "<img src='/asset/images/Icons/osm.svg' style='height:28px;width:28px' /> <span class='like-text2'> &nbsp;&nbsp "+@Model.UserReaction+" </span>";
+                            break;
+                        case "Laugh":
+                            iconClass = "<img src='/asset/images/Icons/laugh.svg' style='height:28px;width:28px'/> <span class='like-text2'> &nbsp;&nbsp "+@Model.UserReaction+" </span>";
+                            break;
+                        default:
+                            iconClass = "<img src='/asset/images/Icons/like.svg' style='height:28px;width:28px' /> <span class='like-text2'> &nbsp;&nbsp "+@Model.UserReaction+" </span>";
+                            break;
+                    }
+
+                }
+                @Html.Raw(iconClass)
+               
+
+            </a>
+
+            <div class="fb-reaction-wrapper" id="fbReactionWrapper">
+               
+                <div class="fb-reaction-box emojis" id="fbReactionBox">
+                    <div class="fb-reaction like" data-reaction="Like"><img src="~/asset/images/Icons/like.svg" style="height: 35px; width: 35px;" data-reaction="Like" alt="Like"></div>
+                    <div class="fb-reaction love" data-reaction="Love"><img src="~/asset/images/Icons/heart.svg" style="height: 35px; width: 35px; " data-reaction="Love" alt="Love"></div>
+                    <div class="fb-reaction care" data-reaction="Care"><img src="~/asset/images/Icons/osm.svg" style="height: 35px; width: 35px; " data-reaction="Care" alt="Care"></div>
+                    <div class="fb-reaction haha" data-reaction="Laugh"><img src="~/asset/images/Icons/laugh.svg" style="height: 35px; width: 35px; " data-reaction="Laugh" alt="Haha"></div>
+                    <div class="fb-reaction wow" data-reaction="Wow"><img src="~/asset/images/Icons/wow.svg" style="height: 35px; width: 35px; " data-reaction="Wow" alt="Wow"></div>
+                    <div class="fb-reaction sad" data-reaction="Sad"><img src="~/asset/images/Icons/sad.svg" style="height: 35px; width: 35px; " data-reaction="Sad" alt="Sad"></div>
+                    <div class="fb-reaction angry" data-reaction="Angry"><img src="~/asset/images/Icons/angry.svg" style="height: 35px; width: 35px; " data-reaction="Angry" alt="Angry"></div>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss  comment-icon">
+            <i class="feather-message-circle text-dark text-grey-900 btn-round-sm font-lg"></i>@Model.CommentCount Comment
+        </a>
+        <a href="#" class="ms-auto d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss">
+            <i class="feather-share-2 text-grey-900 text-dark btn-round-sm font-lg"></i>Share
+        </a>
+    </div>
+</div>

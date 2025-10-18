@@ -1,0 +1,212 @@
+﻿/* 🌟 Base Modal Styling */
+.add-business-modal .modal-content {
+    border-radius: 18px;
+    border: none;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    background: #ffffff;
+    transition: all 0.3s ease-in-out;
+}
+
+.add-business-modal .modal-header {
+    background: #b7015d;
+    color: white !important;
+    border-bottom: none;
+    padding: 1.2rem 1.5rem;
+}
+
+.add-business-modal .modal-title {
+    color: white !important
+}
+    .add-business-modal .modal-title {
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.add-business-modal .btn-close {
+    filter: brightness(0) invert(1);
+}
+
+/* 🌿 Body and Labels */
+.add-business-modal .modal-body {
+    padding: 1.5rem 2rem;
+    background: #fafafa;
+}
+
+.add-business-modal label.form-label {
+    font-weight: 600;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+    height: 40px !important;
+    margin-left: -9px !important;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+
+.add-business-modal input.form-control,
+.add-business-modal select.form-select,
+.add-business-modal textarea.form-control {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: none;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+}
+
+    .add-business-modal input.form-control:focus,
+    .add-business-modal select.form-select:focus,
+    .add-business-modal textarea.form-control:focus {
+        border-color: #b7015d;
+        box-shadow: 0 0 0 0.2rem rgba(0,123,255,.15);
+    }
+
+/* 🌟 Amenities Section */
+.add-business-modal #amenitiesWrapper {
+    margin-top: 0.5rem;
+}
+
+.add-business-modal .amenity-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+    .add-business-modal .amenity-item input {
+        flex: 1;
+    }
+
+    .add-business-modal .amenity-item .btn-danger {
+        border-radius: 8px;
+        background: #ff4b5c;
+        border: none;
+        font-weight: bold;
+        padding: 0 12px;
+        transition: all 0.2s ease;
+    }
+
+        .add-business-modal .amenity-item .btn-danger:hover {
+            background: #ff1e38;
+        }
+
+.add-business-modal #addAmenity {
+    font-weight: 500;
+    border-radius: 8px;
+    padding: 4px 10px;
+}
+
+/* 🌟 Footer Buttons */
+.add-business-modal .modal-footer {
+    background: #fff;
+    border-top: 1px solid #eee;
+    padding: 1rem 1.5rem;
+}
+
+.add-business-modal .btn-primary {
+    background: linear-gradient(135deg, #007bff, #00bcd4);
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 8px 20px;
+    transition: all 0.2s ease;
+}
+
+    .add-business-modal .btn-primary:hover {
+        background: linear-gradient(135deg, #0069d9, #00acc1);
+    }
+
+.add-business-modal .btn-secondary {
+    border-radius: 8px;
+}
+
+/* 🌈 Image Preview */
+.add-business-modal #previewContainer2 img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: 5px;
+    border: 2px solid #e3e3e3;
+}
+
+/* 🧭 Fix scroll issues for long forms */
+.add-business-modal .modal-dialog {
+    max-height: 90vh; /* keeps modal within viewport */
+}
+
+.add-business-modal .modal-body {
+    max-height: calc(80vh - 120px); /* ensures internal scroll */
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: #b7015d #f0f0f0;
+}
+
+    /* 🌈 Optional: nice scrollbars for WebKit browsers */
+    .add-business-modal .modal-body::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .add-business-modal .modal-body::-webkit-scrollbar-thumb {
+        background-color: #b7015d;
+        border-radius: 10px;
+    }
+
+    .add-business-modal .modal-body::-webkit-scrollbar-track {
+        background: #b7015d;
+    }
+
+/* Prevent background from scrolling when modal open */
+body.modal-open {
+    overflow: hidden !important;
+    padding-right: 0 !important;
+}
+
+textarea
+{
+    height: 100px !important;
+}
+/* 🧭 Responsive Design */
+@media (max-width: 768px) {
+    .add-business-modal .modal-dialog {
+        margin: 1rem;
+    }
+
+    .add-business-modal .modal-body {
+        padding: 1rem;
+    }
+
+    .add-business-modal .modal-content {
+        border-radius: 12px;
+    }
+
+    .add-business-modal label.form-label {
+        font-size: 0.85rem;
+    }
+
+    .add-business-modal .btn {
+        font-size: 0.85rem;
+    }
+
+    .add-business-modal .modal-header {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .add-business-modal .modal-body {
+        padding: 0.8rem;
+    }
+
+    .add-business-modal .modal-content {
+        font-size: 0.85rem;
+    }
+
+    .add-business-modal .modal-footer {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+}

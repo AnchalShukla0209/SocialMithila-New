@@ -1,0 +1,104 @@
+﻿@model SocialMithila.DataAccess.ResponseModel.CommentDTO
+
+<div class="comment-thread mb-2" data-commentid="@Model.CommentId">
+    <div class="card-body pt-0 pb-3 pe-4 d-block ps-5">
+        <figure class="avatar position-absolute left-0 ms-2 mt-1">
+            <img src="@Model.ProfilePhoto" class="shadow-sm rounded-circle w35" />
+        </figure>
+
+        <div class="chat p-3 bg-greylight rounded-xxl d-block text-left theme-dark-bg">
+            <h4 class="fw-700 text-grey-900 font-xssss mt-0 mb-1">
+                @Model.UserName
+                <span class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500">
+                    @Model.CreatedOn.ToString("MMM dd, yyyy hh:mm tt")
+                </span>
+            </h4>
+
+            <p class="fw-500 text-grey-500 lh-20 font-xssss w-100 mt-2 mb-0">
+                @Model.CommentText
+            </p>
+
+            <div class="d-flex mt-2">
+                <div class="like-container" data-parent="@Model.CommentId" data-username="@Model.UserName" data-commentid="@Model.CommentId">
+                    <i class="like-btn bi like-comment-btn  @(Model.IsLikedByCurrentUser== true ? "bi-heart-fill liked" : "bi-heart")" id="likeBtn" data-parent="@Model.CommentId" data-username="@Model.UserName" data-commentid="@Model.CommentId" data-postid="@Model.PostId" ></i>
+                    &nbsp; 
+                    <a href="#" class="d-flex align-items-center fw-600 text-grey-900 lh-26 font-xssss me-3 text-dark like-count-comment">
+                        @Model.CommentLikeCount Like
+                    </a>
+                </div>
+
+
+
+
+
+                <a href="javascript:void(0);" class="d-flex align-items-center fw-600 text-grey-900 lh-26 font-xssss text-dark reply-btn"
+                   data-parent="@Model.CommentId"
+                   data-username="@Model.UserName"
+                   data-commentid="@Model.CommentId">
+                    <i class="feather-message-circle text-grey-900 btn-round-sm font-lg text-dark"></i>
+                   
+                    @Model.CommentReplyCount Reply
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (Model.SubReply != null && Model.SubReply.Any())
+{
+    <div class="sub-reply-section mt-2" style="margin-left: 4rem !important;">
+        @helper RenderSubReplies(List<SocialMithila.DataAccess.ResponseModel.CommentDTO> replies)
+        {
+            foreach (var sub in replies)
+            {
+                <div class="comment-thread mb-2" data-commentid="@sub.CommentId">
+                    <div class="card-body pt-0 pb-3 pe-4 d-block" style="padding-left: 0rem !important;">
+                        <figure class="avatar position-absolute left-0 mt-1" style="margin-left: 2rem !important;">
+                            <img src="@sub.ProfilePhoto" class="shadow-sm rounded-circle w35" />
+                        </figure>
+
+                        <div class="chat p-3 bg-greylight rounded-xxl d-block text-left theme-dark-bg">
+                            <h4 class="fw-700 text-grey-900 font-xssss mt-0 mb-1">
+                                @sub.UserName
+                                <span class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500">
+                                    @sub.CreatedOn.ToString("MMM dd, yyyy hh:mm tt")
+                                </span>
+                            </h4>
+
+                            <p class="fw-500 text-grey-500 lh-20 font-xssss w-100 mt-2 mb-0">
+                                @sub.CommentText
+                            </p>
+
+                            <div class="d-flex mt-2">
+                                <div class="like-container" data-parent="@Model.CommentId" data-username="@Model.UserName" data-commentid="@sub.CommentId">
+                                    <i class="like-btn bi like-comment-btn  @(sub.IsLikedByCurrentUser ? "bi-heart-fill liked" : "bi-heart")" id="likeBtn" data-parent="@Model.CommentId" data-username="@Model.UserName" data-commentid="@sub.CommentId" data-postid="@Model.PostId"></i>
+                                    &nbsp;
+                                    <a href="#" class="d-flex align-items-center fw-600 text-grey-900 lh-26 font-xssss me-3 text-dark like-count-comment">
+                                        @sub.CommentLikeCount Like
+                                    </a>
+                                </div>
+
+                                <a href="#" class="d-flex align-items-center fw-600 text-grey-900 lh-26 font-xssss text-dark reply-btn"
+                                   data-parent="@sub.CommentId"
+                                   data-username="@sub.UserName"
+                                   data-commentid="@sub.CommentId">
+                                    <i class="feather-message-circle text-grey-900 btn-round-sm font-lg text-dark"></i>
+                                    @sub.CommentReplyCount Reply
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @* Recursive call *@
+                if (sub.SubReply != null && sub.SubReply.Any())
+                {
+                    @RenderSubReplies(sub.SubReply)
+                }
+            }
+        }
+
+        @RenderSubReplies(Model.SubReply)
+    </div>
+
+}

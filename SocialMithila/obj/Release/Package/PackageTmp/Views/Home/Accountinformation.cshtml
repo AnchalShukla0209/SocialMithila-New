@@ -1,0 +1,269 @@
+﻿
+@{
+    ViewBag.Title = "Accountinformation";
+    Layout = "~/Views/Shared/LayoutPage.cshtml";
+}
+
+<!-- main content -->
+<div class="main-content bg-lightblue theme-dark-bg right-chat-active">
+
+    <div class="middle-sidebar-bottom">
+        <div class="middle-sidebar-left">
+            <div class="middle-wrap">
+                <div class="card w-100 border-0 bg-white shadow-xs p-0 mb-4">
+                    <div class="card-body p-4 w-100 bg-current border-0 d-flex rounded-3">
+                        <a href="~/Home/Usersetting" class="d-inline-block mt-2"><i class="ti-arrow-left font-sm text-white"></i></a>
+                        <h4 class="font-xs text-white fw-600 ms-4 mb-0 mt-2">Account Details</h4>
+                    </div>
+                    <div class="card-body p-lg-5 p-4 w-100 border-0 ">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-4 text-center">
+                                <figure class="avatar ms-auto me-auto mb-0 mt-2 w100"><img src="https://via.placeholder.com/100x100.png" alt="image" id="ProfilePhotoPreview" class="shadow-sm rounded-3 w-100"></figure>
+                                <h2 class="fw-700 font-sm text-grey-900 mt-3" id="fnamelbl"></h2>
+                                
+                                <!-- <a href="#" class="p-3 alert-primary text-primary font-xsss fw-500 mt-2 rounded-3">Upload New Photo</a> -->
+                            </div>
+                        </div>
+
+                        <form action="#">
+                            <div class="row">
+                                <div class="col-lg-6 mb-3">
+                                    <div class="form-group">
+                                        <label class="mont-font fw-600 font-xsss" >First Name</label>
+                                        <input type="text" class="form-control" id="FristNAme">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 mb-3">
+                                    <div class="form-group">
+                                        <label class="mont-font fw-600 font-xsss" >Last Name</label>
+                                        <input type="text" class="form-control" id="LastNAme">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6 mb-3">
+                                    <div class="form-group">
+                                        <label class="mont-font fw-600 font-xsss">Email</label>
+                                        <input type="text" class="form-control" id="Email">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 mb-3">
+                                    <div class="form-group">
+                                        <label class="mont-font fw-600 font-xsss">Phone</label>
+                                        <input type="text" class="form-control"  id="Phone">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12 mb-3">
+                                    <div class="form-group">
+                                        <label class="mont-font fw-600 font-xsss">Country</label>
+                                        <input type="text" class="form-control" id="Country">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12 mb-3">
+                                    <div class="form-group">
+                                        <label class="mont-font fw-600 font-xsss">Address</label>
+                                        <input type="text" class="form-control"  id="Address">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6 mb-3">
+                                    <div class="form-group">
+                                        <label class="mont-font fw-600 font-xsss">Twon / City</label>
+                                        <input type="text" class="form-control" id="TownCity">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 mb-3">
+                                    <div class="form-group">
+                                        <label class="mont-font fw-600 font-xsss">Postcode</label>
+                                        <input type="text" class="form-control" id="PostCode">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12 mb-3">
+                                    <div class="card mt-3 border-0">
+                                        <div class="card-body d-flex justify-content-between align-items-end p-0">
+                                            <div class="form-group mb-0 w-100">
+                                                <!-- Hidden input -->
+                                                <input type="file" name="profilePhoto" id="profilePhoto" class="input-file" hidden>
+
+                                                <!-- Custom label -->
+                                                <label for="profilePhoto" class="rounded-3 text-center bg-white btn-tertiary js-labelFile p-4 w-100 border-dashed">
+                                                    <i class="ti-cloud-down large-icon me-3 d-block"></i>
+                                                    <span class="js-fileName">Drag and drop or click to replace</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-lg-12 mb-3">
+                                    <label class="mont-font fw-600 font-xsss">Description</label>
+                                    <textarea class="form-control mb-0 p-3 h100 bg-greylight lh-16" id="Description" rows="5" placeholder="Write your message..." spellcheck="false"></textarea>
+                                </div>
+
+                                <div class="col-lg-12">
+                                    <button type="button"
+                                            class="bg-current text-center text-white font-xsss fw-600 p-3 w175 rounded-3 d-inline-block"
+                                            id="btnSave">
+                                        Save
+                                    </button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+                <!-- <div class="card w-100 border-0 p-2"></div> -->
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- main content -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+
+        $('#profilePhoto').on('change', function (e) {
+            var fileName = e.target.files.length ? e.target.files[0].name : "Drag and drop or click to replace";
+            $(this).next('label').find('.js-fileName').text(fileName);
+        });
+
+        // Enable drag & drop
+        $('.js-labelFile')
+            .on('dragover', function (e) {
+                e.preventDefault();
+                $(this).addClass('border-primary bg-light');
+            })
+            .on('dragleave', function (e) {
+                e.preventDefault();
+                $(this).removeClass('border-primary bg-light');
+            })
+            .on('drop', function (e) {
+                e.preventDefault();
+                $(this).removeClass('border-primary bg-light');
+
+                var files = e.originalEvent.dataTransfer.files;
+                $('#profilePhoto')[0].files = files;
+
+                if (files.length > 0) {
+                    $(this).find('.js-fileName').text(files[0].name);
+                }
+            });
+
+        function BindUserData() {
+            $(".loader-overlay").css("display", "flex");
+            $.ajax({
+                url: '/Home/GetAccountinformation',
+                type: 'GET',
+                success: function (res) {
+                    if (res.Success) {
+                        var user = res.Data;
+
+                        $("#fnamelbl").text(user.FristNAme);
+                        $("#FristNAme").val(user.FristNAme);
+                        $("#LastNAme").val(user.LastNAme);
+                        $("#Email").val(user.Email);
+                        $("#Phone").val(user.Phone);
+                        $("#Country").val(user.Country);
+                        $("#Address").val(user.Address);
+                        $("#TownCity").val(user.TownCity);
+                        $("#PostCode").val(user.PostCode);
+                        $("#Description").val(user.Description);
+                        $(".UserName").text(user.FristNAme + " " + user.LastNAme);
+
+                        if (user.ProfilePhoto && user.ProfilePhoto != null && user.ProfilePhoto != "") {
+                            $("#ProfilePhotoPreview").attr("src", user.ProfilePhoto);
+                            $("#UserProfile").attr("src", user.ProfilePhoto);
+                            $("#UserProfile2").attr("src", user.ProfilePhoto);
+                        }
+                        else {
+                            $("#ProfilePhotoPreview").attr("src", "https://cdn-icons-png.flaticon.com/512/149/149071.png");
+                            $("#UserProfile").attr("src", "https://cdn-icons-png.flaticon.com/512/149/149071.png");
+                            $("#UserProfile2").attr("src", "https://cdn-icons-png.flaticon.com/512/149/149071.png");
+                        }
+                        $(".loader-overlay").css("display", "none");
+                    } else {
+                        alert(res.Msg);
+                        $(".loader-overlay").css("display", "none");
+                    }
+                },
+                error: function () {
+                    alert("Something went wrong!");
+                    $(".loader-overlay").css("display", "none");
+                }
+            });
+
+        }
+
+        BindUserData();
+
+        $(document).on("click", "#btnSave", function () {
+            $(".loader-overlay").css("display", "flex");
+            var formData = new FormData();
+
+            // 👇 Add fields (must match DTO property names)
+            
+            formData.append("FristNAme", $("#FristNAme").val().trim());
+            formData.append("LastNAme", $("#LastNAme").val().trim());
+            formData.append("Email", $("#Email").val().trim());
+            formData.append("Phone", $("#Phone").val().trim());
+            formData.append("Country", $("#Country").val().trim());
+            formData.append("Address", $("#Address").val().trim());
+            formData.append("TownCity", $("#TownCity").val().trim());
+            formData.append("PostCode", $("#PostCode").val().trim());
+            formData.append("Description", $("#Description").val().trim());
+
+            var fileInput = $("#profilePhoto")[0];
+            if (fileInput.files.length > 0) {
+                formData.append("profilePhotoFile", fileInput.files[0]);
+            }
+
+            $.ajax({
+                url: '/Home/Accountinformation',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    if (response.success) {
+                        alert(response.msg);
+                        BindUserData();
+                        //$("#msg").html("<p style='color:green'>" + response.msg + "</p>");
+                    } else {
+                        alert(response.msg);
+                        $(".loader-overlay").css("display", "none");
+                        
+                    }
+                },
+                error: function (xhr) {
+                    $("#msg").html("<p style='color:red'>Error: " + xhr.status + " - " + xhr.statusText + "</p>");
+                    $(".loader-overlay").css("display", "none");
+                }
+            });
+        });
+
+
+    });
+
+
+
+
+</script>
+<script>
+   
+</script>
+

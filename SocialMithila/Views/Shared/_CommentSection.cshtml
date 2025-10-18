@@ -1,0 +1,153 @@
+﻿@model SocialMithila.DataAccess.ResponseModel.PostCommentResponseDTO
+
+<div class="comment-section px-3 pb-3">
+    <!--hidden-->
+    <input type="hidden" id="PostId" value="@ViewBag.PostId" />
+    <!-- 🔴 Poster Section -->
+    <div class="right-comment chat-left scroll-bar theme-dark-bg" data-postid="@Model.PostId" >
+        <div class="card-body ps-2 pe-4 pb-0 d-flex">
+            <figure class="avatar me-3">
+                <img src="@Model.PosterProfile" alt="image" class="shadow-sm rounded-circle w45" />
+            </figure>
+            <h4 class="fw-700 text-grey-900 font-xssss mt-1 text-left">
+                @Model.PosterName
+                <span class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500">
+                    @*@Model.CreatedOn.ToString("MMM dd, yyyy hh:mm tt")*@
+                </span>
+            </h4>
+            <a href="javascript:void(0);" class="ms-auto">
+                <button type="button" class="text-grey-900 btn-round-md bg-greylight close-comment-popup">×</button>
+            </a>
+        </div>
+
+        <div class="card-body d-flex ps-2 pe-4 pt-0 mt-0">
+            <a href="#" class="d-flex align-items-center fw-600 text-grey-900 lh-26 font-xssss me-3 text-dark">
+                <i class="feather-thumbs-up text-white bg-primary-gradiant me-1 btn-round-xs font-xss"></i>
+                <i class="feather-heart text-white bg-red-gradiant me-2 btn-round-xs font-xss"></i>
+                @Model.TotalPostLikeCount Like
+            </a>
+            <a href="#" class="d-flex align-items-center fw-600 text-grey-900 lh-26 font-xssss text-dark">
+                <i class="feather-message-circle text-grey-900 btn-round-sm font-lg text-dark"></i>
+                @Model.TotalPostCommentCount Comment
+            </a>
+        </div>
+
+
+        <div class="card w-100 border-0 shadow-none right-scroll-bar" style="height:22rem">
+            @if (Model.Comments != null && Model.Comments.Any())
+            {
+                foreach (var comment in Model.Comments)
+                {
+                    <div class="card border-0 shadow-none mb-2 ps-2 pe-2" data-commentid="@comment.CommentId">
+                        @Html.Partial("_CommentThread", comment)
+                    </div>
+                }
+            }
+            else
+            {
+                <p class="text-center text-muted mt-3">No comments yet.</p>
+            }
+        </div>
+
+        <!-- 🟢 Parent Comment Input (Always Visible) -->
+        <div class="comment-input-box sticky-comment-box mt-3">
+            <div class="d-flex align-items-center flex-nowrap">
+                <img src="@ViewBag.CurrentUserPhoto"
+                     alt="User"
+                     class="rounded-circle me-2 flex-shrink-0"
+                     width="40"
+                     height="40" />
+
+                <input type="text"
+                       id="txtNewComment"
+                       class="form-control flex-grow-1 rounded-pill px-3"
+                       placeholder="Write a comment..." />
+
+                <button id="btnPostComment" class="btn btn-primary ms-2 px-3 flex-shrink-0">Post</button>
+            </div>
+        </div>
+
+        <!-- 🟣 Reply Comment Input (Responsive Layout) -->
+        <div class="reply-input-box sticky-comment-box mt-2 p-3 rounded-3 shadow-sm bg-white border d-none">
+            <div class="reply-box-container">
+                <div class="reply-top d-flex align-items-center">
+                    <img src="@ViewBag.CurrentUserPhoto"
+                         alt="User"
+                         class="rounded-circle me-2 flex-shrink-0"
+                         width="40"
+                         height="40" />
+
+                    <input type="hidden" id="ParentCommentId" value="28">
+
+                    <input type="text"
+                           id="txtReplyComment"
+                           class="form-control rounded-pill border-secondary-subtle px-3 py-2 flex-grow-1"
+                           placeholder="Write a reply..." />
+                </div>
+
+                <div class="reply-bottom text-end mt-2">
+                    <button id="btnSendReply" class="btn btn-primary btn-sm px-3 fw-600 me-2">Reply</button>
+                    <button id="btnCancelReply" class="btn btn-light btn-sm px-3 fw-600 border">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+       
+
+    </div>
+
+<style>
+.reply-input-box {
+    background-color: #fff;
+    border-top: 1px solid #f1f1f1;
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+}
+
+.reply-input-box input {
+    font-size: 14px;
+    color: #333;
+}
+
+.reply-input-box button {
+    height: 36px;
+    border-radius: 50px;
+}
+
+.reply-input-box img {
+    object-fit: cover;
+}
+
+/* 🖥️ Desktop/Laptop view: two-line layout */
+@@media (min-width: 992px) {
+    .reply-box-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .reply-top {
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+
+    .reply-bottom {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+    }
+
+    #txtReplyComment {
+        width: 100%;
+    }
+}
+
+
+
+
+</style>

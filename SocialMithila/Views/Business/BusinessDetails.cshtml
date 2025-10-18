@@ -1,0 +1,442 @@
+﻿
+@{
+    ViewBag.Title = "BusinessDetails";
+    Layout = "~/Views/Shared/LayoutPage.cshtml";
+}
+
+@model SocialMithila.DataAccess.ResponseModel.BusinessDetailsViewModel
+<!-- main content -->
+<link href="~/asset/css/CustomCSS/BusinessShop.css" rel="stylesheet" />
+<div class="main-content right-chat-active">
+
+    <div class="middle-sidebar-bottom ps-0 pe-0">
+        <div class="middle-sidebar-left pe-0">
+            <div class="row">
+                <div class="col-xl-12 col-xxl-12 col-lg-12">
+
+                    <div class="product-slider owl-nav-link owl-carousel owl-theme">
+                        @foreach (var img in Model.GalleryImages)
+                        {
+                            <div class="owl-items"><img src="@img" alt="@Model.BusinessName" class="rounded-3"></div>
+
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-8 col-xxl-9 col-lg-8">
+                    <div class="card d-block mt-3 border-0 shadow-xss bg-white p-lg-5 p-4">
+                        <span class="font-xsssss fw-700 ps-3 pe-3 lh-32 text-uppercase rounded-3 ls-2 bg-primary-gradiant d-inline-block text-white ">Featured</span>
+                        <h2 class="fw-700 font-lg mt-3 mb-2 lh-3">@Model.BusinessName</h2>
+                        <p class="font-xsss fw-500 text-grey-500 lh-30 pe-5 mt-3 me-5">@Model.Description</p>
+
+                        <div class="clearfix"></div>
+                        <div class="star d-block w-100 text-left mt-2">
+                            @{
+                                var fullStars = (int)Math.Round(Model.AverageRating);
+                                var emptyStars = 5 - fullStars;
+                            }
+                            @for (int i = 0; i < fullStars; i++)
+                            {
+                                <img src="~/asset/images/star.png" alt="star" class="w15 float-left" />
+                            }
+                            @for (int i = 0; i < emptyStars; i++)
+                            {
+                                <img src="~/asset/images/star-disable.png" alt="star" class="w15 float-left me-2" />
+                            }
+                        </div>
+                        <p class="review-link font-xssss fw-600 text-grey-500 lh-3 mb-0">
+                            (@Model.TotalRatings ratings) @Model.AverageRating / 5 Average rating
+                        </p>
+                        <div class="clearfix"></div>
+                        <a href="#" class="btn-round-lg ms-3 d-inline-block rounded-3 bg-greylight"><i class="feather-share-2 font-sm text-grey-700"></i></a>
+                        <a href="#" class="btn-round-lg ms-2 d-inline-block rounded-3 bg-danger"><i class="feather-bookmark font-sm text-white"></i> </a>
+
+                        <a href="tel:@Model.ContactNumber" class="bg-primary-gradiant border-0 text-white fw-600 text-uppercase font-xssss float-left rounded-3 d-inline-block mt-0 p-2 lh-34 text-center ls-3 w200 me-2">Contact Us</a>
+                    </div>
+
+
+                    <div class="card d-block border-0 rounded-3 overflow-hidden p-4 shadow-xss mt-3 alert-success">
+                        <h2 class="fw-700 font-sm mb-3 mt-1 ps-1 text-success mb-4">Ameneties</h2>
+                        @if (Model.Amenities.Any())
+                        {
+                            foreach (var amenity in Model.Amenities)
+                            {
+                                <h4 class="font-xssss fw-500 text-grey-600 mb-3 pl-35 position-relative lh-24"><i class="ti-check font-xssss btn-round-xs bg-success text-white position-absolute left-0 top-5"></i> @amenity</h4>
+                            }
+                        }
+
+
+                    </div>
+                    <div class="card d-block border-0 rounded-3 overflow-hidden p-4 shadow-xss mt-3">
+                        <h2 class="fw-700 font-sm mb-3 mt-1 ps-1 mb-3">Description</h2>
+                        <p class="font-xssss fw-500 lh-28 text-grey-600 mb-0 ps-2">
+                            @Model.Description
+                        </p>
+                    </div>
+
+                    <div class="card d-block border-0 rounded-3 overflow-hidden p-4 shadow-xss mt-3">
+                        <img src="" />
+                        <h2 class="fw-700 font-sm mb-3 mt-1 ps-1 mb-3">Gallery</h2>
+                        <div class="row ps-3 pe-3">
+                            @foreach (var img in Model.GalleryImages)
+                            {
+                                <div class="col-sm-4 col-xss-4 pe-1 ps-1 mb-2">
+                                    <a href="@img" data-lightbox="roadtrip">
+                                        <img src="@img" alt="image" class="img-fluid w-100 rounded-3" />
+                                    </a>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-xxl-3 col-lg-4 ps-0">
+                    <div class="card w-100 border-0 mt-3 mb-4 p-lg-4 p-3 shadow-xss position-relative rounded-3 bg-white">
+                        <div class="section full mb-4 p-4 bg-light theme-dark-bg theme-light-bg rounded-3">
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <h2 class="display2-size lh-1 m-0 text-grey-900 fw-700 averagerating">@Model.AverageRating</h2>
+                                </div>
+                                <div class="col-12 text-center">
+                                    <h4 class="font-xssss text-grey-600 fw-600 mt-2 totalrating">Based on @Model.TotalRatings</h4>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div id="reviewsContainer">
+                            @foreach (var review in Model.Reviews)
+                            {
+                                <div class="row  review-item">
+                                    <div class="col-2 text-left">
+                                        <figure class="avatar float-left mb-0"> <img src="@review.ProfilePhoto" alt="@review.UserName" class="float-right shadow-none w40 me-2 rounded-circle"></figure>
+                                    </div>
+                                    <div class="col-10 ps-4">
+                                        <div class="content">
+                                            <h6 class="author-name font-xssss fw-600 mb-0 text-grey-800">@review.UserName</h6>
+                                            <h6 class="d-block font-xsssss fw-500 text-grey-500 mt-2 mb-0">@review.CreatedAt</h6>
+                                            @{
+                                                var fullStarss = (int)Math.Floor((decimal)review.Rating);
+                                                var emptyStarss = 5 - fullStarss;
+                                            }
+                                            <div class="star d-block w-100 text-left">
+                                                @for (int i = 0; i < fullStarss; i++)
+                                                {
+                                                    <img src="~/asset/images/star.png" alt="star" class="w10" />
+                                                }
+                                                @for (int i = 0; i < emptyStarss; i++)
+                                                {
+                                                    <img src="~/asset/images/star-disable.png" alt="star" class="w10">
+                                                }
+                                            </div>
+
+                                            <p class="comment-text lh-24 fw-500 font-xssss text-grey-500 mt-2">@review.ReviewText</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <div class="row">
+                            <a href="javascript:void(0)"
+                               class="d-block p-2 lh-32 text-center bg-greylight fw-600 font-xssss text-grey-900 rounded-3"
+                               data-bs-toggle="modal"
+                               data-bs-target="#addReviewModal">
+                                Add a Review
+                            </a>
+
+                        </div>
+                    </div>
+                    <div class="card w-100 border-0 mt-3 mb-4 p-4 shadow-xss position-relative rounded-3 bg-white">
+                        <h2 class="fw-700 font-sm mb-4 mt-1 ps-1 mb-3">Ask a Question</h2>
+                        <form id="contactForm">
+                            <input type="hidden" id="BusinessId" value="@Model.BusinessId" />
+
+                            <div class="form-group mb-3">
+                                <input type="text" id="contactName" class="form-control style2-input" placeholder="Name">
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <input type="email" id="contactEmail" class="form-control style2-input" placeholder="Email">
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <input type="text" id="contactMobile" class="form-control style2-input" placeholder="Mobile Number">
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <textarea id="contactMessage" class="form-control style2-textarea" placeholder="Message"></textarea>
+                            </div>
+
+                            <button type="submit" class="bg-primary-gradiant text-white fw-600 w-100 rounded-3 p-2">Contact Us</button>
+                        </form>
+
+                        <div id="contactMsg" class="mt-3 text-center fw-600"></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Review Modal -->
+    <div class="modal fade  add-review-modal" id="addReviewModal" tabindex="-1" aria-labelledby="addReviewModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-3 border-0 shadow-lg">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-700 text-grey-900" id="addReviewModalLabel">Add Your Review</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form id="reviewForm">
+                        <input type="hidden" id="BusinessId" value="@Model.BusinessId" />
+
+                        <div class="mb-3">
+                            <label class="fw-600 text-grey-700">Your Name</label>
+                            <input type="text" class="form-control" id="UserName" placeholder="Enter your name" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="fw-600 text-grey-700">Your Rating</label>
+                            <div id="starRating" class="mb-2">
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    <i class="feather-star font-lg text-grey-400 cursor-pointer star" data-value="@i"></i>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="fw-600 text-grey-700">Your Review</label>
+                            <textarea class="form-control" style="height:100px !important" id="ReviewText" rows="3" placeholder="Write your experience..." required></textarea>
+                        </div>
+
+                        <div class="text-center mt-3">
+                            <button type="submit" style="background: #b7015d !important;" class="btn btn-primary-gradiant border-0 text-white fw-600 px-4 py-2">
+                                Submit Review
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- main content -->
+<style>
+    .product-slider .owl-items {
+        width: 100%; /* Make each slide take full width of carousel */
+    }
+
+        .product-slider .owl-items img {
+            width: 100%; /* Image fills slide */
+            height: auto; /* Maintain aspect ratio */
+            object-fit: cover; /* Optional: crop image to fill container */
+            display: block; /* Remove extra spacing */
+        }
+
+    .owl-stage-outer {
+        height: 320px
+    }
+
+
+/* 🌟 Base Modal Styling */
+.add-review-modal .modal-content {
+    border-radius: 18px;
+    border: none;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    background: #ffffff;
+    transition: all 0.3s ease-in-out;
+}
+
+.add-review-modal .modal-header {
+    background: #b7015d;
+    color: white !important;
+    border-bottom: none;
+    padding: 1.2rem 1.5rem;
+}
+
+.add-review-modal .modal-title {
+    color: white !important;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.add-review-modal .btn-close {
+    filter: brightness(0) invert(1);
+}
+
+/* 🌿 Body and Labels */
+.add-review-modal .modal-body {
+    padding: 1.5rem 2rem;
+    background: #fafafa;
+}
+
+.add-review-modal label.form-label {
+    font-weight: 600;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.add-review-modal input.form-control,
+.add-review-modal textarea.form-control {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: none;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+}
+
+    .add-review-modal input.form-control:focus,
+    .add-review-modal textarea.form-control:focus {
+        border-color: #b7015d;
+        box-shadow: 0 0 0 0.2rem rgba(183, 1, 93, 0.15);
+    }
+
+/* ⭐ Star Rating */
+.add-review-modal .star-rating {
+    display: flex;
+    justify-content: flex-start;
+    gap: 6px;
+    margin-bottom: 15px;
+}
+
+    .add-review-modal .star-rating i {
+        font-size: 24px;
+        color: #ccc;
+        cursor: pointer;
+        transition: color 0.2s ease-in-out, transform 0.2s;
+    }
+
+        .add-review-modal .star-rating i.active {
+            color: #ffb400;
+            transform: scale(1.1);
+        }
+
+/* 🌟 Footer Buttons */
+.add-review-modal .modal-footer {
+    background: #fff;
+    border-top: 1px solid #eee;
+    padding: 1rem 1.5rem;
+}
+
+.add-review-modal .btn-primary {
+    background: linear-gradient(135deg, #007bff, #00bcd4);
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 8px 20px;
+    transition: all 0.2s ease;
+}
+
+    .add-review-modal .btn-primary:hover {
+        background: linear-gradient(135deg, #0069d9, #00acc1);
+    }
+
+.add-review-modal .btn-secondary {
+    border-radius: 8px;
+}
+
+/* 🧭 Fix scroll issues */
+.add-review-modal .modal-dialog {
+    max-height: 90vh;
+}
+
+.add-review-modal .modal-body {
+    max-height: calc(80vh - 120px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: #b7015d #f0f0f0;
+}
+
+    /* Webkit scrollbar */
+    .add-review-modal .modal-body::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .add-review-modal .modal-body::-webkit-scrollbar-thumb {
+        background-color: #b7015d;
+        border-radius: 10px;
+    }
+
+    .add-review-modal .modal-body::-webkit-scrollbar-track {
+        background: #f0f0f0;
+    }
+
+/* Prevent background scroll when modal open */
+body.modal-open {
+    overflow: hidden !important;
+    padding-right: 0 !important;
+}
+
+/* Responsive */
+@@media (max-width: 768px) {
+    .add-review-modal .modal-dialog {
+        margin: 1rem;
+    }
+
+    .add-review-modal .modal-body {
+        padding: 1rem;
+    }
+
+    .add-review-modal .modal-content {
+        border-radius: 12px;
+    }
+
+    .add-review-modal label.form-label {
+        font-size: 0.85rem;
+    }
+
+    .add-review-modal .btn {
+        font-size: 0.85rem;
+    }
+
+    .add-review-modal .modal-header {
+        padding: 1rem;
+    }
+}
+
+@@media (max-width: 480px) {
+    .add-review-modal .modal-body {
+        padding: 0.8rem;
+    }
+
+    .add-review-modal .modal-content {
+        font-size: 0.85rem;
+    }
+
+    .add-review-modal .modal-footer {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+}
+</style>
+<script>
+    $('.product-slider').owlCarousel({
+        loop: true,
+        margin: 0,       // no extra margin
+        nav: true,
+        dots: false,
+        items: 1,        // only 1 image per slide
+        autoplay: true,
+        autoplayTimeout: 3000,
+        autoplayHoverPause: true
+    });
+
+
+    $('#addReviewModal').modal({
+        backdrop: 'static', // keeps backdrop
+        keyboard: true,
+        show: false
+    });
+
+
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="~/asset/js/CustomJS/BusinessShop.js"></script>

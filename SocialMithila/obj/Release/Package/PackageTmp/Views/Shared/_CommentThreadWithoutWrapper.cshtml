@@ -1,0 +1,31 @@
+﻿@model SocialMithila.DataAccess.ResponseModel.CommentDTO
+
+<div class="comment-thread mb-2" data-commentid="@Model.CommentId">
+    <div class="card-body pt-0 pb-3 pe-4 d-block ps-5">
+        <figure class="avatar position-absolute left-0 ms-2 mt-1">
+            <img src="@Model.ProfilePhoto" alt="image" class="shadow-sm rounded-circle w35" />
+        </figure>
+
+        <div class="chat p-3 bg-greylight rounded-xxl d-block text-left theme-dark-bg">
+            <h4 class="fw-700 text-grey-900 font-xssss mt-0 mb-1">
+                @Model.UserName
+                <span class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500">
+                    @Model.CreatedOn.ToString("MMM dd, yyyy hh:mm tt")
+                </span>
+            </h4>
+
+            <p class="fw-500 text-grey-500 lh-20 font-xssss w-100 mt-2 mb-0">
+                @Model.CommentText
+            </p>
+        </div>
+
+        @* Recursive children inside the same wrapper *@
+        @if (Model.SubReply != null && Model.SubReply.Any())
+        {
+            foreach (var subReply in Model.SubReply)
+            {
+                @Html.Partial("_CommentThreadWithoutWrapper", subReply)
+            }
+        }
+    </div>
+</div>

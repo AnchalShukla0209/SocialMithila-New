@@ -1,0 +1,2305 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Social Mithila - APAN Social Mithila </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    @*<title>Social Mithila - APAN Social Mithila </title>*@
+
+    <link rel="stylesheet" href="~/asset/css/themify-icons.css">
+    <link rel="stylesheet" href="~/asset/css/feather.css">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="~/asset/css/style.css">
+    <link rel="stylesheet" href="~/asset/css/emoji.css">
+    <link href="~/asset/css/style.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/asset/css/lightbox.css">
+    <style>
+        /* Fades out read notifications */
+        .opacity-50 {
+            opacity: 0.5; /* Make it semi-transparent */
+            pointer-events: none; /* Optional: prevent clicks on read items */
+            transition: opacity 0.3s ease-in-out; /* smooth fade effect */
+        }
+
+        #searchResults {
+            display: block;
+        }
+
+        .search-item:hover {
+            background-color: #f5f5f5;
+        }
+
+        /* Search dropdown container */
+        .search-dropdown {
+            width: 28%;
+            position: absolute;
+            top: 110%;
+            left: 290px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            max-height: 350px;
+            overflow-y: auto;
+            padding: 8px 0;
+            transition: all 0.2s ease-in-out;
+        }
+
+        /* Single user item */
+        .search-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background 0.2s ease-in-out;
+        }
+
+            .search-item:hover {
+                background-color: #f3f4f6;
+            }
+
+            /* Profile image */
+            .search-item img {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                object-fit: cover;
+                margin-right: 12px;
+            }
+
+        /* User info */
+        .search-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .search-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #111827;
+        }
+
+        .search-subtext {
+            font-size: 12px;
+            color: #6b7280;
+        }
+        .loader-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 99999999;
+            background-color: rgba(255, 255, 255, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body class="color-theme-blue mont-font loaded">
+
+    @*<div class="preloader"></div>*@
+
+
+    <div class="main-wrapper">
+        <!-- loader Section -->
+        <div class="loader-overlay" style="display:none">
+            <div class="spinner-border text-purple" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+        <!-- loader Section -->
+        <!-- navigation top-->
+        <div class="nav-header bg-white shadow-xs border-0">
+            <div class="nav-top">
+                <a href="~/Home/Index">
+                    <span class="d-inline-block fredoka-font ls-3 fw-600 text-current font-xxl logo-text mb-0">
+                        <img src="~/asset/Logo/logowithoutbg.png" style="height:80px; width:170px" />
+                    </span>
+                </a>
+                <a href="#" class="mob-menu ms-auto me-2 chat-active-btn"><i class="feather-message-circle text-grey-900 font-sm btn-round-md bg-greylight"></i></a>
+                <a href="default-video.html" class="mob-menu me-2"><i class="feather-video text-grey-900 font-sm btn-round-md bg-greylight"></i></a>
+                <a href="#" class="me-2 menu-search-icon mob-menu"><i class="feather-search text-grey-900 font-sm btn-round-md bg-greylight"></i></a>
+                <button class="nav-menu me-0 ms-2"></button>
+            </div>
+
+            <form action="#" class="float-left header-search">
+                <div class="form-group mb-0 icon-input">
+                    <i class="feather-search font-sm text-grey-400"></i>
+                    <input type="text" id="searchUserInput" placeholder="Start typing to search.." class="bg-grey border-0 lh-32 pt-2 pb-2 ps-5 pe-3 font-xssss fw-500 rounded-xl w350 theme-dark-bg">
+                </div>
+
+                <!--Search Results-->
+                <div id="searchResults"
+                     class="search-dropdown d-none">
+
+                </div>
+                <!--END-->
+            </form>
+
+
+
+            <a href="/Home/Index" class="p-2 text-center ms-3 menu-icon center-menu-icon"><i class="feather-home font-lg alert-primary btn-round-lg theme-dark-bg text-current "></i></a>
+            <a href="#" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-zap font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
+            <a href="#" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-video font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
+            <a href="#" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-user font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
+            <a href="#" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-shopping-bag font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
+
+            <a href="#" class="p-2 text-center ms-auto menu-icon"
+               id="dropdownMenu3" data-bs-toggle="dropdown" aria-expanded="false">
+                <span id="notifCount"
+                      class="badge bg-danger position-absolute top-0 end-0"
+                      style="display:none; z-index:2222;">0</span>
+                <span class="dot-count bg-warning"></span>
+                <i class="feather-bell font-xl text-current"></i>
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-end p-4 rounded-3 border-0 shadow-lg"
+                 aria-labelledby="dropdownMenu3" style="overflow-y:scroll;max-height:500px">
+                <h4 class="fw-700 font-xss mb-4">Notification</h4>
+                <div id="dynamicNoti"></div>
+
+
+                @*<div class="card bg-transparent-card w-100 border-0 ps-5 mb-3">
+                        <img src="~/asset/images/user-8.png" alt="user" class="w40 position-absolute left-0">
+                        <h5 class="font-xsss text-grey-900 mb-1 mt-0 fw-700 d-block">Hendrix Stamp <span class="text-grey-400 font-xsssss fw-600 float-right mt-1"> 3 min</span></h5>
+                        <h6 class="text-grey-500 fw-500 font-xssss lh-4">There are many variations of pass..</h6>
+                    </div>
+                    <div class="card bg-transparent-card w-100 border-0 ps-5 mb-3">
+                        <img src="~/asset/images/user-4.png" alt="user" class="w40 position-absolute left-0">
+                        <h5 class="font-xsss text-grey-900 mb-1 mt-0 fw-700 d-block">Goria Coast <span class="text-grey-400 font-xsssss fw-600 float-right mt-1"> 2 min</span></h5>
+                        <h6 class="text-grey-500 fw-500 font-xssss lh-4">Mobile Apps UI Designer is require..</h6>
+                    </div>
+
+                    <div class="card bg-transparent-card w-100 border-0 ps-5 mb-3">
+                        <img src="~/asset/images/user-7.png" alt="user" class="w40 position-absolute left-0">
+                        <h5 class="font-xsss text-grey-900 mb-1 mt-0 fw-700 d-block">Surfiya Zakir <span class="text-grey-400 font-xsssss fw-600 float-right mt-1"> 1 min</span></h5>
+                        <h6 class="text-grey-500 fw-500 font-xssss lh-4">Mobile Apps UI Designer is require..</h6>
+                    </div>
+                    <div class="card bg-transparent-card w-100 border-0 ps-5">
+                        <img src="~/asset/images/user-6.png" alt="user" class="w40 position-absolute left-0">
+                        <h5 class="font-xsss text-grey-900 mb-1 mt-0 fw-700 d-block">Victor Exrixon <span class="text-grey-400 font-xsssss fw-600 float-right mt-1"> 30 sec</span></h5>
+                        <h6 class="text-grey-500 fw-500 font-xssss lh-4">Mobile Apps UI Designer is require..</h6>
+                    </div>*@
+            </div>
+            <a href="#" class="p-2 text-center ms-3 menu-icon chat-active-btn"><i class="feather-message-square font-xl text-current"></i></a>
+            <div class="p-2 text-center ms-3 position-relative dropdown-menu-icon menu-icon cursor-pointer">
+                <i class="feather-settings animation-spin d-inline-block font-xl text-current"></i>
+                <div class="dropdown-menu-settings switchcolor-wrap">
+                    <h4 class="fw-700 font-sm mb-4">Settings</h4>
+                    <h6 class="font-xssss text-grey-500 fw-700 mb-3 d-block">Choose Color Theme</h6>
+                    <ul>
+                        <li>
+                            <label class="item-radio item-content">
+                                <input type="radio" name="color-radio" value="red" checked=""><i class="ti-check"></i>
+                                <span class="circle-color bg-red" style="background-color: #ff3b30;"></span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="item-radio item-content">
+                                <input type="radio" name="color-radio" value="green"><i class="ti-check"></i>
+                                <span class="circle-color bg-green" style="background-color: #4cd964;"></span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="item-radio item-content">
+                                <input type="radio" name="color-radio" value="blue" checked=""><i class="ti-check"></i>
+                                <span class="circle-color bg-blue" style="background-color: #132977;"></span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="item-radio item-content">
+                                <input type="radio" name="color-radio" value="pink"><i class="ti-check"></i>
+                                <span class="circle-color bg-pink" style="background-color: #ff2d55;"></span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="item-radio item-content">
+                                <input type="radio" name="color-radio" value="yellow"><i class="ti-check"></i>
+                                <span class="circle-color bg-yellow" style="background-color: #ffcc00;"></span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="item-radio item-content">
+                                <input type="radio" name="color-radio" value="orange"><i class="ti-check"></i>
+                                <span class="circle-color bg-orange" style="background-color: #ff9500;"></span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="item-radio item-content">
+                                <input type="radio" name="color-radio" value="gray"><i class="ti-check"></i>
+                                <span class="circle-color bg-gray" style="background-color: #8e8e93;"></span>
+                            </label>
+                        </li>
+
+                        <li>
+                            <label class="item-radio item-content">
+                                <input type="radio" name="color-radio" value="brown"><i class="ti-check"></i>
+                                <span class="circle-color bg-brown" style="background-color: #D2691E;"></span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="item-radio item-content">
+                                <input type="radio" name="color-radio" value="darkgreen"><i class="ti-check"></i>
+                                <span class="circle-color bg-darkgreen" style="background-color: #228B22;"></span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="item-radio item-content">
+                                <input type="radio" name="color-radio" value="deeppink"><i class="ti-check"></i>
+                                <span class="circle-color bg-deeppink" style="background-color: #FFC0CB;"></span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="item-radio item-content">
+                                <input type="radio" name="color-radio" value="cadetblue"><i class="ti-check"></i>
+                                <span class="circle-color bg-cadetblue" style="background-color: #5f9ea0;"></span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="item-radio item-content">
+                                <input type="radio" name="color-radio" value="darkorchid"><i class="ti-check"></i>
+                                <span class="circle-color bg-darkorchid" style="background-color: #9932cc;"></span>
+                            </label>
+                        </li>
+                    </ul>
+
+                    <div class="card bg-transparent-card border-0 d-block mt-3">
+                        <h4 class="d-inline font-xssss mont-font fw-700">Header Background</h4>
+                        <div class="d-inline float-right mt-1">
+                            <label class="toggle toggle-menu-color"><input type="checkbox"><span class="toggle-icon"></span></label>
+                        </div>
+                    </div>
+                    <div class="card bg-transparent-card border-0 d-block mt-3">
+                        <h4 class="d-inline font-xssss mont-font fw-700">Menu Position</h4>
+                        <div class="d-inline float-right mt-1">
+                            <label class="toggle toggle-menu"><input type="checkbox"><span class="toggle-icon"></span></label>
+                        </div>
+                    </div>
+                    <div class="card bg-transparent-card border-0 d-block mt-3">
+                        <h4 class="d-inline font-xssss mont-font fw-700">Dark Mode</h4>
+                        <div class="d-inline float-right mt-1">
+                            <label class="toggle toggle-dark"><input type="checkbox"><span class="toggle-icon"></span></label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <a href="~/Home/Usersetting" class="p-0 ms-3 menu-icon shadow-sm rounded-circle w30"><img src="@Session["UserProfile"].ToString()" id="UserProfile" style="border-radius:50%" alt="user" class="w40 mt--1"></a>
+
+        </div>
+        <!-- navigation top -->
+        <!-- navigation left -->
+        <nav class="navigation scroll-bar">
+            <div class="container ps-0 pe-0">
+                <div class="nav-content">
+                    <div class="nav-wrap bg-white bg-transparent-card rounded-xxl shadow-xss pt-3 pb-1 mb-2 mt-2">
+                        <div class="nav-caption fw-600 font-xssss text-grey-500"><span>New </span>Feeds</div>
+                        <ul class="mb-1 top-content">
+                            <li class="logo d-none d-xl-block d-lg-block"></li>
+                            <li>
+                                <a href="/User/UserProfile/@Session["UserId"].ToString()" class="nav-content-bttn open-font">
+                                    <i class="feather-user btn-round-md bg-blue-gradiant me-3"></i>
+                                    <span class="UserName">@Session["UserName"].ToString()</span>
+                                </a>
+                            </li>
+
+                            <li><a href="#" class="nav-content-bttn open-font"><i class="feather-award btn-round-md bg-red-gradiant me-3"></i><span>Explore Business</span></a></li>
+                            <li><a href="#" class="nav-content-bttn open-font"><i class="feather-globe btn-round-md bg-gold-gradiant me-3"></i><span>Explore Stories</span></a></li>
+                            <li><a href="#" class="nav-content-bttn open-font"><i class="feather-zap btn-round-md bg-mini-gradiant me-3"></i><span>Events</span></a></li>
+                            <li><a href="/User/UserProfile/@Session["UserId"].ToString()" class="nav-content-bttn open-font"><i class="feather-user btn-round-md bg-primary-gradiant me-3"></i><span>Author Profile </span></a></li>
+                        </ul>
+                    </div>
+
+                    @*<div class="nav-wrap bg-white bg-transparent-card rounded-xxl shadow-xss pt-3 pb-1 mb-2">
+                            <div class="nav-caption fw-600 font-xssss text-grey-500"><span>More </span>Pages</div>
+                            <ul class="mb-3">
+                                <li><a href="#" class="nav-content-bttn open-font"><i class="font-xl text-current feather-inbox me-3"></i><span>Email Box</span><span class="circle-count bg-warning mt-1">584</span></a></li>
+                                <li><a href="#" class="nav-content-bttn open-font"><i class="font-xl text-current feather-home me-3"></i><span>Near Hotel</span></a></li>
+                                <li><a href="#" class="nav-content-bttn open-font"><i class="font-xl text-current feather-map-pin me-3"></i><span>Latest Event</span></a></li>
+                                <li><a href="#" class="nav-content-bttn open-font"><i class="font-xl text-current feather-youtube me-3"></i><span>Live Stream</span></a></li>
+                            </ul>
+                        </div>*@
+                    <div class="nav-wrap bg-white bg-transparent-card rounded-xxl shadow-xss pt-3 pb-1">
+                        <div class="nav-caption fw-600 font-xssss text-grey-500"><span></span> Account</div>
+                        <ul class="mb-1">
+                            <li class="logo d-none d-xl-block d-lg-block"></li>
+                            <li><a href="#" class="nav-content-bttn open-font h-auto pt-2 pb-2"><i class="font-sm feather-settings me-3 text-grey-500"></i><span>Logout</span></a></li>
+                            @*<li><a href="default-analytics.html" class="nav-content-bttn open-font h-auto pt-2 pb-2"><i class="font-sm feather-pie-chart me-3 text-grey-500"></i><span>Analytics</span></a></li>
+                                <li><a href="default-message.html" class="nav-content-bttn open-font h-auto pt-2 pb-2"><i class="font-sm feather-message-square me-3 text-grey-500"></i><span>Chat</span><span class="circle-count bg-warning mt-0">23</span></a></li>*@
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- navigation left -->
+
+
+        @RenderBody()
+
+        <div class="app-footer border-0 shadow-lg bg-primary-gradiant">
+            <a href="/Home/Index" class="nav-content-bttn nav-center"><i class="feather-home"></i></a>
+            <a href="#" class="nav-content-bttn"><i class="feather-package"></i></a>
+            <a href="#" class="nav-content-bttn" data-tab="chats"><i class="feather-layout"></i></a>
+            <a href="#" class="nav-content-bttn"><i class="feather-layers"></i></a>
+            <a href="~/Home/Usersetting" class="nav-content-bttn"><img src="@Session["UserProfile"].ToString()" id="UserProfile2" style="border-radius:50%" alt="user" class="w30 shadow-xss"></a>
+        </div>
+
+        <div class="app-header-search">
+            <form class="search-form">
+                <div class="form-group searchbox mb-0 border-0 p-1">
+                    <input type="text" class="form-control border-0" placeholder="Search...">
+                    <i class="input-icon">
+                        <ion-icon name="search-outline" role="img" class="md hydrated" aria-label="search outline"></ion-icon>
+                    </i>
+                    <a href="#" class="ms-1 mt-1 d-inline-block close searchbox-close">
+                        <i class="ti-close font-xs"></i>
+                    </a>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <div class="modal bottom side fade" id="Modalstries" tabindex="-1" role="dialog" style=" overflow-y: auto;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content border-0 bg-transparent">
+                <button type="button" class="close mt-0 position-absolute top--30 right--10" data-dismiss="modal" aria-label="Close"><i class="ti-close text-white font-xssss"></i></button>
+                <div class="modal-body p-0">
+                    <div class="card w-100 border-0 rounded-3 overflow-hidden bg-gradiant-bottom bg-gradiant-top">
+                        <div class="owl-carousel owl-theme dot-style3 story-slider owl-dot-nav nav-none">
+                            <div class="item"><img src="https://via.placeholder.com/450x800.png" alt="image"></div>
+                            <div class="item"><img src="https://via.placeholder.com/450x800.png" alt="image"></div>
+                            <div class="item"><img src="https://via.placeholder.com/450x800.png" alt="image"></div>
+                            <div class="item"><img src="https://via.placeholder.com/450x800.png" alt="image"></div>
+
+                        </div>
+                    </div>
+                    <div class="form-group mt-3 mb-0 p-3 position-absolute bottom-0 z-index-1 w-100">
+                        <input type="text" class="style2-input w-100 bg-transparent border-light-md p-3 pe-5 font-xssss fw-500 text-white" value="Write Comments">
+                        <span class="feather-send text-white font-md text-white position-absolute" style="bottom: 35px;right:30px;"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-popup-chat">
+        <div class="modal-popup-wrap bg-white p-0 shadow-lg rounded-3">
+            <div class="modal-popup-header w-100 border-bottom">
+                <div class="card p-3 d-block border-0 d-block">
+                    <figure class="avatar mb-0 float-left me-2">
+
+                        <img src="~/asset/images/user-12.png" alt="image" class="w35 me-1">
+                    </figure>
+                    <h5 class="fw-700 text-primary font-xssss mt-1 mb-1">Hendrix Stamp</h5>
+                    <h4 class="text-grey-500 font-xsssss mt-0 mb-0"><span class="d-inline-block bg-success btn-round-xss m-0"></span> Available</h4>
+                    <a href="#" class="font-xssss position-absolute right-0 top-0 mt-3 me-4"><i class="ti-close text-grey-900 mt-2 d-inline-block"></i></a>
+                </div>
+            </div>
+            <div class="modal-popup-body w-100 p-3 h-auto">
+                <div class="message"><div class="message-content font-xssss lh-24 fw-500">Hi, how can I help you?</div></div>
+                <div class="date-break font-xsssss lh-24 fw-500 text-grey-500 mt-2 mb-2">Mon 10:20am</div>
+                <div class="message self text-right mt-2"><div class="message-content font-xssss lh-24 fw-500">I want those files for you. I want you to send 1 PDF and 1 image file.</div></div>
+                <div class="snippet pt-3 ps-4 pb-2 pe-3 mt-2 bg-grey rounded-xl float-right" data-title=".dot-typing"><div class="stage"><div class="dot-typing"></div></div></div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="modal-popup-footer w-100 border-top">
+                <div class="card p-3 d-block border-0 d-block">
+                    <div class="form-group icon-right-input style1-input mb-0"><input type="text" placeholder="Start typing.." class="form-control rounded-xl bg-greylight border-0 font-xssss fw-500 ps-3"><i class="feather-send text-grey-500 font-md"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
+            <div class="modal-content border-0 rounded-3 shadow-sm">
+
+                <button type="button" id="closepostpopup" class="close close-postpopup" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="fs-4">&times;</span>
+                </button>
+
+                <!-- Modal Body -->
+                <div class="modal-body p-0" id="postModalContent">
+                    <!-- Post content will be injected here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal fade story-modal" id="Modalstory" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content story-container position-relative">
+
+                <!-- Header with user info -->
+                <div class="story-header d-flex align-items-center justify-content-between px-3 py-2">
+                    <div class="d-flex align-items-center">
+                        <img id="storyUserPic"
+                             src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                             class="rounded-circle me-2"
+                             style="width: 40px; height: 40px; object-fit: cover;">
+                        <span id="storyUserName" class="fw-bold text-white" style="color:white !important"></span>
+                    </div>
+                    <!-- Close Button -->
+                    <span id="customClose" class="close-btn">&times;</span>
+                </div>
+
+                <!-- Progress Bars -->
+                <div id="progressContainer" class="progress-wrapper px-2 mt-2"></div>
+
+                <!-- Story Content -->
+                <div id="storyWrapper" class="story-content">
+                    <img id="storyImage" class="story-media d-none" />
+                    <video id="storyVideo" class="story-media d-none" playsinline muted></video>
+                </div>
+
+                <!-- Tap Zones (prev/next) -->
+                <div id="tapLeft" class="tap-zone left"></div>
+                <div id="tapRight" class="tap-zone right"></div>
+
+                <!-- Comment Box & Eye -->
+                <div class="story-footer d-flex align-items-center p-2 border-top"
+                     style="background-color: white;">
+                    <div id="commentLikeWrapper" class="d-flex align-items-center w-100">
+                        <input type="text" class="form-control me-3" placeholder="Write a comment..." style="display:none" />
+                        <i class="bi bi-heart story-like-btn" id="likeBtn" data-storyid=""></i>
+                    </div>
+                    <div id="eyeWrapper" class="d-none align-items-center">
+                        <i class="bi bi-eye-fill" id="storyViewersBtn" style="font-size: 1.2rem; cursor: pointer;"></i>
+                    </div>
+                </div>
+
+                <!-- Viewer Panel (for story owner only) -->
+                <div id="viewersPanel" class="viewers-panel d-none">
+                    <div class="viewer-header">
+                        <h6 class="fw-bold mb-2">Viewed by <span id="viewerCount">0</span></h6>
+                        <span id="closeViewersPanel" class="viewer-close" style="cursor:pointer; font-size:1.2rem;">&times;</span>
+                    </div>
+                    <ul id="viewerList" class="viewer-list d-flex flex-wrap gap-2"></ul>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="~/asset/js/plugin.js"></script>
+
+    <script src="~/asset/js/lightbox.js"></script>
+    <script src="~/asset/js/scripts.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.4.3.min.js"></script>
+    <script src="/signalr/hubs"></script>
+
+    <script>
+       $(function () {
+
+        var userId = '@Session["UserId"]';
+        if (!userId) return; // Skip if not logged in
+
+        // --- Hubs ---
+        var postHub = $.connection.postHub;
+        var notifHub = $.connection.notificationHub;
+        var feedHub = $.connection.feedHub;
+           var frndreqHub = $.connection.friendRequestHub;
+           const commentHub = $.connection.commentHub;
+
+
+           // ===============================
+           // 🔹 FeedHub: Like count updates for comments
+           // ===============================
+           feedHub.client.updateCommentLike = function (commentId, likeCount) {
+               // Find the container with this commentId
+               var container = $(".like-container[data-commentid='" + commentId + "']");
+               if (container.length > 0) {
+                   container.find(".like-count-comment").text(likeCount + "Like");
+               }
+           };
+
+        // ===============================
+        // 🔹 FeedHub: Like count updates
+        // ===============================
+           feedHub.client.updateLikeCount = function (postId, ReactionType) {
+            var postCard = $(`.post-item[data-postid='${postId}']`);
+               if (postCard.length) {
+
+                   switch (ReactionType) {
+                       case "Love":
+                           iconClass = '<img src="/asset/images/Icons/heart.svg" style="height: 28px;width: 28px" />  <span class="like-text4"> &nbsp;&nbsp; ' + ReactionType +' </span>';
+                           break;
+                       case "Wow":
+                           iconClass = '<img src="/asset/images/Icons/wow.svg" style="height: 28px;width: 28px" /> <span class="like-text4"> &nbsp;&nbsp; ' + ReactionType +' </span>';
+                           break;
+                       case "Sad":
+                           iconClass = '<img src="/asset/images/Icons/sad.svg" style="height: 28px;width: 28px" /> <span class="like-text4"> &nbsp;&nbsp; ' + ReactionType +' </span>';
+                           break;
+                       case "Angry":
+                           iconClass = '<img src="/asset/images/Icons/angry.svg" style="height: 28px;width: 28px" /> <span class="like-text4"> &nbsp;&nbsp; ' + ReactionType +' </span>';
+                           break;
+                       case "Care":
+                           iconClass = '<img src="/asset/images/Icons/osm.svg" style="height: 28px;width: 28px" /> <span class="like-text4"> &nbsp;&nbsp; ' + ReactionType +' </span>';
+                           break;
+                       case "Laugh":
+                           iconClass = '<img src="/asset/images/Icons/laugh.svg" style="height: 28px;width: 28px" /> <span class="like-text4"> &nbsp;&nbsp; ' + ReactionType +' </span>';
+                           break;
+                       default:
+                           iconClass = '<img src="/asset/images/Icons/like.svg" style="height: 28px;width: 28px" /> <span class="like-text4"> &nbsp;&nbsp; ' + ReactionType +' </span>';
+                           break;
+                   }
+                   postCard.find(".btn-like").html(iconClass);
+
+            }
+           };
+
+           // ===============================
+           // 🔹 commentHub: newCommentAdded
+           // ===============================
+
+           commentHub.client.newCommentAdded = function (data) {
+               console.log("📩 Real-time comment received:", data);
+
+               const postId = data.PostId;
+               const $post = $(`.post-item[data-postid="${postId}"]`);
+
+               // Detect where to reload (popup or lightbox)
+               let $container = $(".comment-popup:visible .right-comment");
+               if (!$container.length) {
+                   const $lightbox = $("#lightbox:visible");
+                   if ($lightbox.length) $container = $lightbox.find(".right-comment");
+               }
+
+               if ($container.length) {
+                   console.log(`♻️ Reloading comments for post ${postId} (real-time update)`);
+                   window.loadCommentsForPost(postId, $container);
+               } else {
+                   console.log("⚠️ No active comment container to update (user not viewing).");
+               }
+           };
+
+        // ===============================
+        // 🔹 NotificationHub: Notifications
+        // ===============================
+        notifHub.client.receiveNotification = function (notifObj) {
+            console.log("🔔 Notification received:", notifObj);
+
+            // Update badge count
+            var $badge = $('#notifCount');
+            var count = parseInt($badge.text()) || 0;
+            $badge.text(count + 1).show();
+
+            if (notifObj.Message) {
+                showToastNotification(notifObj.Message);
+            }
+
+            refreshNotifications();
+        };
+
+        // ===============================
+        // 🔹 Friend Request Updates
+        // ===============================
+           frndreqHub.client.friendRequestUpdated = function (fromUserId, status) {
+               console.log("👥 Friend request update:", fromUserId, status);
+
+
+               showToastNotification(`Friend request ${status.toLowerCase()}!`);
+
+               $(".loader-overlay").css("display", "flex");
+               $.ajax({
+                   url: '/Home/GetFriendRequest',
+                   type: 'GET',
+                   dataType: 'json',
+                   success: function (response) {
+                       if (response.Success) {
+                           var listContainer = $('#friendRequestList');
+                           listContainer.empty(); // clear previous data
+
+                           response.Data.forEach(function (friend) {
+                               var fullName = (friend.FristNAme || '') + ' ' + (friend.LastNAme || '');
+                               var profilePhoto = friend.ProfilePhoto && friend.ProfilePhoto.trim() !== ''
+                                   ? friend.ProfilePhoto
+                                   : 'https://cdn-icons-png.flaticon.com/512/149/149071.png'; // default image
+
+                               var friendHtml = `
+                <div class="card-body d-flex pt-0 ps-4 pe-4 pb-0">
+                    <figure class="avatar me-3">
+                        <img src="${profilePhoto}" alt="image" class="shadow-sm rounded-circle w45">
+                    </figure>
+                    <h4 class="fw-700 text-grey-900 font-xssss mt-1">
+                        ${fullName}
+                        <span class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500">12 mutual friends</span>
+                    </h4>
+                </div>
+                <div class="card-body d-flex align-items-center pt-0 ps-4 pe-4 pb-4">
+                    <a href="javascript:void(0);"  data-friendshipid="${friend.FriendshipId}" data-requesterid="${friend.RequesterId}"  data-addressid="${friend.AddresseeId}"   class="p-2 lh-20 w100 bg-primary-gradiant me-2 text-white text-center font-xssss fw-600 ls-1 rounded-xl confirm-btn">Confirm</a>
+                    <a href="javascript:void(0);"  data-friendshipid="${friend.FriendshipId}" data-requesterid="${friend.RequesterId}"  data-addressid="${friend.AddresseeId}"   class="p-2 lh-20 w100 bg-grey text-grey-800 text-center font-xssss fw-600 ls-1 rounded-xl delete-btn">Delete</a>
+                </div>`;
+
+                               listContainer.append(friendHtml);
+                               $(".loader-overlay").css("display", "none");
+                           });
+
+                           $('.confirm-btn').off('click').on('click', function () {
+                               var friendshipId = $(this).data('friendshipid');
+                               var requesterId = $(this).data('requesterid');
+                               var addressid = $(this).data('addressid');
+                               Confirm(friendshipId, addressid, $(this), requesterId);
+                           });
+
+                           $('.delete-btn').off('click').on('click', function () {
+                               var friendshipId = $(this).data('friendshipid');
+                               var requesterId = $(this).data('requesterid');
+                               var addressid = $(this).data('addressid');
+                               DeleteRequest(friendshipId, addressid, $(this), requesterId);
+                           });
+
+                       } else {
+                           $('#friendRequestList').html('<p class="text-center text-muted">No friend requests found.</p>');
+                           $(".loader-overlay").css("display", "none");
+                       }
+                   },
+                   error: function (err) {
+                       console.error(err);
+                       $('#friendRequestList').html('<p class="text-center text-danger">Failed to load friend requests.</p>');
+                       $(".loader-overlay").css("display", "none");
+                   }
+               });
+           };
+
+
+           // ===============================
+           // 🔹 PostHub: Receive new posts in real time
+           // ===============================
+
+
+           feedHub.client.updateReaction = function (postId, newCount, reactions) {
+               var postCard = $(`.post-item[data-postid='${postId}']`);
+               if (!postCard.length) return;
+
+               postCard.find(".like-text").text(newCount + " Like");
+
+               // Build the reaction summary HTML again dynamically
+               var html = buildReactionSummary(reactions);
+               postCard.find(".reaction-summary").html(html);
+           };
+
+           // helper
+           function buildReactionSummary(reactions) {
+               if (!reactions || reactions.length === 0) return "";
+               var icons = [...new Set(reactions.map(r => r.ReactionType))]
+                   .slice(0, 3)
+                   .map(r => {
+
+                       switch (r) {
+                           case "Love":
+                               return icons = '<img src="/asset/images/Icons/heart.svg" style="height: 22px;width: 22px" />';
+
+                           case "Wow":
+                               return icons = '<img src="/asset/images/Icons/wow.svg" style="height: 22px;width: 22px" />';
+
+                           case "Sad":
+                               return icons = '<img src="/asset/images/Icons/sad.svg" style="height: 22px;width: 22px" />';
+
+                           case "Angry":
+                               return icons = '<img src="/asset/images/Icons/angry.svg" style="height: 22px;width: 22px" /> ';
+
+                           case "Care":
+                               return icons = '<img src="/asset/images/Icons/osm.svg" style="height: 22px;width: 22px" /> ';
+
+                           case "Laugh":
+                               return icons = '<img src="/asset/images/Icons/laugh.svg" style="height: 22px;width: 22px" />';
+
+                           default:
+                               return icons = '<img src="/asset/images/Icons/like.svg" style="height: 22px;width: 22px" /> ';
+
+                       }
+
+                   }).join('');
+
+               var names = reactions.map(r => r.UserName);
+               var text = `${names[0]}${names.length > 1 ? ` and ${names.length - 1} others` : ''}`;
+
+               return `<div class="d-flex align-items-center">
+                <span class="me-1">${icons}</span>
+                <span class="fw-500 text-grey-900 font-xssss" title="${names.join(', ')}">${text}</span>
+            </div>`;
+           }
+
+
+
+        // ===============================
+        // 🔹 PostHub: Receive new posts in real time
+        // ===============================
+        postHub.client.receivePost = function (postObj) {
+            console.log("🆕 New post received:", postObj);
+
+            var exists = $("#feed-container > .post-item[data-postid='" + postObj.PostId + "']").length > 0;
+            if (exists) return;
+
+            if (postObj.CreatedOn && typeof postObj.CreatedOn === "string") {
+                postObj.CreatedOn = new Date(postObj.CreatedOn);
+            }
+
+            $.ajax({
+                url: '/User/RenderPartial2',
+                type: 'POST',
+                data: JSON.stringify(postObj),
+                contentType: 'application/json',
+                success: function (html) {
+                    if ($("#feed-container > .post-item[data-postid='" + postObj.PostId + "']").length === 0) {
+                        $("#feed-container").prepend(html);
+                    }
+                },
+                error: function (err) {
+                    console.error("❌ Error rendering real-time post:", err);
+                }
+            });
+
+            showToastNotification(`${postObj.UserName} shared a new post!`);
+        };
+
+        // --- Pass userId in connection query ---
+        $.connection.hub.qs = { userId: userId };
+
+        // --- Start one SignalR connection for all hubs ---
+        $.connection.hub.start().done(function () {
+            console.log("✅ SignalR connected successfully");
+            //const postId = 50; // your current post id (already defined above)
+            //if (postId) {
+            //    commentHub.server.joinPostGroup(postId.toString());
+            //    console.log("✅ Joined SignalR comment group for post:", postId);
+            //}
+            refreshNotifications();
+        }).fail(function (err) {
+            console.error("❌ SignalR connection failed:", err);
+        });
+
+        // --- Notification dropdown click ---
+        $(document).on('click', '#dropdownMenu3, #notifCount', function () {
+            refreshNotifications();
+            $('#notifCount').hide();
+        });
+
+        // --- Fetch notifications from server ---
+           async function refreshNotifications() {
+               try {
+                   const res = await $.get('/User/GetNotifications');
+                   const $list = $('#dynamicNoti');
+                   $list.empty();
+
+                   if (!res || res.length === 0) {
+                       $list.append('<div class="text-center text-muted py-3">No notifications</div>');
+                       return;
+                   }
+
+                   res.forEach(n => {
+                       const profilePhoto = n.ProfilePhoto || 'https://cdn-icons-png.flaticon.com/512/149/149071.png';
+                       const readClass = n.IsRead ? 'opacity-50' : '';
+                       const link = getNotificationUrl(n);
+
+                       let icon = "💬";
+                       let messageText = n.Message;
+
+                       switch (n.NotificationType) {
+                           case "FriendRequest":
+                               icon = "👋";
+                               messageText = `${n.FromUserName} sent you a friend request.`;
+                               break;
+                           case "FriendAccept":
+                               icon = "✅";
+                               messageText = `${n.FromUserName} accepted your friend request.`;
+                               break;
+                           case "FriendReject":
+                               icon = "❌";
+                               messageText = `${n.FromUserName} rejected your friend request.`;
+                               break;
+                           case "PostLike":
+                               icon = "❤️";
+                               messageText = `${n.FromUserName} liked your post.`;
+                               break;
+                           case "Comment":
+                               icon = "💬";
+                               messageText = `${n.FromUserName} commented on your post.`;
+                               break;
+                           case "Reply":
+                               icon = "↩️";
+                               messageText = `${n.FromUserName} replied to your comment.`;
+                               break;
+                           case "CommentLike":
+                               icon = "👍";
+                               messageText = `${n.FromUserName} liked your comment.`;
+                               break;
+                       }
+
+                       if (n.NotificationType === 'FriendRequest') {
+                           let actionHtml = '';
+
+                           if (n.RequestStatus === 'P') {
+                               // Pending – show Confirm and Reject buttons
+                               actionHtml = `
+                                            <div class="d-flex mt-2 friend-request-actions">
+                                                <a href="#"
+                                                   data-id="${n.NotificationId}"
+                                                   data-friendshipid="${n.EntityId}"
+                                                   data-requesterid="${n.ActorId}"
+                                                   data-addressid="${n.UserId}"
+                                                   class="p-2 lh-20 w100 bg-primary-gradiant me-2 text-white text-center font-xssss fw-600 ls-1 rounded-xl confirm-btn">
+                                                   Confirm
+                                                </a>
+                                                <a href="#"
+                                                   data-id="${n.NotificationId}"
+                                                   data-friendshipid="${n.EntityId}"
+                                                   data-requesterid="${n.ActorId}"
+                                                   data-addressid="${n.UserId}"
+                                                   class="p-2 lh-20 w100 bg-grey text-grey-800 text-center font-xssss fw-600 ls-1 rounded-xl delete-btn">
+                                                   Reject
+                                                </a>
+                                            </div>`;
+                           }
+                           else if (n.RequestStatus === 'A') {
+                               // Accepted
+                               actionHtml = `<div class="mt-2 friend-request-actions"><span class="text-success font-xssss fw-600">Friend Request Accepted</span></div>`;
+                           }
+                           else if (n.RequestStatus === 'R') {
+                               // Rejected
+                               actionHtml = `<div class="mt-2 friend-request-actions"><span class="text-danger font-xssss fw-600">Friend Request Rejected</span></div>`;
+                           }
+
+                           html = `
+                                <div class="card bg-transparent-card w-100 border-0 ps-5 mb-3">
+                                    <a href="/User/UserProfile/${n.ActorId}"
+                                       class="notification-item text-decoration-none text-dark"
+                                       data-id="${n.NotificationId}"
+                                       data-type="${n.NotificationType}"
+                                       data-userid="${n.UserId || ''}"
+                                       data-requesterid="${n.ActorId || ''}">
+
+                                        <img src="${profilePhoto}" alt="user" class="w40 position-absolute left-0 rounded-circle ${readClass}">
+                                        <h5 class="font-xsss text-grey-900 mb-1 mt-0 fw-700 d-block ${readClass}">
+                                            ${n.FromUserName}
+                                            <span class="text-grey-400 font-xsssss fw-600 float-right mt-1 ${readClass}">${n.CreatedOn}</span>
+                                        </h5>
+                                        <h6 class="text-grey-500 fw-500 font-xssss lh-4 ${readClass}">${n.Message}</h6>
+                                    </a>
+
+                                    ${actionHtml}
+                                </div>`;
+                       }
+
+
+                       else if (n.NotificationType === 'FriendAccept') {
+
+                           html = `
+                            <a href="/User/UserProfile/${n.ActorId}" class="notification-item text-decoration-none text-dark"
+                               data-id="${n.NotificationId}"
+                               data-type="${n.NotificationType}"
+                               data-postid="${n.PostId || ''}"
+                               data-entityid="${n.EntityId || 0}"
+                               data-userid="${n.UserId || ''}"
+                               data-requesterid="${n.ActorId || ''}">
+                                <div class="card bg-transparent-card w-100 border-0 ps-5 mb-3 ${readClass}">
+                                    <img src="${profilePhoto}" alt="user" class="w40 position-absolute left-0 rounded-circle">
+                                    <h5 class="font-xsss text-grey-900 mb-1 mt-0 fw-700 d-block">
+                                        ${n.FromUserName}
+                                        <span class="text-grey-400 font-xsssss fw-600 float-right mt-1">${n.CreatedOn}</span>
+                                    </h5>
+                                    <h6 class="text-grey-500 fw-500 font-xssss lh-4">${n.Message}</h6>
+                                </div>
+                            </a>`;
+                       }
+
+                       //else if (n.NotificationType === 'StoryLike')
+                       //{
+                       //    html = `
+                       //     <a href="javascript:void(0);" class="notification-item text-decoration-none text-dark"
+                       //        data-id="${n.NotificationId}"
+                       //        data-type="${n.NotificationType}"
+                       //        data-postid="${n.PostId || ''}"
+                       //        data-entityid="${n.EntityId || 0}"
+                       //        data-userid="${n.UserId || ''}"
+                       //        data-requesterid="${n.ActorId || ''}">
+                       //         <div class="card bg-transparent-card w-100 border-0 ps-5 mb-3 ${readClass}">
+                       //             <img src="${profilePhoto}" alt="user" class="w40 position-absolute left-0 rounded-circle">
+                       //             <h5 class="font-xsss text-grey-900 mb-1 mt-0 fw-700 d-block">
+                       //                 ${n.FromUserName}
+                       //                 <span class="text-grey-400 font-xsssss fw-600 float-right mt-1">${n.CreatedOn}</span>
+                       //             </h5>
+                       //             <h6 class="text-grey-500 fw-500 font-xssss lh-4">${n.Message}</h6>
+                       //         </div>
+                       //     </a>`;
+                       //}
+
+                       else {
+                           // Regular notification
+                                   html = `
+                        <a href="javascript:void(0);" class="notification-item text-decoration-none text-dark"
+                           data-id="${n.NotificationId}"
+                           data-type="${n.NotificationType}"
+                           data-postid="${n.PostId || ''}"
+                           data-entityid="${n.EntityId || 0}"
+                           data-userid="${n.UserId || ''}"
+                           data-requesterid="${n.ActorId || ''}">
+                            <div class="card bg-transparent-card w-100 border-0 ps-5 mb-3 ${readClass}">
+                                <img src="${profilePhoto}" alt="user" class="w40 position-absolute left-0 rounded-circle">
+                                <h5 class="font-xsss text-grey-900 mb-1 mt-0 fw-700 d-block">
+                                    ${n.FromUserName}
+                                    <span class="text-grey-400 font-xsssss fw-600 float-right mt-1">${n.CreatedOn}</span>
+                                </h5>
+                                <h6 class="text-grey-500 fw-500 font-xssss lh-4">${n.Message}</h6>
+                            </div>
+                        </a>`;
+                       }
+                       $list.append(html);
+                   });
+               } catch (error) {
+                   console.error("⚠️ Failed to load notifications:", error);
+                   $('#dynamicNoti').html('<div class="text-center text-danger py-3">Failed to load notifications</div>');
+               }
+           }
+
+
+           function getNotificationUrl(n) {
+               switch (n.NotificationType) {
+                   case "FriendRequest":
+                   case "FriendAccept":
+                   case "FriendReject":
+                       return `/User/Profile/${n.FromUserId}`;
+                   case "PostLike":
+                   case "Comment":
+                       return `/Post/Details/${n.PostId}`;
+                   case "Reply":
+                   case "CommentLike":
+                       return `/Post/Details/${n.PostId}?commentId=${n.CommentId}`;
+                   default:
+                       return "#";
+               }
+           }
+
+           $(document).on('click', '#dynamicNoti a', function (e) {
+               const notificationId = $(this).data('id');
+               $.post('/User/MarkNotificationRead', { id: notificationId });
+           });
+
+
+
+        // --- Toast helper ---
+        function showToastNotification(msg) {
+            const toast = $(`
+                <div class="toast align-items-center text-white bg-primary border-0 position-fixed bottom-0 end-0 m-3 shadow">
+                    <div class="d-flex">
+                        <div class="toast-body fw-600">${msg}</div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                    </div>
+                </div>
+            `);
+            $('body').append(toast);
+            const bsToast = new bootstrap.Toast(toast[0], { delay: 4000 });
+            bsToast.show();
+            toast.on('hidden.bs.toast', () => toast.remove());
+        }
+       });
+
+
+        function Confirm(friendshipId, addresseeId, buttonElement, requesterId) {
+            $.ajax({
+                url: '/User/AcceptFriendRequest',
+                type: 'POST',
+                data: { friendshipId: friendshipId, addresseeId: addresseeId, requesterId: requesterId },
+                success: function (res) {
+                    if (res.success) {
+                        const $actions = $(buttonElement).closest('.friend-request-actions');
+                        $actions.fadeOut(150, function () {
+                            $(this).html(`<span class="text-success font-xssss fw-600">${res.Message || 'Friend Request Accepted'}</span>`).fadeIn(200);
+                        });
+                        alert('Friend Request Accepted !');
+                    } else {
+                        alert('Failed to accept friend request.');
+                    }
+                },
+                error: function (err) {
+                    console.error(err);
+                    alert('Server error occurred.');
+                }
+            });
+        }
+
+        function DeleteRequest(friendshipId, addresseeId, buttonElement, requesterId) {
+            $.ajax({
+                url: '/User/CancelFriendRequest',
+                type: 'POST',
+                data: { friendshipId: friendshipId, addresseeId: addresseeId, requesterId: requesterId },
+                success: function (res) {
+                    if (res.success) {
+                        alert('Friend Request Deleted !');
+                        const $actions = $(buttonElement).closest('.friend-request-actions');
+                        $actions.fadeOut(150, function () {
+                            $(this).html(`<span class="text-success font-xssss fw-600">${res.Message || 'Friend Request Accepted'}</span>`).fadeIn(200);
+                        });
+                    } else {
+                        alert(res.message || 'Failed to delete friend request.');
+                    }
+                },
+                error: function (err) {
+                    console.error(err);
+                    alert('Server error occurred.');
+                }
+            });
+        }
+
+    </script>
+
+
+    <script>
+
+        $(document).ready(function () {
+            let typingTimer;
+            const delay = 300; // debounce delay in ms
+
+            // Handle keyup event for search input
+            $("#searchUserInput").on("keyup", function () {
+                clearTimeout(typingTimer);
+                const searchTerm = $(this).val().trim();
+
+                if (searchTerm.length === 0) {
+                    $("#searchResults").empty().addClass("d-none");
+                    return;
+                }
+
+                typingTimer = setTimeout(() => {
+                    $.ajax({
+                        url: '/User/SearchUsersDetails',
+                        type: 'GET',
+                        data: { searchTerm: searchTerm },
+                        success: function (response) {
+                            const users = response.users;
+                            let resultHtml = '';
+
+                            if (users.length > 0) {
+                                users.forEach(user => {
+                                    resultHtml += `
+                                                            <div class="search-item" data-id="${user.Id}">
+                                                                <img src="${user.ProfilePhoto || 'https://cdn-icons-png.flaticon.com/512/149/149071.png'}" alt="Profile">
+                                                                <div class="search-info">
+                                                                    <span class="search-name">${user.FullName}</span>
+                                                                    <span class="search-subtext">View Profile</span>
+                                                                </div>
+                                                            </div>
+                                                        `;
+                                });
+                            } else {
+                                resultHtml = `<div class="text-center text-muted py-3">No users found</div>`;
+                            }
+
+                            $("#searchResults").html(resultHtml).removeClass("d-none");
+                        },
+                        error: function () {
+                            $("#searchResults").html(`<div class="text-center text-danger py-3">Error loading users</div>`).removeClass("d-none");
+                        }
+                    });
+                }, delay);
+            });
+
+            // Navigate to user profile on click
+            $(document).on("click", ".search-item", function () {
+                const userId = $(this).data("id");
+                window.location.href = `/User/UserProfile/${userId}`;
+            });
+
+            // Hide results when clicking outside
+            $(document).on("click", function (e) {
+                if (!$(e.target).closest(".header-search").length) {
+                    $("#searchResults").addClass("d-none");
+                }
+            });
+        });
+
+    </script>
+
+    <script>
+
+        $(document).on('click', '.notification-item', function () {
+            const $item = $(this);
+            const notificationId = $item.data('id');
+            const type = $item.data('type');
+            const postId = $item.data('postid');
+            const entityid = $item.data('entityid');
+            const userId = $item.data('userid');
+
+            // Mark as read
+            $.post('/User/MarkNotificationRead', { id: notificationId });
+            $item.find('.card').addClass('opacity-50');
+
+            if (type === "FriendRequest" || type === "FriendAccept" || type === "FriendReject") {
+                openUserProfileModal(userId);
+            }
+            else if (type === "StoryLike") {
+                openStoryModal(entityid);
+            }
+            else if (postId) {
+                openPostModal(postId, entityid);
+            }
+        });
+
+        function openPostModal(postId, commentId = null) {
+            $.post('/User/RenderPost', { postId: postId }, function (feed) {
+                if (!feed) return alert("Post not found");
+
+                // Render the post HTML dynamically
+                $('#postModalContent').html(feed);
+
+                // Show modal
+                $('#postModal').modal('show');
+
+                // Load comments dynamically
+                $.get(`/User/LoadComments?postId=${postId}`, function (commentHtml) {
+                    // Append comment section inside modal
+                    let $modalContent = $('#postModalContent');
+                    if ($modalContent.find('.comment-container').length === 0) {
+                        $modalContent.append('<div class="comment-container"></div>');
+                    }
+                    $modalContent.find('.comment-container').html(commentHtml);
+
+                    // Highlight comment if commentId is provided
+                    if (commentId) {
+                        const $comment = $modalContent.find(`.comment-item[data-commentid='${commentId}']`);
+                        if ($comment.length) {
+                            $comment[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            $comment.addClass('highlight-comment');
+                            setTimeout(() => $comment.removeClass('highlight-comment'), 2000);
+                        }
+                    }
+
+                    // Re-bind comment button events (post reply, cancel reply)
+                    bindCommentEvents();
+                });
+            });
+        }
+
+
+
+        function bindCommentEvents() {
+            // Post new comment
+            $('#btnPostComment').off('click').on('click', function () {
+                var postId = $('#PostId').val();
+                var text = $('#txtNewComment').val();
+                if (text.trim() === '') return;
+
+                $.post('/User/PostComment', { postId: postId, text: text }, function (newCommentHtml) {
+                    $('#postModalContent .comment-container .right-scroll-bar').append(newCommentHtml);
+                    $('#txtNewComment').val('');
+                });
+            });
+
+            // Reply, cancel reply, etc.
+            $('#btnCancelReply').off('click').on('click', function () {
+                $(this).closest('.reply-input-box').addClass('d-none');
+            });
+        }
+
+
+        $(document).on("click", ".post-reply", function () {
+            const parentId = $(this).data("parentid");
+            const text = $(this).closest(".reply-input-box").find(".reply-text").val().trim();
+            var postId = $("#PostId").val();
+            if (!text) return;
+
+            $.ajax({
+                url: "/User/AddComment",
+                type: "POST",
+                data: {
+                    PostId: postId,
+                    UserId: userId,
+                    ParentCommentId: parentId,
+                    CommentText: text
+                },
+                success: function (res) {
+                    if (res.IsSuccess) {
+                        console.log("✅ Reply added successfully");
+                        $("#txtReplyComment").val('');
+                        $(".reply-input-box").addClass("d-none");
+                        $("#ParentCommentId").val('');
+
+                        // Auto-refresh comments for that post
+                        let $container = $(".comment-popup:visible .right-comment");
+                        if (!$container.length) {
+                            const $lightbox = $("#lightbox:visible");
+                            if ($lightbox.length) $container = $lightbox.find(".right-comment");
+                        }
+
+                        if ($container.length) {
+                            console.log("♻️ Reloading comments (reply update)");
+                            window.loadCommentsForPost(postId, $container);
+                        }
+                    }
+                },
+                error: function (xhr) {
+                    console.error("❌ Reply error:", xhr.responseText);
+                }
+            });
+        });
+
+
+        $('#postModalContent').on('click', '#btnPostComment', function () {
+            const postId = $('#PostId').val();
+            const text = $('#txtNewComment').val().trim();
+            if (!text) return;
+
+            // Call your API to post comment
+            $.post('/User/AddComment', { postId: postId, text: text }, function (response) {
+                // Reload comments after posting
+                $.get(`/User/LoadComments?postId=${postId}`, function (commentHtml) {
+                    $('#postModalContent .comment-container').html(commentHtml);
+                    bindCommentEvents(); // Re-bind reply/cancel buttons
+                });
+            });
+        });
+
+        $('#postModalContent').on('click', '#btnCancelReply', function () {
+            const $modal = $('#postModalContent');
+            $modal.find('#ParentCommentId').val('');
+            $modal.find('#txtReplyComment').val('');
+            $modal.find('.reply-input-box').addClass('d-none');
+            $modal.find('.comment-input-box').removeClass('d-none');
+        });
+
+        $('#postModalContent').on('click', '.reply-btn', function (e) {
+            e.preventDefault();
+
+            const $modal = $('#postModalContent');
+            const replyParentId = $(this).data('parent');
+            const replyUserName = $(this).data('username');
+
+            // Set hidden field & prefill input
+            $modal.find('#ParentCommentId').val(replyParentId);
+            $modal.find('#txtReplyComment').val(`${replyUserName} `).focus();
+
+            // Show reply box, hide main comment box
+            $modal.find('.reply-input-box').removeClass('d-none');
+            $modal.find('.comment-input-box').addClass('d-none');
+
+            // Scroll to reply box
+            $('html, body').animate({
+                scrollTop: $modal.find('.reply-input-box').offset().top - 100
+            }, 500);
+        });
+
+
+
+        $('#postModalContent').on('click', '#btnSendReply', function () {
+            const $modal = $('#postModalContent');
+            const postId = $modal.find("#PostId").val();
+            const text = $modal.find("#txtReplyComment").val().trim();
+            const parentId = $modal.find("#ParentCommentId").val();
+
+            if (!text || !parentId) return;
+
+            $.post('/User/AddComment', {
+                PostId: postId,
+                ParentCommentId: parentId,
+                CommentText: text
+            }, function (res) {
+                if (res.IsSuccess) {
+                    // Reset input
+                    $modal.find("#txtReplyComment").val('');
+                    $modal.find(".reply-input-box").addClass("d-none");
+                    $modal.find("#ParentCommentId").val('');
+
+                    // Reload comments
+                    $.get(`/User/LoadComments?postId=${postId}`, function (commentHtml) {
+                        $modal.find(".comment-container").html(commentHtml);
+                        bindCommentEvents(); // re-bind reply buttons
+                    });
+                } else {
+                    console.error("Failed to add reply");
+                }
+            }).fail(function () {
+                console.error("Error sending reply");
+            });
+        });
+
+        // Close post modal and cleanup
+        $(document).on('click', '.close-comment-popup', function () {
+            const $modal = $('#postModal');
+
+            // Hide the modal
+            $modal.modal('hide');
+
+            // Clear modal content
+            $('#postModalContent').html('');
+
+            // Reset input fields
+            $modal.find("#txtNewComment").val('');
+            $modal.find("#txtReplyComment").val('');
+            $modal.find("#ParentCommentId").val('');
+            $modal.find(".reply-input-box").addClass("d-none");
+            $modal.find(".comment-input-box").removeClass("d-none");
+
+            // Optional: Leave SignalR group if using comments hub
+            if (window.currentSignalRGroup && $.connection?.commentHub?.server) {
+                $.connection.commentHub.server.leavePostGroup(window.currentSignalRGroup.toString())
+                    .done(() => console.log(`🚪 Left SignalR group for post ${window.currentSignalRGroup}`))
+                    .fail(err => console.error("❌ Failed to leave SignalR group:", err));
+            }
+
+            // Reset global state
+            window.currentSignalRGroup = null;
+        });
+
+        function closePostPopup() {
+            const $modal = $('#postModal');
+
+            // Hide the modal
+            $modal.modal('hide');
+
+            // Clear injected content
+            $('#postModalContent').html('');
+
+            // Reset inputs in case reply/comment boxes were open
+            $('#postModalContent #txtNewComment').val('');
+            $('#postModalContent #txtReplyComment').val('');
+            $('#postModalContent #ParentCommentId').val('');
+            $('#postModalContent .reply-input-box').addClass('d-none');
+            $('#postModalContent .comment-input-box').removeClass('d-none');
+
+            // Optional: reset any other global states related to comments
+            window.currentSignalRGroup = null;
+            window.isLightboxOpen = false;
+        }
+
+        // Bind to a close button if needed
+        $(document).on('click', '#closepostpopup', function () {
+            closePostPopup();
+        });
+
+
+        // ✅ Accept Friend Request
+        $(document).on('click', '.confirm-btn', function (e) {
+            e.preventDefault();
+            const $btn = $(this);
+            const friendshipId = $btn.data('friendshipid');
+            const addresseeId = $btn.data('addressid');
+            const requesterId = $btn.data('requesterid');
+
+            $.ajax({
+                url: '/User/AcceptFriendRequest',
+                type: 'POST',
+                data: { friendshipId, addresseeId, requesterId },
+                success: function (res) {
+                    alert('Friend Request Accepted !');
+                    console.log("✅ Confirm response:", res);
+                    const $container = $btn.closest('.friend-request-actions');
+
+                    $container.fadeOut(150, function () {
+                        $(this).html(
+                            `<span class="text-success font-xssss fw-600">${res.Message || 'Friend Request Accepted'}</span>`
+                        ).fadeIn(200);
+                    });
+                },
+                error: function (err) {
+                    console.error("❌ Confirm error:", err);
+                    alert('Something went wrong.');
+                }
+            });
+        });
+
+
+        // 🗑️ Reject Friend Request
+        $(document).on('click', '.delete-btn', function (e) {
+            e.preventDefault();
+            const $btn = $(this);
+            const friendshipId = $btn.data('friendshipid');
+            const addresseeId = $btn.data('addressid');
+            const requesterId = $btn.data('requesterid');
+
+            $.ajax({
+                url: '/User/CancelFriendRequest',
+                type: 'POST',
+                data: { friendshipId, addresseeId, requesterId },
+                success: function (res) {
+                    console.log("🗑 Delete response:", res);
+                    alert('Friend Request Rejected !');
+                    const $container = $btn.closest('.friend-request-actions');
+
+                    $container.fadeOut(150, function () {
+                        $(this).html(
+                            `<span class="text-danger font-xssss fw-600">${res.Message || 'Friend Request Rejected'}</span>`
+                        ).fadeIn(200);
+                    });
+                },
+                error: function (err) {
+                    console.error("❌ Delete error:", err);
+                    alert('Something went wrong.');
+                }
+            });
+        });
+
+        function openStoryModal(storyId) {
+            $.ajax({
+                url: "/Home/GetStoryById", // 👈 नया API चाहिए जो उस StoryId की info दे
+                type: "GET",
+                data: { storyId: storyId },
+                success: function (storyData) {
+                    if (!storyData) return;
+
+                    const userId = storyData[0].UserId;
+
+                    // अब उस user की सारी stories लोड करो
+                    $.ajax({
+                        url: "/Home/GetStoriesByUser",
+                        type: "GET",
+                        data: { userId: userId },
+                        success: function (data) {
+                            if (!data || data.length === 0) return;
+
+                            stories = data.map(story => ({
+                                id: story.StoryId,
+                                type: story.MediaType.toLowerCase(),
+                                src: story.MediaUrl,
+                                userId: story.UserId,
+                                isLiked: story.IsLikedByCurrentUser
+                            }));
+
+                            // find index of that storyId
+                            currentIndex = stories.findIndex(s => s.id === storyId);
+                            if (currentIndex === -1) currentIndex = 0;
+
+                            // user info from story
+                            const userName = storyData[0].UserName;
+                            const userPic = storyData[0].ProfilePic || "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+
+                            $("#storyUserName").text(userName);
+                            $("#storyUserPic").attr("src", userPic);
+
+                            renderProgressBars();
+
+                            $("#Modalstory").modal({
+                                backdrop: false,
+                                keyboard: true
+                            });
+
+                            $("#Modalstory").modal("show");
+                            showStory(currentIndex);
+                        },
+                        error: function () {
+                            console.error("Failed to load stories by user");
+                        }
+                    });
+                },
+                error: function () {
+                    console.error("Failed to load story by id");
+                }
+            });
+        }
+
+
+        function pauseStoryStart(e) {
+            e.preventDefault(); // prevent text selection or scrolling
+            pauseStory();
+        }
+
+        function resumeStoryEnd(e) {
+            e.preventDefault();
+            resumeStory();
+        }
+
+        // Desktop
+        $("#storyWrapper").on("mousedown", pauseStoryStart);
+        $("#storyWrapper").on("mouseup mouseleave", resumeStoryEnd);
+
+        // Mobile
+        $("#storyWrapper").on("touchstart", pauseStoryStart);
+        $("#storyWrapper").on("touchend touchcancel", resumeStoryEnd);
+
+        $(document).on("focus", ".story-footer input", function () {
+            pauseStory();
+        });
+
+        // When textbox loses focus → resume story
+        $(document).on("blur", ".story-footer input", function () {
+            resumeStory();
+        });
+
+
+
+        function loadUserStories(userId, userIndex) {
+            $.ajax({
+                url: `/Home/GetStoriesByUser`,
+                type: "GET",
+                data: { userId: userId },
+                success: function (data) {
+                    if (!data || data.length === 0) return;
+
+                    // stories for this user
+                    stories = data.map(story => ({
+                        id: story.StoryId,
+                        type: story.MediaType.toLowerCase(),
+                        src: story.MediaUrl,
+                        userId: story.UserId,
+                        isLiked: story.IsLikedByCurrentUser
+                    }));
+
+                    // set user info in header
+                    let userCard = $(userCards[userIndex]);
+                    let userName = userCard.data("user");
+                    let userPic = userCard.find("img").attr("src") || "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+
+                    $("#storyUserName").text(userName);
+                    $("#storyUserPic").attr("src", userPic);
+
+                    currentIndex = 0;
+                    currentUserIndex = userIndex;
+
+                    renderProgressBars();
+                    $("#Modalstory").modal({
+                        backdrop: false,
+                        keyboard: true
+                    });
+
+                    const storyId = stories[currentIndex].id;
+                    $("#likeBtn").attr("data-storyid", storyId);
+                    const isLiked = stories[currentIndex].isLiked;
+                    const $likeBtn = $("#likeBtn");
+                    $likeBtn.attr("data-storyid", storyId);
+                    if (isLiked) {
+                        $likeBtn.addClass("liked bi-heart-fill").removeClass("bi-heart");
+                    } else {
+                        $likeBtn.removeClass("liked bi-heart-fill").addClass("bi-heart");
+                    }
+
+                    // mark as viewed
+                    if (stories[currentIndex].userId != userId) {
+                        $.post("/Home/MarkStoryViewed", { storyId });
+                    }
+
+                    // if current story belongs to logged-in user → show viewer panel
+                    if (stories[currentIndex].userId === userId) {
+
+                        loadViewers(storyId);
+                    }
+
+
+                    $("#Modalstory").modal("show");
+                    showStory(currentIndex);
+                },
+                error: function () {
+                    alert("Failed to load stories.");
+                }
+            });
+        }
+
+        function loadViewers(storyId) {
+            $.ajax({
+                url: "/Home/GetStoryViewers",
+                type: "GET",
+                data: { storyId },
+                success: function (data) {
+                    const $list = $("#viewerList");
+                    $list.empty();
+                    $("#viewerCount").text(data.viewers.length);
+
+                    data.viewers.forEach(v => {
+                        const likedClass = v.IsLiked ? "bi-heart-fill text-danger viewer-heart" : "bi-heart viewer-heart";
+                        $list.append(`
+                <li class="d-flex align-items-center mb-1">
+                    <img src="${v.ProfilePhoto || 'https://cdn-icons-png.flaticon.com/512/149/149071.png'}" class="rounded-circle me-2">
+                    <span class="viewer-name flex-grow-1">${v.Name}</span>
+                    <i class="bi ${likedClass}"></i>
+                </li>
+            `);
+                    });
+
+                    // Show names and hearts after icon clicked
+                    setTimeout(() => $list.addClass("show-names"), 100);
+                },
+                error: function () {
+                    console.error("Failed to load viewers");
+                }
+            });
+        }
+
+
+
+        let stories = [];
+        let currentIndex = 0;
+        let timer;
+        let isPaused = false;
+        let remainingTime, startTime;
+
+        // Track users list (from carousel)
+        let userCards = [];
+        let currentUserIndex = 0;
+
+        function renderProgressBars() {
+            $("#progressContainer").empty();
+            stories.forEach((s, i) => {
+                $("#progressContainer").append(`
+        <div class="progress">
+            <div class="progress-bar" id="progress-${i}"></div>
+        </div>
+    `);
+            });
+        }
+
+        function showStory(index) {
+            clearTimeout(timer);
+            let story = stories[index];
+            let storyID = story.id;
+            const loggedInUserId = parseInt($("#hdnLogedinUserId").val());
+            if (story.userId != loggedInUserId) {
+                $.post("/Home/MarkStoryViewed", { storyID });
+            }
+
+            $("#storyImage, #storyVideo").addClass("d-none");
+            $("#viewerList").empty(); // Reset viewers
+            $("#viewersPanel").addClass("d-none"); // Hide panel
+            $("#viewerCount").text("0");
+            $("#viewerList").removeClass("show-names"); //
+
+            if (story.type === "image") {
+                $("#storyImage").attr("src", story.src).removeClass("d-none");
+                startProgress(index, 5000); // image → 5s
+            } else if (story.type === "video") {
+                let video = $("#storyVideo").attr("src", story.src).removeClass("d-none")[0];
+                video.currentTime = 0;
+                video.play();
+                video.onloadedmetadata = function () {
+                    startProgress(index, video.duration * 1000);
+                };
+            }
+
+            const $likeBtn = $("#likeBtn");
+            $likeBtn.attr("data-storyid", story.id);
+            if (story.isLiked) {
+                $likeBtn.addClass("liked bi-heart-fill").removeClass("bi-heart");
+            } else {
+                $likeBtn.removeClass("liked bi-heart-fill").addClass("bi-heart");
+            }
+
+            // =======================
+            // Role-based UI toggle
+            // =======================
+
+
+            if (story.userId === loggedInUserId) {
+                $("#commentLikeWrapper").addClass("d-none");
+                $("#eyeWrapper").removeClass("d-none");
+            } else {
+                $("#commentLikeWrapper").removeClass("d-none");
+                $("#eyeWrapper").addClass("d-none");
+            }
+        }
+
+        // Click eye icon → toggle viewers panel + show names
+
+        // Click eye icon → toggle viewers panel + show names
+        const $tapZones = $(".tap-zone"); // already exists in your code
+
+        // Click eye icon → show viewers panel
+        $(document).on("click", "#storyViewersBtn", function () {
+            const $panel = $("#viewersPanel");
+            if ($panel.hasClass("d-none")) {
+                pauseStory(); // pause story
+                $panel.removeClass("d-none");
+                $tapZones.css("pointer-events", "none"); // disable story tap while panel open
+                loadViewers(stories[currentIndex].id);
+            }
+        });
+
+        // Close button inside viewers panel
+        $(document).on("click", "#closeViewersPanel", function () {
+            const $panel = $("#viewersPanel");
+            $panel.addClass("d-none");
+            $tapZones.css("pointer-events", "auto"); // re-enable story taps
+            resumeStory(); // resume story
+        });
+
+
+
+        function startProgress(index, duration) {
+            $(".progress-bar").stop().css("width", "0%");
+            for (let i = 0; i < index; i++) $(`#progress-${i}`).css("width", "100%");
+
+            startTime = Date.now();
+            remainingTime = duration;
+
+            $(`#progress-${index}`).animate({ width: "100%" }, duration, "linear", nextStory);
+            timer = setTimeout(nextStory, duration);
+        }
+
+        function nextStory() {
+            currentIndex++;
+            if (currentIndex >= stories.length) {
+                // finished this user's stories → go to next user
+                nextUserStories();
+            } else {
+                showStory(currentIndex);
+            }
+        }
+
+        function prevStory() {
+            currentIndex--;
+            if (currentIndex < 0) {
+                // go to previous user if exists
+                prevUserStories();
+            } else {
+                showStory(currentIndex);
+            }
+        }
+
+        function pauseStory() {
+            if (isPaused) return;
+            isPaused = true;
+            clearTimeout(timer);
+            let elapsed = Date.now() - startTime;
+            remainingTime -= elapsed;
+            $(".progress-bar").stop();
+            $("#storyVideo")[0].pause();
+        }
+
+        function resumeStory() {
+            if (!isPaused) return;
+            isPaused = false;
+            startTime = Date.now();
+            $(`#progress-${currentIndex}`).animate({ width: "100%" }, remainingTime, "linear", nextStory);
+            timer = setTimeout(nextStory, remainingTime);
+            if ($("#storyVideo").is(":visible")) {
+                $("#storyVideo")[0].play();
+            }
+        }
+
+
+        function nextUserStories() {
+            currentUserIndex++;
+            if (currentUserIndex >= userCards.length) {
+                $("#Modalstory").modal("hide"); // no more users
+            } else {
+                let nextUserId = $(userCards[currentUserIndex]).data("userid");
+                loadUserStories(nextUserId, currentUserIndex);
+            }
+        }
+
+        function prevUserStories() {
+            currentUserIndex--;
+            if (currentUserIndex < 0) {
+                currentUserIndex = 0;
+                $("#Modalstory").modal("hide");
+            } else {
+                let prevUserId = $(userCards[currentUserIndex]).data("userid");
+                loadUserStories(prevUserId, currentUserIndex);
+            }
+        }
+
+        // ==========================
+        // Event bindings
+        // ==========================
+        $(document).on("click", "#tapLeft", prevStory);
+        $(document).on("click", "#tapRight", nextStory);
+
+        //$(document).on("click", "#storyWrapper", function () {
+        //    if (isPaused) resumeStory();
+        //    else pauseStory();
+        //});
+
+        $(document).on("click", "#customClose", function () {
+            $('#Modalstory').modal('hide');
+        });
+
+        // Click story card → load that user
+        $(document).on("click", ".story-card", function () {
+            userCards = $(".story-card"); // all story cards in carousel
+            let userId = $(this).data("userid");
+            let index = userCards.index(this);
+            loadUserStories(userId, index);
+        });
+
+
+        // ============ LIKE BUTTON =============
+        $(document).on("click", "#likeBtn", function () {
+            const storyId = stories[currentIndex].id; // include storyId in your array when loading
+            const $icon = $(this);
+
+            $.ajax({
+                url: "/Home/StoryLike",
+                type: "POST",
+                data: { storyId },
+                success: function (res) {
+                    if (res.success) {
+                        const liked = !$icon.hasClass("liked");
+                        $icon.toggleClass("liked bi-heart bi-heart-fill");
+
+
+                        // Floating heart animation
+                        if (liked) {
+                            stories[currentIndex].isLiked = true;
+                            const $heart = $('<i class="bi bi-heart-fill heart-float"></i>');
+                            $(".story-container").append($heart);
+                            setTimeout(() => $heart.remove(), 800);
+                        }
+                        else {
+                            stories[currentIndex].isLiked = false;
+                        }
+
+
+                        // Refresh viewers if story owner is viewing own story
+                        if (parseInt($("#hdnLogedinUserId").val()) === stories[currentIndex].userId) {
+                            loadViewers(storyId);
+                        }
+                    }
+                }
+            });
+        });
+
+
+
+        function GetAllUserStories() {
+            $.ajax({
+                url: "/Home/GetAllUserStories",
+                type: "GET",
+                success: function (users) {
+
+                    let $carousel = $("#storiesCarousel");
+
+                    // clear carousel first
+                    $carousel.trigger("replace.owl.carousel", $("<div></div>"));
+                    $carousel.trigger("refresh.owl.carousel");
+
+
+                    // --- Logged-in user card ---
+                    let myUser = users.result.find(u => u.UserId === users.loggedInUserId);
+
+                    if (myUser) {
+                        // show "Your Story"
+                        let myStoryCard = `
+            <div class="item">
+                <div class="card story-card w125 h200 d-block border-0 shadow-none rounded-xxxl bg-dark overflow-hidden mb-3 mt-3"
+                     data-userid="${myUser.UserId}" style="background-image:url(${myUser.MediaUrl});">
+                    <div class="card-body d-block p-3 w-100 position-absolute bottom-0 text-center">
+                        <a href="#">
+                        <figure class="avatar ms-auto me-auto mb-0 position-relative w50 z-index-1">
+                            <img src="${myUser.ProfilePic || "https://cdn-icons-png.flaticon.com/512/149/149071.png"}"
+                                 class="float-right p-0 bg-white rounded-circle w-100 shadow-xss">
+                         </figure>
+                         <div class="clearfix"></div>
+                         <h4 class="fw-600 text-white font-xssss mt-2 mb-1" id="addStoryBtn">Add Story</h4>
+                        </a>
+                    </div>
+                </div>
+            </div>`;
+                        $carousel.trigger("add.owl.carousel", [$(myStoryCard)]);
+                    } else {
+                        // show Add Story
+                        let addCard = `
+            <div class="item">
+                <div class="card w125 h200 d-block border-0 shadow-none rounded-xxxl bg-dark overflow-hidden mb-3 mt-3" id="addStoryBtn">
+                    <div class="card-body d-block p-3 w-100 position-absolute bottom-0 text-center">
+                        <a href="#">
+                            <span class="btn-round-lg bg-white"><i class="feather-plus font-lg"></i></span>
+                            <div class="clearfix"></div>
+                            <h4 class="fw-700 position-relative z-index-1 ls-1 font-xssss text-white mt-2 mb-1">Add Story</h4>
+                        </a>
+                    </div>
+                </div>
+            </div>`;
+                        $carousel.trigger("add.owl.carousel", [$(addCard)]);
+                    }
+
+                    // --- Other users' stories ---
+                    users.result
+                        .filter(u => u.UserId !== users.loggedInUserId)
+                        .forEach(user => {
+                            let cardHtml = `
+                <div class="item">
+                    <div class="card story-card w125 h200 d-block border-0 shadow-xss rounded-xxxl bg-gradiant-bottom overflow-hidden cursor-pointer mb-3 mt-3"
+                         data-userid="${user.UserId}" style="background-image:url(${user.MediaUrl});">
+
+                        ${user.MediaType === 'video' ? `
+                        <video autoplay loop muted playsinline class="float-right w-100">
+                            <source src="${user.MediaUrl}" type="video/mp4">
+                        </video>` : `
+                        `}
+
+                        <div class="card-body d-block p-3 w-100 position-absolute bottom-0 text-center">
+                            <a href="#">
+                                <figure class="avatar ms-auto me-auto mb-0 position-relative w50 z-index-1">
+                                    <img src="${user.ProfilePic || "https://cdn-icons-png.flaticon.com/512/149/149071.png"}"
+                                         class="float-right p-0 bg-white rounded-circle w-100 shadow-xss">
+                                </figure>
+                                <div class="clearfix"></div>
+                                <h4 class="fw-600 text-white font-xssss mt-2 mb-1">${user.UserName}</h4>
+                            </a>
+                        </div>
+                    </div>
+                </div>`;
+
+                            $carousel.trigger("add.owl.carousel", [$(cardHtml)]);
+                        });
+
+                    $carousel.trigger("refresh.owl.carousel");
+                }
+            });
+        }
+
+
+
+        GetAllUserStories();
+
+
+        $(document).on("click", "#customClose", function () {
+            $('#Modalstory').modal('hide');
+        });
+
+
+
+        let stream;
+        let capturedFile;
+        let cropper;
+
+        // Open camera when Add Story clicked
+        $(document).on("click", "#addStoryBtn", function (e) {
+            e.stopPropagation(); // 🛑 Prevent click bubbling to .story-card
+
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(s => {
+                    stream = s;
+                    $("#cameraStream")[0].srcObject = stream;
+                    $("#cameraModal").modal("show");
+
+                    $('#cameraModal').modal({
+                        backdrop: false,
+                        keyboard: true
+                    });
+                })
+                .catch(() => {
+                    $("#storyInput").click(); // fallback if no camera
+                });
+        });
+
+
+
+        // Capture from camera
+        $("#captureBtn").on("click", function () {
+            let video = $("#cameraStream")[0];
+            let canvas = $("#captureCanvas")[0];
+            let ctx = canvas.getContext("2d");
+
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            let imageData = canvas.toDataURL("image/png");
+            capturedFile = imageData;
+
+            $("#cameraModal").modal("hide");
+            showPreview("image", imageData);
+        });
+
+        // Upload file fallback
+        $("#uploadBtn").on("click", function () {
+            $("#cameraModal").modal("hide");
+            $("#storyInput").click();
+        });
+
+        // Handle file input
+        $("#storyInput").on("change", function (e) {
+            let file = e.target.files[0];
+            if (!file) return;
+
+            if (file.type.startsWith("image/")) {
+                let reader = new FileReader();
+                reader.onload = function (evt) {
+                    capturedFile = evt.target.result;
+                    showPreview("image", capturedFile);
+                };
+                reader.readAsDataURL(file);
+            } else if (file.type.startsWith("video/")) {
+                let url = URL.createObjectURL(file);
+                capturedFile = url;
+                showPreview("video", capturedFile);
+            }
+        });
+
+        // Show Preview (with Cropper for images)
+        function showPreview(type, src) {
+            $("#previewContainer").empty();
+            $("#cropImage").addClass("d-none");
+
+            if (type === "image") {
+                let img = $(`<img id="cropperImage" src="${src}" class="w-100">`);
+                $("#previewContainer").append(img);
+                $("#cropImage").removeClass("d-none");
+                $("#previewModal").modal("show");
+
+                $("#previewModal").one("shown.bs.modal", function () {
+                    if (cropper) cropper.destroy();
+                    cropper = new Cropper(document.getElementById("cropperImage"), {
+                        aspectRatio: 9 / 16,
+                        viewMode: 1,
+                        autoCropArea: 1,
+                        responsive: true,
+                        background: false,
+                    });
+                });
+
+                $("#previewModal").one("hidden.bs.modal", function () {
+                    if (cropper) {
+                        cropper.destroy();
+                        cropper = null;
+                    }
+                });
+
+            } else {
+                $("#previewContainer").append(
+                    `<video src="${src}" controls autoplay playsinline class="w-100 rounded" style="max-height:80vh; object-fit:contain;"></video>`
+                );
+                $("#previewModal").modal("show");
+            }
+        }
+
+        // Crop Button
+        $("#cropImage").on("click", function () {
+            if (!cropper) return;
+
+            let canvas = cropper.getCroppedCanvas({
+                width: 720,
+                height: 1280,
+            });
+
+            capturedFile = canvas.toDataURL("image/png");
+
+            $("#previewContainer").html(`<img src="${capturedFile}" class="img-fluid rounded">`);
+
+            cropper.destroy();
+            cropper = null;
+
+            $(this).addClass("d-none");
+        });
+
+        // Post Story
+        $("#postStory").on("click", function () {
+
+            if (!capturedFile) {
+                alert("No story to upload!");
+                return;
+            }
+
+            // Get location first
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    uploadStory(position.coords.latitude, position.coords.longitude);
+                }, function () {
+                    uploadStory(0, 0); // fallback if location denied
+                });
+            } else {
+                uploadStory(0, 0); // fallback if geolocation not supported
+            }
+        });
+
+        function uploadStory(lat, lng) {
+            let formData = new FormData();
+
+            if (capturedFile.startsWith("data:image")) {
+                // Cropped or captured image (base64 → blob)
+                let blob = dataURLtoBlob(capturedFile);
+                formData.append("profilePhotoFile", blob, "story.png");
+            } else if (capturedFile.startsWith("blob:")) {
+                // Selected video from file input
+                let videoFile = $("#storyInput")[0].files[0];
+                formData.append("profilePhotoFile", videoFile);
+            } else {
+                // Direct file (image/video chosen)
+                let file = $("#storyInput")[0].files[0];
+                if (file) formData.append("profilePhotoFile", file);
+            }
+
+            formData.append("Latitude", lat);
+            formData.append("Longitude", lng);
+
+            $("#uploadProgressContainer").removeClass("d-none");
+            $("#uploadProgressBar").css("width", "0%").text("0%");
+            $(".loader-overlay").css("display", "flex");
+            $.ajax({
+                url: '/Home/AddStory',
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                xhr: function () {
+                    let xhr = new window.XMLHttpRequest();
+                    xhr.upload.addEventListener("progress", function (evt) {
+                        if (evt.lengthComputable) {
+                            let percentComplete = Math.round((evt.loaded / evt.total) * 100);
+                            $("#uploadProgressBar").css("width", percentComplete + "%").text(percentComplete + "%");
+                        }
+                    }, false);
+                    return xhr;
+                },
+                success: function (res) {
+                    if (res.success) {
+                        $("#uploadProgressBar").css("width", "100%").text("Uploaded!");
+                        setTimeout(() => {
+                            $("#previewModal").modal("hide");
+                            $("#uploadProgressContainer").addClass("d-none");
+                            stopCameraStream();
+
+                        }, 1000);
+                        $(".loader-overlay").css("display", "none");
+                        alert("Story uploaded successfully!");
+                        GetAllUserStories();
+
+                    } else {
+                        $(".loader-overlay").css("display", "none");
+                        alert(res.msg);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    $(".loader-overlay").css("display", "none");
+                    alert("Error: " + error);
+                }
+            });
+        }
+
+
+
+
+        // Helper: Convert base64 → Blob
+        function dataURLtoBlob(dataurl) {
+            var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+                bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+            while (n--) {
+                u8arr[n] = bstr.charCodeAt(n);
+            }
+            return new Blob([u8arr], { type: mime });
+        }
+
+        // Stop camera when modal closes
+        $('#cameraModal').on('hidden.bs.modal', function () {
+            stopCameraStream();
+        });
+
+        function stopCameraStream() {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+                stream = null;
+            }
+        }
+
+
+
+
+    </script>
+
+
+
+
+    <style>
+        .font-xss2 {
+            font-size: 12px !important;
+        }
+
+        #postModal .modal-body {
+            max-height: 80vh;
+            background-color: #f9f9f9;
+        }
+
+        /* Post container styling */
+        #postModalContent .post-item {
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            transition: transform 0.2s;
+        }
+
+            #postModalContent .post-item:hover {
+                transform: translateY(-2px);
+            }
+
+        /* Comment section inside modal */
+        #postModalContent .comment-section {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        /* Highlighted comment */
+        .highlight-comment {
+            background-color: #fffae6;
+            border-left: 3px solid #ffcc00;
+            padding-left: 8px;
+            transition: background-color 0.5s;
+        }
+
+        /* Reply input box */
+        .reply-input-box {
+            position: sticky;
+            bottom: 0;
+            z-index: 10;
+            background-color: #fff;
+            padding: 10px;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+        }
+
+            .reply-input-box input {
+                flex: 1;
+                border-radius: 25px;
+                padding: 8px 15px;
+                border: 1px solid #ccc;
+            }
+
+            .reply-input-box button {
+                margin-left: 10px;
+                border-radius: 25px;
+                padding: 6px 15px;
+            }
+
+        /* Responsive adjustments */
+        @@media (max-width: 768px) {
+            #postModal .modal-dialog {
+                max-width: 95%;
+                margin: 0 5px;
+            }
+
+            #postModal .modal-content {
+                border-radius: 8px;
+            }
+
+            #postModalContent .post-item {
+                padding: 12px;
+            }
+
+            #postModalContent .comment-section {
+                max-height: 200px;
+            }
+        }
+
+        @@media (max-width: 768px) {
+            #postModal .modal-dialog {
+                max-width: 95%;
+                margin: 0 5px;
+            }
+        }
+    </style>
+
+
+</body>
+</html>
