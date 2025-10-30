@@ -108,8 +108,16 @@ $(document).ready(function () {
                 reader.onload = function (event) {
                     img.onload = function () {
                         if (img.width !== 480 || img.height !== 320) {
-                            alert(`Image ${file.name} must be 480x320 pixels.`);
-                        } else {
+                            Swal.fire({
+                                icon: 'warning',
+                                title: 'Invalid Image Size',
+                                text: `Image ${file.name} must be 480x320 pixels.`,
+                                confirmButtonColor: '#007bff',
+                                background: '#ffffff',
+                                color: '#dc3545'
+                            });
+                        }
+                        else {
                             selectedFiles.push(file);
                         }
 
@@ -167,6 +175,66 @@ $(document).ready(function () {
         //    $('#businessForm').trigger('submit');
         //});
 
+    //$(document).on('click', '#saveBusiness', function (e) {
+    //    e.preventDefault();
+
+    //    // prevent multiple clicks
+    //    if ($(this).data('submitting')) return;
+    //    $(this).data('submitting', true);
+
+    //    if (selectedFiles.length === 0) {
+    //        alert("Please upload at least one image (480x320).");
+    //        $(this).data('submitting', false);
+    //        return;
+    //    }
+
+    //    const form = $('#businessForm')[0];
+    //    const formData = new FormData(form);
+
+    //    // Remove any auto-included file inputs
+    //    formData.delete("BusinessImages");
+
+    //    // Append validated files
+    //    selectedFiles.forEach(f => formData.append("BusinessImages", f));
+
+    //    // 🌍 Add Latitude & Longitude
+    //    if (window.currentLocation) {
+    //        formData.append("Latitude", window.currentLocation.lat);
+    //        formData.append("Longitude", window.currentLocation.lng);
+    //    }
+
+    //    // 🧾 Add Amenities
+    //    $('#amenitiesWrapper input[name="Aminities[]"]').each(function () {
+    //        const val = $(this).val().trim();
+    //        if (val) formData.append("Aminities[]", val);
+    //    });
+
+    //    $.ajax({
+    //        url: '/Business/AddBusiness',
+    //        type: 'POST',
+    //        data: formData,
+    //        processData: false,
+    //        contentType: false,
+    //        success: function (res) {
+    //            $('#saveBusiness').data('submitting', false);
+    //            if (res.success) {
+    //                alert(res.message);
+    //                $('#addBusinessModal').modal('hide');
+    //                $('#businessForm')[0].reset();
+    //                $('#previewContainer2').empty();
+    //                selectedFiles = [];
+    //                loadBusinesses(1);
+    //            } else {
+    //                alert(res.message);
+    //            }
+    //        },
+    //        error: function () {
+    //            $('#saveBusiness').data('submitting', false);
+    //            alert("Error while saving business.");
+    //        }
+    //    });
+    //});
+
     $(document).on('click', '#saveBusiness', function (e) {
         e.preventDefault();
 
@@ -175,7 +243,17 @@ $(document).ready(function () {
         $(this).data('submitting', true);
 
         if (selectedFiles.length === 0) {
-            alert("Please upload at least one image (480x320).");
+            Swal.fire({
+                toast: true,
+                position: 'top-end',
+                icon: 'warning',
+                title: 'Please upload at least one image (480x320).',
+                showConfirmButton: false,
+                timer: 2000,
+                background: '#ffffff', // white background
+                color: '#dc3545',      // red text
+                iconColor: '#dc3545'
+            });
             $(this).data('submitting', false);
             return;
         }
@@ -210,22 +288,55 @@ $(document).ready(function () {
             success: function (res) {
                 $('#saveBusiness').data('submitting', false);
                 if (res.success) {
-                    alert(res.message);
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        title: res.message || 'Business added successfully!',
+                        showConfirmButton: false,
+                        timer: 2000,
+                        timerProgressBar: true,
+                        background: '#007bff', // blue background
+                        color: '#fff'          // white text
+                    });
+
                     $('#addBusinessModal').modal('hide');
                     $('#businessForm')[0].reset();
                     $('#previewContainer2').empty();
                     selectedFiles = [];
                     loadBusinesses(1);
                 } else {
-                    alert(res.message);
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'error',
+                        title: res.message || 'Something went wrong.',
+                        showConfirmButton: false,
+                        timer: 2000,
+                        background: '#dc3545', // red background
+                        color: '#fff'          // white text
+                    });
                 }
             },
             error: function () {
                 $('#saveBusiness').data('submitting', false);
-                alert("Error while saving business.");
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'Error while saving business.',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    background: '#dc3545',
+                    color: '#fff'
+                });
             }
         });
     });
+
+  
+
+
 
 
     // 🌍 Detect location on page load

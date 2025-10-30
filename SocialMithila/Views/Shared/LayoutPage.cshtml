@@ -19,6 +19,8 @@
     <link href="~/asset/css/style.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="~/asset/css/lightbox.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <style>
         /* Fades out read notifications */
         .opacity-50 {
@@ -89,6 +91,7 @@
             font-size: 12px;
             color: #6b7280;
         }
+
         .loader-overlay {
             position: fixed;
             top: 0;
@@ -100,6 +103,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+
+
+        .swal-toast {
+            font-size: 0.85rem !important;
+            padding: 0.75rem 1rem !important;
+            border-radius: 8px !important;
         }
     </style>
 </head>
@@ -2048,20 +2058,85 @@
                 uploadStory(0, 0); // fallback if geolocation not supported
             }
         });
+        ////comment start
+        //function uploadStory(lat, lng) {
+        //    let formData = new FormData();
 
+        //    if (capturedFile.startsWith("data:image")) {
+        //        // Cropped or captured image (base64 → blob)
+        //        let blob = dataURLtoBlob(capturedFile);
+        //        formData.append("profilePhotoFile", blob, "story.png");
+        //    } else if (capturedFile.startsWith("blob:")) {
+        //        // Selected video from file input
+        //        let videoFile = $("#storyInput")[0].files[0];
+        //        formData.append("profilePhotoFile", videoFile);
+        //    } else {
+        //        // Direct file (image/video chosen)
+        //        let file = $("#storyInput")[0].files[0];
+        //        if (file) formData.append("profilePhotoFile", file);
+        //    }
+
+        //    formData.append("Latitude", lat);
+        //    formData.append("Longitude", lng);
+
+        //    $("#uploadProgressContainer").removeClass("d-none");
+        //    $("#uploadProgressBar").css("width", "0%").text("0%");
+        //    $(".loader-overlay").css("display", "flex");
+        //    $.ajax({
+        //        url: '/Home/AddStory',
+        //        type: 'POST',
+        //        data: formData,
+        //        contentType: false,
+        //        processData: false,
+        //        xhr: function () {
+        //            let xhr = new window.XMLHttpRequest();
+        //            xhr.upload.addEventListener("progress", function (evt) {
+        //                if (evt.lengthComputable) {
+        //                    let percentComplete = Math.round((evt.loaded / evt.total) * 100);
+        //                    $("#uploadProgressBar").css("width", percentComplete + "%").text(percentComplete + "%");
+        //                }
+        //            }, false);
+        //            return xhr;
+        //        },
+        //        success: function (res) {
+        //            if (res.success) {
+        //                $("#uploadProgressBar").css("width", "100%").text("Uploaded!");
+        //                setTimeout(() => {
+        //                    $("#previewModal").modal("hide");
+        //                    $("#uploadProgressContainer").addClass("d-none");
+        //                    stopCameraStream();
+
+        //                }, 1000);
+        //                $(".loader-overlay").css("display", "none");
+        //                alert("Story uploaded successfully!");
+        //                GetAllUserStories();
+
+        //            } else {
+        //                $(".loader-overlay").css("display", "none");
+        //                alert(res.msg);
+        //            }
+        //        },
+        //        error: function (xhr, status, error) {
+        //            $(".loader-overlay").css("display", "none");
+        //            alert("Error: " + error);
+        //        }
+        //    });
+        //}
+        ///End
+
+
+
+        // Helper: Convert base64 → Blob
         function uploadStory(lat, lng) {
             let formData = new FormData();
 
             if (capturedFile.startsWith("data:image")) {
-                // Cropped or captured image (base64 → blob)
                 let blob = dataURLtoBlob(capturedFile);
                 formData.append("profilePhotoFile", blob, "story.png");
             } else if (capturedFile.startsWith("blob:")) {
-                // Selected video from file input
                 let videoFile = $("#storyInput")[0].files[0];
                 formData.append("profilePhotoFile", videoFile);
             } else {
-                // Direct file (image/video chosen)
                 let file = $("#storyInput")[0].files[0];
                 if (file) formData.append("profilePhotoFile", file);
             }
@@ -2072,6 +2147,7 @@
             $("#uploadProgressContainer").removeClass("d-none");
             $("#uploadProgressBar").css("width", "0%").text("0%");
             $(".loader-overlay").css("display", "flex");
+
             $.ajax({
                 url: '/Home/AddStory',
                 type: 'POST',
@@ -2089,34 +2165,66 @@
                     return xhr;
                 },
                 success: function (res) {
+                    $(".loader-overlay").css("display", "none");
+
                     if (res.success) {
                         $("#uploadProgressBar").css("width", "100%").text("Uploaded!");
+
+                        // ⏳ Wait for upload + modal close animation, then show success popup
                         setTimeout(() => {
                             $("#previewModal").modal("hide");
                             $("#uploadProgressContainer").addClass("d-none");
                             stopCameraStream();
 
+                            // ✅ Show popup AFTER upload is visually done
+                            Swal.fire({
+                                toast: true,
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Story uploaded successfully!',
+                                showConfirmButton: false,
+                                timer: 2000,
+                                timerProgressBar: true,
+                                background: '#007bff',
+                                color: '#fff'
+                            });
+
+                            GetAllUserStories();
                         }, 1000);
-                        $(".loader-overlay").css("display", "none");
-                        alert("Story uploaded successfully!");
-                        GetAllUserStories();
 
                     } else {
-                        $(".loader-overlay").css("display", "none");
-                        alert(res.msg);
+                        // ❌ Small Toast Popup (Error)
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            icon: 'error',
+                            title: res.msg,
+                            showConfirmButton: false,
+                            timer: 2000,
+                            background: '#dc3545',
+                            color: '#fff'
+                        });
                     }
                 },
                 error: function (xhr, status, error) {
                     $(".loader-overlay").css("display", "none");
-                    alert("Error: " + error);
+
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'error',
+                        title: 'Error: ' + error,
+                        showConfirmButton: false,
+                        timer: 2000,
+                        background: '#dc3545',
+                        color: '#fff'
+                    });
                 }
             });
         }
 
 
 
-
-        // Helper: Convert base64 → Blob
         function dataURLtoBlob(dataurl) {
             var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
                 bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);

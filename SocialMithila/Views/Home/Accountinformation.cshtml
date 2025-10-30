@@ -3,6 +3,28 @@
     ViewBag.Title = "Accountinformation";
     Layout = "~/Views/Shared/LayoutPage.cshtml";
 }
+<style>
+    .swal-small-popup {
+        width: 300px !important; /* smaller width */
+        padding: 1.2rem !important;
+        border-radius: 12px !important;
+        font-size: 0.9rem !important;
+    }
+
+    .swal2-title {
+        font-size: 1.1rem !important;
+        color: #007bff !important; /* theme blue */
+    }
+
+    .swal2-confirm {
+        border-radius: 6px !important;
+        font-weight: 500;
+    }
+
+    .swal2-cancel {
+        border-radius: 6px !important;
+    }
+</style>
 
 <!-- main content -->
 <div class="main-content bg-lightblue theme-dark-bg right-chat-active">
@@ -20,7 +42,7 @@
                             <div class="col-lg-4 text-center">
                                 <figure class="avatar ms-auto me-auto mb-0 mt-2 w100"><img src="https://via.placeholder.com/100x100.png" alt="image" id="ProfilePhotoPreview" class="shadow-sm rounded-3 w-100"></figure>
                                 <h2 class="fw-700 font-sm text-grey-900 mt-3" id="fnamelbl"></h2>
-                                
+
                                 <!-- <a href="#" class="p-3 alert-primary text-primary font-xsss fw-500 mt-2 rounded-3">Upload New Photo</a> -->
                             </div>
                         </div>
@@ -29,14 +51,14 @@
                             <div class="row">
                                 <div class="col-lg-6 mb-3">
                                     <div class="form-group">
-                                        <label class="mont-font fw-600 font-xsss" >First Name</label>
+                                        <label class="mont-font fw-600 font-xsss">First Name</label>
                                         <input type="text" class="form-control" id="FristNAme">
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6 mb-3">
                                     <div class="form-group">
-                                        <label class="mont-font fw-600 font-xsss" >Last Name</label>
+                                        <label class="mont-font fw-600 font-xsss">Last Name</label>
                                         <input type="text" class="form-control" id="LastNAme">
                                     </div>
                                 </div>
@@ -53,7 +75,7 @@
                                 <div class="col-lg-6 mb-3">
                                     <div class="form-group">
                                         <label class="mont-font fw-600 font-xsss">Phone</label>
-                                        <input type="text" class="form-control"  id="Phone">
+                                        <input type="text" class="form-control" id="Phone">
                                     </div>
                                 </div>
                             </div>
@@ -69,7 +91,7 @@
                                 <div class="col-lg-12 mb-3">
                                     <div class="form-group">
                                         <label class="mont-font fw-600 font-xsss">Address</label>
-                                        <input type="text" class="form-control"  id="Address">
+                                        <input type="text" class="form-control" id="Address">
                                     </div>
                                 </div>
                             </div>
@@ -132,6 +154,8 @@
 </div>
 <!-- main content -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 <script>
     $(document).ready(function () {
@@ -211,50 +235,134 @@
 
         BindUserData();
 
+        //$(document).on("click", "#btnSave", function () {
+        //    $(".loader-overlay").css("display", "flex");
+        //    var formData = new FormData();
+
+        //    // 👇 Add fields (must match DTO property names)
+
+        //    formData.append("FristNAme", $("#FristNAme").val().trim());
+        //    formData.append("LastNAme", $("#LastNAme").val().trim());
+        //    formData.append("Email", $("#Email").val().trim());
+        //    formData.append("Phone", $("#Phone").val().trim());
+        //    formData.append("Country", $("#Country").val().trim());
+        //    formData.append("Address", $("#Address").val().trim());
+        //    formData.append("TownCity", $("#TownCity").val().trim());
+        //    formData.append("PostCode", $("#PostCode").val().trim());
+        //    formData.append("Description", $("#Description").val().trim());
+
+        //    var fileInput = $("#profilePhoto")[0];
+        //    if (fileInput.files.length > 0) {
+        //        formData.append("profilePhotoFile", fileInput.files[0]);
+        //    }
+
+        //    $.ajax({
+        //        url: '/Home/Accountinformation',
+        //        type: 'POST',
+        //        data: formData,
+        //        processData: false,
+        //        contentType: false,
+        //        success: function (response) {
+        //            if (response.success) {
+        //                alert(response.msg);
+        //                BindUserData();
+        //                //$("#msg").html("<p style='color:green'>" + response.msg + "</p>");
+        //            } else {
+        //                alert(response.msg);
+        //                $(".loader-overlay").css("display", "none");
+
+        //            }
+        //        },
+        //        error: function (xhr) {
+        //            $("#msg").html("<p style='color:red'>Error: " + xhr.status + " - " + xhr.statusText + "</p>");
+        //            $(".loader-overlay").css("display", "none");
+        //        }
+        //    });
+        //});
         $(document).on("click", "#btnSave", function () {
-            $(".loader-overlay").css("display", "flex");
-            var formData = new FormData();
 
-            // 👇 Add fields (must match DTO property names)
-            
-            formData.append("FristNAme", $("#FristNAme").val().trim());
-            formData.append("LastNAme", $("#LastNAme").val().trim());
-            formData.append("Email", $("#Email").val().trim());
-            formData.append("Phone", $("#Phone").val().trim());
-            formData.append("Country", $("#Country").val().trim());
-            formData.append("Address", $("#Address").val().trim());
-            formData.append("TownCity", $("#TownCity").val().trim());
-            formData.append("PostCode", $("#PostCode").val().trim());
-            formData.append("Description", $("#Description").val().trim());
+            Swal.fire({
+                title: "Are you sure?",
+                text: "Do you want to save this information?",
+                icon: "question",
+                showCancelButton: true,
+                confirmButtonColor: "#007bff", // theme blue
+                cancelButtonColor: "#6c757d",  // muted grey
+                confirmButtonText: "Yes, Save it!",
+                cancelButtonText: "Cancel",
+                customClass: {
+                    popup: 'swal-small-popup'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
 
-            var fileInput = $("#profilePhoto")[0];
-            if (fileInput.files.length > 0) {
-                formData.append("profilePhotoFile", fileInput.files[0]);
-            }
+                    $(".loader-overlay").css("display", "flex");
+                    var formData = new FormData();
 
-            $.ajax({
-                url: '/Home/Accountinformation',
-                type: 'POST',
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function (response) {
-                    if (response.success) {
-                        alert(response.msg);
-                        BindUserData();
-                        //$("#msg").html("<p style='color:green'>" + response.msg + "</p>");
-                    } else {
-                        alert(response.msg);
-                        $(".loader-overlay").css("display", "none");
-                        
+                    formData.append("FristNAme", $("#FristNAme").val().trim());
+                    formData.append("LastNAme", $("#LastNAme").val().trim());
+                    formData.append("Email", $("#Email").val().trim());
+                    formData.append("Phone", $("#Phone").val().trim());
+                    formData.append("Country", $("#Country").val().trim());
+                    formData.append("Address", $("#Address").val().trim());
+                    formData.append("TownCity", $("#TownCity").val().trim());
+                    formData.append("PostCode", $("#PostCode").val().trim());
+                    formData.append("Description", $("#Description").val().trim());
+
+                    var fileInput = $("#profilePhoto")[0];
+                    if (fileInput.files.length > 0) {
+                        formData.append("profilePhotoFile", fileInput.files[0]);
                     }
-                },
-                error: function (xhr) {
-                    $("#msg").html("<p style='color:red'>Error: " + xhr.status + " - " + xhr.statusText + "</p>");
-                    $(".loader-overlay").css("display", "none");
+
+                    $.ajax({
+                        url: '/Home/Accountinformation',
+                        type: 'POST',
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function (response) {
+                            $(".loader-overlay").css("display", "none");
+                            if (response.success) {
+                                Swal.fire({
+                                    icon: "success",
+                                    title: "Saved!",
+                                    text: response.msg,
+                                    timer: 2000,
+                                    showConfirmButton: false,
+                                    customClass: {
+                                        popup: 'swal-small-popup'
+                                    }
+                                });
+                                BindUserData();
+                            } else {
+                                Swal.fire({
+                                    icon: "error",
+                                    title: "Oops!",
+                                    text: response.msg,
+                                    confirmButtonColor: "#007bff",
+                                    customClass: {
+                                        popup: 'swal-small-popup'
+                                    }
+                                });
+                            }
+                        },
+                        error: function (xhr) {
+                            $(".loader-overlay").css("display", "none");
+                            Swal.fire({
+                                icon: "error",
+                                title: "Error!",
+                                text: "Error: " + xhr.status + " - " + xhr.statusText,
+                                confirmButtonColor: "#007bff",
+                                customClass: {
+                                    popup: 'swal-small-popup'
+                                }
+                            });
+                        }
+                    });
                 }
             });
         });
+
 
 
     });
@@ -264,6 +372,6 @@
 
 </script>
 <script>
-   
+
 </script>
 
