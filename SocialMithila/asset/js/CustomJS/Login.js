@@ -30,7 +30,7 @@
         return valid;
     }
 
-    
+
 
     $("#emailid, #password").on("keyup blur", function () {
         validateLogin();
@@ -43,6 +43,56 @@
         window.location.href = "/Home/Index";
     }
 
+    //$("#btnLogin").click(function () {
+    //    if (validateLogin()) {
+    //        $(".loader-overlay").css("display", "flex");
+    //        let email = $("#emailid").val().trim();
+    //        let password = $("#password").val().trim();
+
+    //        // Client-side validation
+    //        if (email === "") {
+    //            alert("Please enter Email Id");
+    //            $("#emailid").focus();
+    //            return;
+    //        }
+    //        if (password === "") {
+    //            alert("Please enter Password");
+    //            $("#password").focus();
+    //            return;
+    //        }
+
+    //        // Prepare request model
+    //        let loginDTO = {
+    //            EmailId: email,
+    //            Password: password
+    //        };
+
+    //        $.ajax({
+    //            url: '/Auth/Login',
+    //            type: 'POST',
+    //            data: JSON.stringify(loginDTO),
+    //            contentType: 'application/json; charset=utf-8',
+    //            dataType: 'json',
+    //            success: function (res) {
+    //                if (res.success) {
+    //                    alert(res.msg);
+    //                    $("#otpphase").css("display", "block");
+    //                    $("#login1").css("display", "none");
+    //                    $(".loader-overlay").css("display", "none");
+    //                } else {
+    //                    alert(res.msg);
+    //                    $(".loader-overlay").css("display", "none");
+    //                }
+    //            },
+    //            error: function (err) {
+    //                console.error(err);
+    //                alert("Something went wrong. Please try again later.");
+    //                $(".loader-overlay").css("display", "none");
+    //            }
+    //        });
+    //    }
+    //});
+
     $("#btnLogin").click(function () {
         if (validateLogin()) {
             $(".loader-overlay").css("display", "flex");
@@ -51,13 +101,26 @@
 
             // Client-side validation
             if (email === "") {
-                alert("Please enter Email Id");
+                Swal.fire({
+                    icon: "warning",
+                    title: "Email Required",
+                    text: "Please enter your Email Id.",
+                    confirmButtonColor: "#4a90e2"
+                });
                 $("#emailid").focus();
+                $(".loader-overlay").css("display", "none");
                 return;
             }
+
             if (password === "") {
-                alert("Please enter Password");
+                Swal.fire({
+                    icon: "warning",
+                    title: "Password Required",
+                    text: "Please enter your Password.",
+                    confirmButtonColor: "#4a90e2"
+                });
                 $("#password").focus();
+                $(".loader-overlay").css("display", "none");
                 return;
             }
 
@@ -74,26 +137,42 @@
                 contentType: 'application/json; charset=utf-8',
                 dataType: 'json',
                 success: function (res) {
+                    $(".loader-overlay").css("display", "none");
+
                     if (res.success) {
-                        alert(res.msg);
-                        $("#otpphase").css("display", "block");
-                        $("#login1").css("display", "none");
-                        $(".loader-overlay").css("display", "none");
+                        Swal.fire({
+                            icon: "success",
+                            title: "Login Successful!",
+                            text: res.msg,
+                            showConfirmButton: false,
+                            timer: 1800
+                        }).then(() => {
+                            $("#otpphase").css("display", "block");
+                            $("#login1").css("display", "none");
+                        });
                     } else {
-                        alert(res.msg);
-                        $(".loader-overlay").css("display", "none");
+                        Swal.fire({
+                            icon: "error",
+                            title: "Login Failed",
+                            text: res.msg,
+                            confirmButtonColor: "#d33"
+                        });
                     }
                 },
                 error: function (err) {
                     console.error(err);
-                    alert("Something went wrong. Please try again later.");
                     $(".loader-overlay").css("display", "none");
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Something went wrong. Please try again later.",
+                        confirmButtonColor: "#d33"
+                    });
                 }
             });
         }
     });
 
-   
 
 });
 

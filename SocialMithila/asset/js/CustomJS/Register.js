@@ -73,9 +73,43 @@ function validateForm() {
     return valid;
 }
 
+//$("#btnRegister").click(function () {
+//    if (validateForm()) {
+//        $(".loader-overlay").css("display", "flex");
+//        let dto = {
+//            FirstName: $("#firstname").val().trim(),
+//            EmailId: $("#emailid").val().trim(),
+//            OldPassword: $("#oldpassword").val().trim(),
+//            NewPassword: $("#newpassword").val().trim()
+//        };
+
+//        $.ajax({
+//            url: '/Auth/Registration',
+//            type: 'POST',
+//            data: JSON.stringify(dto),
+//            contentType: 'application/json; charset=utf-8',
+//            dataType: 'json',
+//            success: function (res) {
+//                if (res.success) {
+//                    alert(res.msg);
+//                    window.location.href = "/Auth/Login";
+//                } else {
+//                    alert(res.msg);
+//                    $(".loader-overlay").css("display", "none");
+//                }
+//            },
+//            error: function (err) {
+//                console.error(err);
+//                alert("Something went wrong.");
+//                $(".loader-overlay").css("display", "none");
+//            }
+//        });
+//    }
+//});
 $("#btnRegister").click(function () {
     if (validateForm()) {
         $(".loader-overlay").css("display", "flex");
+
         let dto = {
             FirstName: $("#firstname").val().trim(),
             EmailId: $("#emailid").val().trim(),
@@ -90,18 +124,36 @@ $("#btnRegister").click(function () {
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             success: function (res) {
+                $(".loader-overlay").css("display", "none");
+
                 if (res.success) {
-                    alert(res.msg);
-                    window.location.href = "/Auth/Login";
+                    Swal.fire({
+                        icon: "success",
+                        title: "Registration Successful!",
+                        text: res.msg,
+                        showConfirmButton: false,
+                        timer: 2000
+                    }).then(() => {
+                        window.location.href = "/Auth/Login";
+                    });
                 } else {
-                    alert(res.msg);
-                    $(".loader-overlay").css("display", "none");
+                    Swal.fire({
+                        icon: "error",
+                        title: "Registration Failed",
+                        text: res.msg,
+                        confirmButtonColor: "#d33"
+                    });
                 }
             },
             error: function (err) {
                 console.error(err);
-                alert("Something went wrong.");
                 $(".loader-overlay").css("display", "none");
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong. Please try again later.",
+                    confirmButtonColor: "#d33"
+                });
             }
         });
     }
