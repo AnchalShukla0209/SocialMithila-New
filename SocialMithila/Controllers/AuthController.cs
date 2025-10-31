@@ -45,5 +45,17 @@ namespace SocialMithila.Controllers
             return Json(res, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            Session.Abandon();
+
+            // Return JSON response to AJAX
+            return Json(new { success = true, message = "User logged out successfully" }, JsonRequestBehavior.AllowGet);
+        }
+
+
+
     }
 }

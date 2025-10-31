@@ -371,7 +371,200 @@
 
 
 </script>
+
+<style>
+    /* ✅ Compact SweetAlert Design */
+    .small-alert-popup {
+        width: 320px !important;
+        padding: 10px 15px !important;
+        border-radius: 14px !important;
+    }
+
+    .swal2-title {
+        font-size: 16px !important;
+        font-weight: 600 !important;
+    }
+
+    .swal2-html-container {
+        font-size: 13px !important;
+        margin-top: 4px !important;
+    }
+
+    .swal2-confirm {
+        font-size: 13px !important;
+        padding: 5px 15px !important;
+        border-radius: 6px !important;
+    }
+
+    /* ✅ Compact SweetAlert design */
+    .small-alert-popup {
+        width: 320px !important;
+        padding: 10px 15px !important;
+        border-radius: 14px !important;
+    }
+
+    .swal2-title {
+        font-size: 16px !important;
+        font-weight: 600 !important;
+    }
+
+    .swal2-html-container {
+        font-size: 13px !important;
+        margin-top: 4px !important;
+    }
+
+    .swal2-confirm {
+        font-size: 13px !important;
+        padding: 5px 15px !important;
+        border-radius: 6px !important;
+    }
+
+    /* ✅ Optional: dashed border style */
+    .border-dashed {
+        border: 2px dashed #ccc !important;
+    }
+
+</style>
+
+
+<style>
+    /* ✅ Compact SweetAlert Design */
+    .small-alert-popup {
+        width: 320px !important;
+        padding: 10px 15px !important;
+        border-radius: 14px !important;
+    }
+
+    .swal2-title {
+        font-size: 16px !important;
+        font-weight: 600 !important;
+    }
+
+    .swal2-html-container {
+        font-size: 13px !important;
+        margin-top: 4px !important;
+    }
+
+    .swal2-confirm {
+        font-size: 13px !important;
+        padding: 5px 15px !important;
+        border-radius: 6px !important;
+    }
+</style>
+
 <script>
+    
+    function showAlert(icon, title, text, color = '#dc3545') {
+        Swal.fire({
+            icon: icon,
+            title: title,
+            text: text,
+            confirmButtonColor: '#007bff',
+            background: '#ffffff',
+            color: color,
+            customClass: {
+                popup: 'small-alert-popup'
+            },
+            allowOutsideClick: false,
+            allowEscapeKey: false
+        });
+    }
+
+
+    $("#btnSave").click(function () {
+        let phone = $("#Phone").val().trim();
+        let postcode = $("#PostCode").val().trim();
+
+        // Phone validation
+        if (phone === "") {
+            showAlert('warning', 'Warning', 'Please enter phone number');
+            return false;
+        } else if (!/^[6-9]\d{9}$/.test(phone)) {
+            showAlert('error', 'Invalid', 'Please enter a valid 10-digit phone number');
+            return false;
+        }
+
+        // Postcode validation
+        if (postcode === "") {
+            showAlert('warning', 'Warning', 'Please enter postcode');
+            return false;
+        } else if (!/^\d{6}$/.test(postcode)) {
+            showAlert('error', 'Invalid', 'Please enter a valid 6-digit postcode');
+            return false;
+        }
+
+        // ✅ All valid
+        showAlert('success', 'Success', 'Data is valid!');
+    });
+
+
+
+    // ✅ File Upload Validation
+    $("#profilePhoto").on("change", function () {
+        let file = this.files[0];
+        if (!file) return;
+
+        // Allowed formats
+        const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+        if (!allowedExtensions.exec(file.name)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Invalid Format!',
+                text: 'Only .jpg, .jpeg, and .png images are allowed.',
+                confirmButtonColor: '#007bff',
+                background: '#ffffff',
+                color: '#dc3545',
+                customClass: { popup: 'small-alert-popup' }
+            });
+            $(this).val('');
+            $("#PreviewImage").hide();
+            $(".js-fileName").text("Drag and drop or click to replace");
+            return;
+        }
+
+        // Optional: Size limit (2MB)
+        const maxSize = 2 * 1024 * 1024;
+        if (file.size > maxSize) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'File Too Large!',
+                text: 'Please upload an image smaller than 2MB.',
+                confirmButtonColor: '#007bff',
+                background: '#ffffff',
+                color: '#dc3545',
+                customClass: { popup: 'small-alert-popup' }
+            });
+            $(this).val('');
+            $("#PreviewImage").hide();
+            $(".js-fileName").text("Drag and drop or click to replace");
+            return;
+        }
+
+        // ✅ Show preview + update label text
+        let reader = new FileReader();
+        reader.onload = function (e) {
+            $("#PreviewImage").attr("src", e.target.result).show();
+            $(".js-fileName").text(file.name);
+        };
+        reader.readAsDataURL(file);
+
+        Swal.fire({
+            icon: 'success',
+            title: 'Valid Image!',
+            text: `${file.name} selected successfully.`,
+            confirmButtonColor: '#007bff',
+            background: '#ffffff',
+            color: '#28a745',
+            customClass: { popup: 'small-alert-popup' }
+        });
+    });
+
+
+
+
 
 </script>
+
+
+
 

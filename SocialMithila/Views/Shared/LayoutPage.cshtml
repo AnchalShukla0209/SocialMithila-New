@@ -343,13 +343,13 @@
                         <div class="nav-caption fw-600 font-xssss text-grey-500"><span></span> Account</div>
                         <ul class="mb-1">
                             <li class="logo d-none d-xl-block d-lg-block"></li>
-                            <li><a href="#" class="nav-content-bttn open-font h-auto pt-2 pb-2"><i class="font-sm feather-settings me-3 text-grey-500"></i><span>Logout</span></a></li>
+                            <li><a href="#" id="btnLogout" class="nav-content-bttn open-font h-auto pt-2 pb-2"><i class="font-sm feather-settings me-3 text-grey-500"></i><span>Logout</span></a></li>
                             @*<li><a href="default-analytics.html" class="nav-content-bttn open-font h-auto pt-2 pb-2"><i class="font-sm feather-pie-chart me-3 text-grey-500"></i><span>Analytics</span></a></li>
                                 <li><a href="default-message.html" class="nav-content-bttn open-font h-auto pt-2 pb-2"><i class="font-sm feather-message-square me-3 text-grey-500"></i><span>Chat</span><span class="circle-count bg-warning mt-0">23</span></a></li>*@
                         </ul>
                     </div>
                 </div>
-            </div>
+            </div>L
         </nav>
         <!-- navigation left -->
 
@@ -1042,14 +1042,14 @@
                             if (users.length > 0) {
                                 users.forEach(user => {
                                     resultHtml += `
-                                                            <div class="search-item" data-id="${user.Id}">
-                                                                <img src="${user.ProfilePhoto || 'https://cdn-icons-png.flaticon.com/512/149/149071.png'}" alt="Profile">
-                                                                <div class="search-info">
-                                                                    <span class="search-name">${user.FullName}</span>
-                                                                    <span class="search-subtext">View Profile</span>
-                                                                </div>
-                                                            </div>
-                                                        `;
+                                                                                                <div class="search-item" data-id="${user.Id}">
+                                                                                                    <img src="${user.ProfilePhoto || 'https://cdn-icons-png.flaticon.com/512/149/149071.png'}" alt="Profile">
+                                                                                                    <div class="search-info">
+                                                                                                        <span class="search-name">${user.FullName}</span>
+                                                                                                        <span class="search-subtext">View Profile</span>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            `;
                                 });
                             } else {
                                 resultHtml = `<div class="text-center text-muted py-3">No users found</div>`;
@@ -1565,12 +1565,12 @@
                     data.viewers.forEach(v => {
                         const likedClass = v.IsLiked ? "bi-heart-fill text-danger viewer-heart" : "bi-heart viewer-heart";
                         $list.append(`
-                <li class="d-flex align-items-center mb-1">
-                    <img src="${v.ProfilePhoto || 'https://cdn-icons-png.flaticon.com/512/149/149071.png'}" class="rounded-circle me-2">
-                    <span class="viewer-name flex-grow-1">${v.Name}</span>
-                    <i class="bi ${likedClass}"></i>
-                </li>
-            `);
+                                                    <li class="d-flex align-items-center mb-1">
+                                                        <img src="${v.ProfilePhoto || 'https://cdn-icons-png.flaticon.com/512/149/149071.png'}" class="rounded-circle me-2">
+                                                        <span class="viewer-name flex-grow-1">${v.Name}</span>
+                                                        <i class="bi ${likedClass}"></i>
+                                                    </li>
+                                                `);
                     });
 
                     // Show names and hearts after icon clicked
@@ -1598,10 +1598,10 @@
             $("#progressContainer").empty();
             stories.forEach((s, i) => {
                 $("#progressContainer").append(`
-        <div class="progress">
-            <div class="progress-bar" id="progress-${i}"></div>
-        </div>
-    `);
+                                            <div class="progress">
+                                                <div class="progress-bar" id="progress-${i}"></div>
+                                            </div>
+                                        `);
             });
         }
 
@@ -1835,36 +1835,36 @@
                     if (myUser) {
                         // show "Your Story"
                         let myStoryCard = `
-            <div class="item">
-                <div class="card story-card w125 h200 d-block border-0 shadow-none rounded-xxxl bg-dark overflow-hidden mb-3 mt-3"
-                     data-userid="${myUser.UserId}" style="background-image:url(${myUser.MediaUrl});">
-                    <div class="card-body d-block p-3 w-100 position-absolute bottom-0 text-center">
-                        <a href="#">
-                        <figure class="avatar ms-auto me-auto mb-0 position-relative w50 z-index-1">
-                            <img src="${myUser.ProfilePic || "https://cdn-icons-png.flaticon.com/512/149/149071.png"}"
-                                 class="float-right p-0 bg-white rounded-circle w-100 shadow-xss">
-                         </figure>
-                         <div class="clearfix"></div>
-                         <h4 class="fw-600 text-white font-xssss mt-2 mb-1" id="addStoryBtn">Add Story</h4>
-                        </a>
-                    </div>
-                </div>
-            </div>`;
+                                                <div class="item">
+                                                    <div class="card story-card w125 h200 d-block border-0 shadow-none rounded-xxxl bg-dark overflow-hidden mb-3 mt-3"
+                                                         data-userid="${myUser.UserId}" style="background-image:url(${myUser.MediaUrl});">
+                                                        <div class="card-body d-block p-3 w-100 position-absolute bottom-0 text-center">
+                                                            <a href="#">
+                                                            <figure class="avatar ms-auto me-auto mb-0 position-relative w50 z-index-1">
+                                                                <img src="${myUser.ProfilePic || "https://cdn-icons-png.flaticon.com/512/149/149071.png"}"
+                                                                     class="float-right p-0 bg-white rounded-circle w-100 shadow-xss">
+                                                             </figure>
+                                                             <div class="clearfix"></div>
+                                                             <h4 class="fw-600 text-white font-xssss mt-2 mb-1" id="addStoryBtn">Add Story</h4>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>`;
                         $carousel.trigger("add.owl.carousel", [$(myStoryCard)]);
                     } else {
                         // show Add Story
                         let addCard = `
-            <div class="item">
-                <div class="card w125 h200 d-block border-0 shadow-none rounded-xxxl bg-dark overflow-hidden mb-3 mt-3" id="addStoryBtn">
-                    <div class="card-body d-block p-3 w-100 position-absolute bottom-0 text-center">
-                        <a href="#">
-                            <span class="btn-round-lg bg-white"><i class="feather-plus font-lg"></i></span>
-                            <div class="clearfix"></div>
-                            <h4 class="fw-700 position-relative z-index-1 ls-1 font-xssss text-white mt-2 mb-1">Add Story</h4>
-                        </a>
-                    </div>
-                </div>
-            </div>`;
+                                                <div class="item">
+                                                    <div class="card w125 h200 d-block border-0 shadow-none rounded-xxxl bg-dark overflow-hidden mb-3 mt-3" id="addStoryBtn">
+                                                        <div class="card-body d-block p-3 w-100 position-absolute bottom-0 text-center">
+                                                            <a href="#">
+                                                                <span class="btn-round-lg bg-white"><i class="feather-plus font-lg"></i></span>
+                                                                <div class="clearfix"></div>
+                                                                <h4 class="fw-700 position-relative z-index-1 ls-1 font-xssss text-white mt-2 mb-1">Add Story</h4>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>`;
                         $carousel.trigger("add.owl.carousel", [$(addCard)]);
                     }
 
@@ -1873,28 +1873,28 @@
                         .filter(u => u.UserId !== users.loggedInUserId)
                         .forEach(user => {
                             let cardHtml = `
-                <div class="item">
-                    <div class="card story-card w125 h200 d-block border-0 shadow-xss rounded-xxxl bg-gradiant-bottom overflow-hidden cursor-pointer mb-3 mt-3"
-                         data-userid="${user.UserId}" style="background-image:url(${user.MediaUrl});">
+                                                    <div class="item">
+                                                        <div class="card story-card w125 h200 d-block border-0 shadow-xss rounded-xxxl bg-gradiant-bottom overflow-hidden cursor-pointer mb-3 mt-3"
+                                                             data-userid="${user.UserId}" style="background-image:url(${user.MediaUrl});">
 
-                        ${user.MediaType === 'video' ? `
-                        <video autoplay loop muted playsinline class="float-right w-100">
-                            <source src="${user.MediaUrl}" type="video/mp4">
-                        </video>` : `
-                        `}
+                                                            ${user.MediaType === 'video' ? `
+                                                            <video autoplay loop muted playsinline class="float-right w-100">
+                                                                <source src="${user.MediaUrl}" type="video/mp4">
+                                                            </video>` : `
+                                                            `}
 
-                        <div class="card-body d-block p-3 w-100 position-absolute bottom-0 text-center">
-                            <a href="#">
-                                <figure class="avatar ms-auto me-auto mb-0 position-relative w50 z-index-1">
-                                    <img src="${user.ProfilePic || "https://cdn-icons-png.flaticon.com/512/149/149071.png"}"
-                                         class="float-right p-0 bg-white rounded-circle w-100 shadow-xss">
-                                </figure>
-                                <div class="clearfix"></div>
-                                <h4 class="fw-600 text-white font-xssss mt-2 mb-1">${user.UserName}</h4>
-                            </a>
-                        </div>
-                    </div>
-                </div>`;
+                                                            <div class="card-body d-block p-3 w-100 position-absolute bottom-0 text-center">
+                                                                <a href="#">
+                                                                    <figure class="avatar ms-auto me-auto mb-0 position-relative w50 z-index-1">
+                                                                        <img src="${user.ProfilePic || "https://cdn-icons-png.flaticon.com/512/149/149071.png"}"
+                                                                             class="float-right p-0 bg-white rounded-circle w-100 shadow-xss">
+                                                                    </figure>
+                                                                    <div class="clearfix"></div>
+                                                                    <h4 class="fw-600 text-white font-xssss mt-2 mb-1">${user.UserName}</h4>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>`;
 
                             $carousel.trigger("add.owl.carousel", [$(cardHtml)]);
                         });
@@ -2246,8 +2246,48 @@
             }
         }
 
+        $(document).ready(function () {
+            $("#btnLogout").click(function (e) {
+                e.preventDefault();
 
-
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You will be logged out.",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#007bff",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, Logout!",
+                    background: "#fff",
+                    color: "#333",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // 🔹 Call logout action using AJAX
+                        $.ajax({
+                            url: "/Auth/Logout",
+                            type: "POST",
+                            success: function (response) {
+                                if (response.success) {
+                                    // 🔹 Show success message then redirect
+                                    Swal.fire({
+                                        title: "Logged out!",
+                                        text: response.message,
+                                        icon: "success",
+                                        timer: 1500,
+                                        showConfirmButton: false
+                                    }).then(() => {
+                                        window.location.href = "/Auth/Login"; // Redirect after logout
+                                    });
+                                }
+                            },
+                            error: function () {
+                                Swal.fire("Error", "Something went wrong!", "error");
+                            }
+                        });
+                    }
+                });
+            });
+        });
 
     </script>
 
@@ -2346,7 +2386,132 @@
                 margin: 0 5px;
             }
         }
+
+        /* minimal required styles */
+        .dropdown-menu-settings {
+            display: none !important;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            z-index: 99999 !important;
+            background: white;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+        }
+
+            .dropdown-menu-settings.show {
+                display: block !important;
+            }
     </style>
+
+
+    <script>
+        (function () {
+            // Debug helper: prints messages with a prefix
+            function dbg(msg, obj) { console.log("%c[SETTINGS-MENU] %c" + msg, "color:#0b6; font-weight:700", "color:#333", obj || ""); }
+
+            // Find all menu-icon containers that contain a settings menu
+            const menuIcons = Array.from(document.querySelectorAll('.menu-icon')).filter(mi => mi.querySelector('.dropdown-menu-settings'));
+
+            dbg("Found menu-icon count: " + menuIcons.length);
+
+            // If none found, also try to find any .dropdown-menu-settings standalone and warn
+            if (menuIcons.length === 0) {
+                const anyMenu = document.querySelector('.dropdown-menu-settings');
+                if (anyMenu) dbg("No .menu-icon wrapper found, but found .dropdown-menu-settings. Consider wrapping the icon and menu in .menu-icon.");
+                else dbg("No .dropdown-menu-settings found on page. Check your markup.");
+                // still continue to attach a global handler for debugging
+            }
+
+            // short guard to avoid immediate document click closing after toggling
+            let ignoreCloseUntil = 0;
+
+            // Toggle function for one pair
+            function toggleMenu(menuIcon, menuEl) {
+                // prevent page navigation for anchors inside opener
+                menuIcon.addEventListener('click', function (ev) {
+                    // if target is an <a href> that navigates, prevent it
+                    const link = ev.target.closest('a');
+                    if (link && link.getAttribute('href') && link.getAttribute('href') !== '#') {
+                        // prevent navigation only if this link is the opener (heuristic)
+                        ev.preventDefault();
+                    }
+                    ev.stopPropagation();
+                    const now = Date.now();
+                    // set ignore time so outside-click doesn't close immediately
+                    ignoreCloseUntil = now + 50; // 50ms
+                    // toggle on next tick to further avoid race
+                    setTimeout(() => {
+                        menuEl.classList.toggle('show');
+                        dbg("Toggled menu for icon. Now visible? " + menuEl.classList.contains('show'), menuEl);
+                    }, 0);
+                });
+                // clicks inside menu shouldn't propagate to document
+                menuEl.addEventListener('click', function (ev) {
+                    ev.stopPropagation();
+                });
+            }
+
+            // Attach to each pair found
+            menuIcons.forEach(mi => {
+                const menuEl = mi.querySelector('.dropdown-menu-settings');
+                if (!menuEl) return;
+                toggleMenu(mi, menuEl);
+            });
+
+            // Document click closes menus (unless we just toggled)
+            document.addEventListener('click', function (ev) {
+                const now = Date.now();
+                if (now < ignoreCloseUntil) {
+                    dbg("Ignoring outside click because we recently toggled (race guard).");
+                    return;
+                }
+                const openMenus = Array.from(document.querySelectorAll('.dropdown-menu-settings.show'));
+                if (openMenus.length) {
+                    dbg("Document click — closing " + openMenus.length + " open menu(s).");
+                    openMenus.forEach(m => m.classList.remove('show'));
+                } else {
+                    dbg("Document click — no open menus to close.");
+                }
+            }, true); // using capture to be robust
+
+            // Escape key closes
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') {
+                    const openMenus = document.querySelectorAll('.dropdown-menu-settings.show');
+                    if (openMenus.length) {
+                        dbg("Escape pressed — closing menus.");
+                        openMenus.forEach(m => m.classList.remove('show'));
+                    }
+                }
+            });
+
+            // Extra: show computed z-index & overflow of parent chain for debugging
+            function debugVisibilityHints() {
+                const menus = document.querySelectorAll('.dropdown-menu-settings');
+                menus.forEach(m => {
+                    let p = m.parentElement;
+                    const info = [];
+                    while (p) {
+                        const s = window.getComputedStyle(p);
+                        info.push(p.tagName.toLowerCase() + (p.className ? "." + p.className.split(" ").join(".") : "") +
+                            " {z:" + (s.zIndex || "auto") + ", overflow:" + s.overflow + "}");
+                        p = p.parentElement;
+                    }
+                    dbg("Visibility chain for menu:", info.join(" <- "));
+                });
+            }
+            // run once after short delay so layout settles
+            setTimeout(debugVisibilityHints, 300);
+
+        })();
+    </script>
+
+
+
+
+
+
+
 
 
 </body>
