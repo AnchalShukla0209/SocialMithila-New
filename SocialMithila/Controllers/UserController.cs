@@ -620,7 +620,17 @@ namespace SocialMithila.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult SocialAccount()
+        {
+            return View();
+        }
 
+        [HttpGet]
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
     }
 
 }

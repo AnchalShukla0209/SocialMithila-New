@@ -773,6 +773,8 @@
     <Content Include="Views\Shared\_CommentThreadWithoutWrapper.cshtml" />
     <Content Include="Views\Business\BusinessDetails.cshtml" />
     <Content Include="Views\Business\BusinessList.cshtml" />
+    <Content Include="Views\User\SocialAccount.cshtml" />
+    <Content Include="Views\User\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SocialMithila.Business\SocialMithila.Business.csproj">
