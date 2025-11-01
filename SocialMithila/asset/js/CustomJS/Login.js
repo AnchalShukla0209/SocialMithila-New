@@ -96,31 +96,21 @@
     $("#btnLogin").click(function () {
         if (validateLogin()) {
             $(".loader-overlay").css("display", "flex");
+
             let email = $("#emailid").val().trim();
             let password = $("#password").val().trim();
 
             // Client-side validation
             if (email === "") {
-                Swal.fire({
-                    icon: "warning",
-                    title: "Email Required",
-                    text: "Please enter your Email Id.",
-                    confirmButtonColor: "#4a90e2"
-                });
-                $("#emailid").focus();
                 $(".loader-overlay").css("display", "none");
+                showSmallError("Please enter Email Id");
+                $("#emailid").focus();
                 return;
             }
-
             if (password === "") {
-                Swal.fire({
-                    icon: "warning",
-                    title: "Password Required",
-                    text: "Please enter your Password.",
-                    confirmButtonColor: "#4a90e2"
-                });
-                $("#password").focus();
                 $(".loader-overlay").css("display", "none");
+                showSmallError("Please enter Password");
+                $("#password").focus();
                 return;
             }
 
@@ -140,45 +130,47 @@
                     $(".loader-overlay").css("display", "none");
 
                     if (res.success) {
-                        Swal.fire({
-                            icon: "success",
-                            title: "Login Successful!",
-                            text: res.msg,
-                            showConfirmButton: false,
-                            timer: 1800
-                        }).then(() => {
-                            $("#otpphase").css("display", "block");
-                            $("#login1").css("display", "none");
-                        });
+                        // ✅ No popup here — directly go to OTP phase
+                        $("#otpphase").css("display", "block");
+                        $("#login1").css("display", "none");
                     } else {
-                        Swal.fire({
-                            icon: "error",
-                            title: "Login Failed",
-                            text: res.msg,
-                            confirmButtonColor: "#d33"
-                        });
+                        // ❌ Only error popup
+                        showSmallError(res.msg || "Invalid credentials");
                     }
                 },
                 error: function (err) {
                     console.error(err);
                     $(".loader-overlay").css("display", "none");
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "Something went wrong. Please try again later.",
-                        confirmButtonColor: "#d33"
-                    });
+                    showSmallError("Something went wrong. Please try again later.");
                 }
             });
         }
     });
 
+    // 🔹 Helper function for small toast popups
+    function showSmallError(message) {
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'error',
+            title: message,
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true,
+            background: '#ffffff',
+            color: '#333',
+            width: '250px'
+        });
+    }
+
+ 
 
 });
 
 function validateOtp() {
     let otp = $("#OTP").val().trim();
     $("#otpError").text("");
+
     if (otp === "") {
         $("#otpError").text("OTP is required");
         return false;
@@ -192,11 +184,63 @@ function validateOtp() {
 $("#btnVerifyOtp").click(function () {
     if (validateOtp()) {
         $(".loader-overlay").css("display", "flex");
-        window.location.href = "/Home/Index";
+
+        // Simulate OTP verification
+        setTimeout(() => {
+            $(".loader-overlay").css("display", "none");
+
+            let otp = $("#OTP").val().trim();
+
+            if (otp === "1234") {
+                // ✅ Correct OTP
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Login successfully!',
+                    showConfirmButton: false,
+                    timer: 600,
+                    timerProgressBar: true,
+                    background: '#ffffff',
+                    color: '#333',
+                    width: '250px'
+                });
+
+                // Redirect after toast
+                setTimeout(() => {
+                    window.location.href = "/Home/Index";
+                }, 600);
+            } else {
+                // ❌ Incorrect OTP
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'Incorrect OTP. Please try again.',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true,
+                    background: '#ffffff',
+                    color: '#333',
+                    width: '250px'
+                });
+            }
+        }, 700);
     }
 });
 
 $("#btnResendOtp").click(function () {
-    alert("OTP resent successfully!");
+    Swal.fire({
+        toast: true,
+        position: 'top-end',
+        icon: 'info',
+        title: 'OTP resent successfully!',
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        background: '#ffffff',
+        color: '#333',
+        width: '250px'
+    });
     $(".loader-overlay").css("display", "none");
 });

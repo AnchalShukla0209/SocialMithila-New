@@ -631,6 +631,37 @@ namespace SocialMithila.Controllers
         {
             return View();
         }
+
+
+        [HttpPost]
+        public ActionResult SocialAccount(TblSocialmodel model)
+        {
+
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+            int userId = Convert.ToInt32(Session["UserId"].ToString());
+            model.UserId = userId;
+            var res = _bll.SocialAccount(model);
+            return Json(res, JsonRequestBehavior.AllowGet);
+        }
+
+
+        [HttpPost]
+        public ActionResult ChangePassword(TblPasswordChange model)
+        {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+
+            model.UserId = Convert.ToInt32(Session["UserId"]);
+
+            var res = _bll.ChangePassword(model);
+            return Json(res, JsonRequestBehavior.AllowGet);
+        }
+
     }
 
 }

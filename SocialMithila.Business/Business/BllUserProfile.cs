@@ -8,11 +8,13 @@ using SocialMithila.DataAccess.ResponseModel.UserProfile;
 using SocialMithila.SharedDataAccess.EFCore;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Mvc;
 
 namespace SocialMithila.Business.Business
 {
@@ -664,6 +666,166 @@ namespace SocialMithila.Business.Business
             catch(Exception ex)
             {
                 throw ex;
+            }
+        }
+
+
+       
+
+        public ResponseModel SocialAccount(TblSocialmodel model)
+        {
+            try
+            {
+                using (var db = new AppDbContext())
+                {
+                    
+                    if (model.UserId == 0)
+                    {
+                        return new ResponseModel
+                        {
+                            IsSuccess = false,
+                            Message = "User ID is required."
+                        };
+                    }
+                    // 🔹 Check if social data already exists for this user
+                    var existing = db.TblSocial.FirstOrDefault(s => s.UserId == model.UserId && s.IsDeleted==false);
+
+                    if (existing != null)
+                    {
+                        // --- Update existing record ---
+                        existing.FacebookProfile = model.FacebookProfile?.Trim();
+                        existing.Twitter = model.Twitter?.Trim();
+                        existing.LinkedIn = model.LinkedIn?.Trim();
+                        existing.Instagram = model.Instagram?.Trim();
+                        existing.Flickr = model.Flickr?.Trim();
+                        existing.Github = model.Github?.Trim();
+                        existing.Skype = model.Skype?.Trim();
+                        existing.Google = model.Google?.Trim();
+                        existing.IsActive = true;
+                        existing.ModifiedOn = DateTime.Now;
+                        existing.ModifiedBy = Convert.ToString(model.ModifiedBy);
+
+                    }
+                    else
+                    {
+                        // --- Insert new record ---
+                        var entity = new TblSocial
+                        {
+                            UserId = model.UserId,
+                            FacebookProfile = model.FacebookProfile?.Trim(),
+                            Twitter = model.Twitter?.Trim(),
+                            LinkedIn = model.LinkedIn?.Trim(),
+                            Instagram = model.Instagram?.Trim(),
+                            Flickr = model.Flickr?.Trim(),
+                            Github = model.Github?.Trim(),
+                            Skype = model.Skype?.Trim(),
+                            Google = model.Google?.Trim(),
+                            IsActive = true,
+                            IsDeleted = false,
+                            CreatedOn = DateTime.Now,
+                            CreatedBy = Convert.ToString(model.CreatedBy)
+                        };
+
+                        db.TblSocial.Add(entity);
+                    }
+
+                    db.SaveChanges();
+
+                    return new ResponseModel
+                    {
+                        IsSuccess = true,
+                        Message = "Social account information saved successfully."
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                return new ResponseModel
+                {
+                    IsSuccess = false,
+                    Message = "Error: " + ex.Message
+                };
+            }
+        }
+
+        public ResponseModel ChangePassword(TblPasswordChange model)
+        {
+            try
+            {
+                using (var db = new AppDbContext())
+                {
+                    // Step 1: Validate
+                    if (model.UserId == 0)
+                    {
+                        return new ResponseModel
+                        {
+                            IsSuccess = false,
+                            Message = "User not found. Please login again."
+                        };
+                    }
+
+                    if (string.IsNullOrEmpty(model.OldPassword) || string.IsNullOrEmpty(model.NewPassword))
+                    {
+                        return new ResponseModel
+                        {
+                            IsSuccess = false,
+                            Message = "Please fill all required fields."
+                        };
+                    }
+
+                    // Step 2: Find user record
+                    var existing = db.TbleUserPassword.FirstOrDefault(x => x.UserId == model.UserId);
+
+                    if (existing == null)
+                    {
+                        return new ResponseModel
+                        {
+                            IsSuccess = false,
+                            Message = "User record not found."
+                        };
+                    }
+
+                    // Step 3: Check old password match
+                    if (existing.NewPassword != model.OldPassword)
+                    {
+                        return new ResponseModel
+                        {
+                            IsSuccess = false,
+                            Message = "Old password is incorrect."
+                        };
+                    }
+
+                    // Step 4: Check new password & confirm password match
+                    if (model.NewPassword != model.NewPassword)
+                    {
+                        return new ResponseModel
+                        {
+                            IsSuccess = false,
+                            Message = "New and Confirm passwords do not match."
+                        };
+                    }
+
+                    // Step 5: Update password
+                    existing.OldPassword = existing.NewPassword; // keep history
+                    existing.NewPassword = model.NewPassword.Trim();
+                    existing.ModifiedOn = DateTime.Now;
+
+                    db.SaveChanges();
+
+                    return new ResponseModel
+                    {
+                        IsSuccess = true,
+                        Message = "Password changed successfully."
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                return new ResponseModel
+                {
+                    IsSuccess = false,
+                    Message = "Error: " + ex.Message
+                };
             }
         }
 

@@ -26,5 +26,8 @@ namespace SocialMithila.Business.Interface
 
         PostFeedDTOs GetFeedById(int postId, int userId);
         ResponseModel AddComment(CommentsRequestModel model);
+
+        ResponseModel SocialAccount(TblSocialmodel model);
+        ResponseModel ChangePassword(TblPasswordChange model);
     }
 }

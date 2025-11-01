@@ -51,4 +51,35 @@ namespace SocialMithila.DataAccess.RequestModel
     }
 
 
+
+    public class TblSocialmodel
+    {
+        public int SocialId { get; set; }
+        public int UserId { get; set; }
+        public string FacebookProfile { get; set; }
+        public string Twitter { get; set; }
+        public string LinkedIn { get; set; }
+        public string Instagram { get; set; }
+        public string Flickr { get; set; }
+        public string Github { get; set; }
+        public string Skype { get; set; }
+        public string Google { get; set; }
+        public bool IsActive { get; set; }
+        public bool IsDeleted { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public int? CreatedBy { get; set; }
+        public DateTime? ModifiedOn { get; set; }
+        public int? ModifiedBy { get; set; }
+    }
+
+    public class TblPasswordChange
+    {
+        public int ID { get; set; }
+        public int UserId { get; set; }
+        public string OldPassword { get; set; }
+        public string NewPassword { get; set; }
+        public bool IsBlocked { get; set; }
+        public DateTime AddedOn { get; set; }
+        public DateTime? ModifiedOn { get; set; }
+    }
 }
